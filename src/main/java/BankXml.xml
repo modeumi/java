@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="login" class="bankapp.A_Login">
+	</bean>
+	<bean id="passup" class="bankapp.A_PassUpdate">
+	</bean>
+	<bean id="printer" class="bankapp.A_Printer">
+	</bean>
+	<bean id="trans" class="bankapp.A_Transper">
+	</bean>
+	<bean id= "update" class="bankapp.A_Updatemoney">
+	</bean>
+	<bean id="useradd" class="bankapp.A_UserAdd">
+	</bean>
+	<bean id="delete" class="bankapp.A_UserDelete">
+	</bean>
+	<bean id="list" class="bankapp.A_UserList">
+	</bean>
+	<bean id="view" class="bankapp.A_Viewinfo">
+	</bean>
+</beans>

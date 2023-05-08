@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config />
+	<import resource="classpath:appCtxB.xml" />
+	<bean id="memberRegSvc" class=" app.MemberRegisterService">
+		<constructor-arg ref="memberDao" />
+	</bean>
+	<bean id="changePwdSvc" class="app.ChangePassService">
+		<property name="memberDao" ref="memberDao" />
+	</bean>
+	<bean id="listPrinter" class=" app.MemberListService">
+		<constructor-arg ref="memberDao" />
+		<constructor-arg ref="printer" />
+	</bean>
+	<bean id="removeSvc" class=" app.MemberRemoveService" />
+	<bean id="versionPrinter" class="app.VersionPrinter">
+		<property name="majorVersion" value="5" />
+		<property name="minorVersion" value="0" />
+	</bean>
+</beans>

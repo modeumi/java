@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+#p1 {
+	background-color: #C0C0C0;
+	width: 550px;
+	height: 480px;
+}
+
+body {
+	text-align: center;
+	width: 550px;
+	height: 480px;
+}
+
+.con {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 20px;
+}
+
+hr {
+	border-bottom: 3px dashed balck;
+	width: 500px;
+}
+
+.attack {
+	color: white;
+}
+</style>
+</head>
+<body>
+	<div id="p1">
+		<p>
+			<img src="img/nomal.jpg">
+		</p>
+		<hr />
+		<table class="type">
+			<tr>
+				<td colspan="3" bgcolor=lightgreen width="500px" height="30px">상성</td>
+			</tr>
+			<tr>
+				<td rowspan="2" bgcolor=black;><p class="attack">
+						공격 <br> Attack
+					</p></td>
+				<td bgcolor=#C0C0C0>반감</td>
+				<td bgcolor=#FFFFFF><img src="img/iron.png" width="60px"
+					height="60px"><img src="img/stone.png" width="60px"
+					height="60px"></td>
+			</tr>
+			<tr>
+				<td bgcolor=#C0C0C0>무효</td>
+				<td bgcolor=#FFFFFF><img src="img/ghost.png" width="60px"
+					height="60px"></td>
+			</tr>
+			<tr>
+				<td rowspan="2" bgcolor=aqua;><p class="attack">
+						방어 <br> Defense</td>
+				<td bgcolor=#C0C0C0>약점</td>
+				<td bgcolor=#FFFFFF><img src="img/fight.png" width="60px"
+					height="60px"></td>
+			</tr>
+			<tr>
+				<td bgcolor=#C0C0C0>무효</td>
+				<td bgcolor=#FFFFFF><img src="img/ghost.png" width="60px"
+					height="60px"></td>
+			</tr>
+
+		</table>
+	</div>
+
+</body>
+</html>
