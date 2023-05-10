@@ -40,8 +40,10 @@
 
 <style type="text/css">
 body {
+ 	padding-top: 54px; 
 	align-content: center;
 	text-align: center;
+	align-content: center;
 	/* margin-left: 100px; */
 }
 
@@ -49,18 +51,17 @@ body a {
 	text-decoration-line: none;
 }
 
-
 h1[class] {
 	align-content: left;
 	text-align: left;
 }
 
 h2 {
-text-align: center;
+	text-align: center;
 }
 
 .fontst {
-	text-align : center;
+	text-align: center;
 	font-size: 20px;
 	font-face: '맑은고딕';
 }
@@ -68,7 +69,6 @@ text-align: center;
 .low {
 	float: left;
 }
-
 
 .log {
 	display: flex;
@@ -143,10 +143,6 @@ body, html {
 	letter-spacing: -0.4px;
 }
 
-
-
-
-
 a {
 	text-decoration: none;
 }
@@ -215,25 +211,27 @@ button {
 	gap: 20px 10px;
 }
 
-
-
 .css-c20 {
 	display: grid;
 	column-gap: 16px;
 	grid-template-columns: max-content 1fr;
 }
 </style>
+	<%@ include file="header.jsp"%>
 </head>
 <body>
 	<br>
-	<%@ include file="header.jsp"%>
 	<br>
 	<h2>Mobel</h2>
 	<br>
 	<div class="fontst">
 
-		<a href="#"> 의자 </a> <a href="#"> 책상 </a> <a href="#"> 소파 </a> <a
-			href="#"> 이불 </a> <a href="#"> 커튼 </a> <a href="#"> 쿠션 </a>
+		<a href="Item_desk.jsp"> 책상 </a>
+		<a href="Item_chair.jsp"> 의자 </a>
+		<a href="Item_bed.jsp"> 침대 </a>
+		<a href="Item_closet.jsp"> 옷장 </a>
+		<a href="Item_shelf.jsp"> 선반 </a>
+		
 
 	</div>
 	<br>
@@ -241,7 +239,7 @@ button {
 	<hr />
 	<br>
 	<div align="center">
-		<img src="이미지/메인보드2.png" /> <img src="이미지/이벤트1.png" />
+		<img src="img/이미지/메인보드2.png" /> <img src="img/이미지/이벤트1.png" />
 	</div>
 	<br>
 	<hr>
@@ -257,17 +255,17 @@ button {
 			<div class="row">
 
 				<div class="col">
-					<img src="이미지/실내1.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내1.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스🔍
 				</div>
 
 				<div class="col order-5">
-					<img src="이미지/실내3.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내3.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스 🔍
 				</div>
 
 				<div class="col order-1">
-					<img src="이미지/실내2.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내2.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span> 가꾸는 나의 빈티지하우스 🔍
 				</div>
 			</div>
@@ -285,17 +283,17 @@ button {
 			<div class="row">
 
 				<div class="col">
-					<img src="이미지/실내4.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내4.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스🔍
 				</div>
 
 				<div class="col order-5">
-					<img src="이미지/실내6.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내6.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스 🔍
 				</div>
 
 				<div class="col order-1">
-					<img src="이미지/실내5.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내5.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span> 가꾸는 나의 빈티지하우스 🔍
 				</div>
 			</div>
@@ -313,16 +311,16 @@ button {
 			<div class="row">
 
 				<div class="col">
-					<img src="이미지/실내7.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내7.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스🔍
 				</div>
 
 				<div class="col order-5">
-					<img src="이미지/실내9.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내9.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스 🔍
 				</div>
 				<div class="col order-1">
-					<img src="이미지/실내8.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/이미지/실내8.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span> 가꾸는 나의 빈티지하우스 🔍
 				</div>
 			</div>
@@ -341,22 +339,22 @@ button {
 			<div class="row">
 
 				<div class="col">
-					<img src="꾸미기/꾸미기1.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/꾸미기/꾸미기1.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스🔍
 				</div>
 
 				<div class="col order-2">
-					<img src="꾸미기/꾸미기2.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/꾸미기/꾸미기2.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span>가꾸는 나의 빈티지하우스 🔍
 				</div>
 
 				<div class="col order-3">
-					<img src="꾸미기/꾸미기3.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/꾸미기/꾸미기3.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span> 가꾸는 나의 빈티지하우스 🔍
 				</div>
 
 				<div class="col order-4">
-					<img src="꾸미기/꾸미기4.png" /> <br> <span class="css-col">포레스트를
+					<img src="img/꾸미기/꾸미기4.png" /> <br> <span class="css-col">포레스트를
 						꿈꾸며 </span> 가꾸는 나의 빈티지하우스 🔍
 				</div>
 
@@ -366,7 +364,7 @@ button {
 	<br>
 	<br>
 
-		<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>
 
 </body>
 </html>

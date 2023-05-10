@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		try {
 		    DaoImpl memberDao = new DaoImpl();
 		    String id = request.getParameter("id");
@@ -44,6 +46,11 @@ public class LoginServlet extends HttpServlet {
 		    if (member != null) {
 		        HttpSession session = request.getSession();
 		        session.setAttribute("member", member);
+		        session.setAttribute("log_id", member.getId());
+		        session.setAttribute("log_pw",member.getPw());
+		        session.setAttribute("log_name", member.getName());
+		        session.setAttribute("log_phone", member.getPhone());
+		        session.setAttribute("log_email", member.getEmail());
 		        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		        rd.forward(request, response);
 		    } else {

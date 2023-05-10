@@ -6,6 +6,7 @@ public class Member {
 	private String name;
 	private String phone;
 	private String email;
+	
 	public String getId() {
 		return id;
 	}

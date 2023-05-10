@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,62 +7,70 @@
 <title>고객센터</title>
 <style>
 .complainMune {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-100%, -100%);
-   width: 400px;
-   padding: 5px;
+	position: static;
+/* 	position: relative; */
+/* 	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(-100%, -100%); */
+	width: 400px;
+	padding: 5px;
 }
 
 .complainButton {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(10%, -100%);
-   width: 400px;
-   padding: 5px;
-   background: #dcdcdc;
+	position: static;
+/* 	position: relative; */
+/* 	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(10%, -100%); */
+	width: 400px;
+	padding: 5px;
+	background: #dcdcdc;
 }
 
 ol {
-   list-style-type: none;
+	list-style-type: none;
 }
 
 .number {
-   color: blue;
+	color: blue;
 }
 
 .but {
-   display: flex;
-   justify-content: space-between;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-48%, 100%);
-   width: 850px;
-   padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-48%, 100%);
+	width: 850px;
+	padding: 10px;
 }
 
 .b1 {
-   border: none;
-   border-radius: 20px;
-   width: 100px;
-   height: 50px;
-   background-color: #ACFFEF;
+	border: none;
+	border-radius: 20px;
+	width: 100px;
+	height: 50px;
+	background-color: #ACFFEF;
 }
 
 ul {
-   position: absolute;
-   top: 70%;
-   left: 50%;
-   transform: translateX(-50%);
-   width: 850px;
-   background-color: white;
-   padding: 20px;
-   border-radius: 10px;
-   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-   list-style-type: none;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 850px;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+	list-style-type: none;
+}
+
+body {
+	align-content: center;
+	text-align: center;
+	/* margin-left: 100px; */
 }
 </style>
 <script type="text/javascript">
@@ -150,52 +158,55 @@ ul {
 </script>
 </head>
 <body>
+	<br>
+	<%@ include file="header.jsp"%>
+	<br>
 
-   <div class="complainMune">
-      <!-- 무엇을 도와드릴까요 창 -->
-      <h3>
-         ■ 무엇을 도와드릴까요?
-         <h3>
-            <hr>
-            <form action="" method="post">
-               <ol>
-                  <br>
-                  <li>Q.<a href="#"> 주문 / 결제 </a></li>
-                  <br>
-                  <li>Q.<a href="#"> 배송관련</a></li>
-                  <br>
-                  <li>Q.<a href="#"> 취소 / 환불</a></li>
-                  <br>
-                  <li>Q.<a href="#"> 반품 / 교환</a></li>
-                  <br>
-                  <li>Q.<a href="#"> 로그인 / 회원정보</a></li>
-                  <br>
-                  <li>Q.<a href="#"> 서비스 / 기타</a></li>
-               </ol>
-            </form>
-   </div>
-   <div class="complainButton">
-      <h1>
-         고객센터 <span class="number">09:00 ~ 18:00</span>
-      </h1>
-      <br>
-      <h3>평일 : 전체 문의 상담 가능</h3>
-      <h3>주말/공휴일 : 집 mobel은 서비스 및 기타에 관련 문의에 한해 전화 상담 가능</h3>
-      <br>
-      <h1>
-         ☏<span class="number">1600-0000</span>
-      </h1>
-   </div>
-   <div class="but" onclick="Q()">
-      <button class="b1" onclick="off(event)">전체</button>
-      <button class="b1" onclick="off(event)">주문/결제</button>
-      <button class="b1" onclick="off(event)">배송</button>
-      <button class="b1" onclick="off(event)">취소/환불</button>
-      <button class="b1" onclick="off(event)">반품/교환</button>
-      <button class="b1" onclick="off(event)">
-         로그인/<br>회원정보
-      </button>
-      <button class="b1" onclick="off(event)">서비스/기타</button>
-   </div>
+	<div class="complainMune">
+		<!-- 무엇을 도와드릴까요 창 -->
+		<h3>■ 무엇을 도와드릴까요?</h3>
+
+		<hr>
+		<form action="" method="post">
+			<ol>
+				<br>
+				<li>Q.<a href="#"> 주문 / 결제 </a></li>
+				<br>
+				<li>Q.<a href="#"> 배송관련</a></li>
+				<br>
+				<li>Q.<a href="#"> 취소 / 환불</a></li>
+				<br>
+				<li>Q.<a href="#"> 반품 / 교환</a></li>
+				<br>
+				<li>Q.<a href="#"> 로그인 / 회원정보</a></li>
+				<br>
+				<li>Q.<a href="#"> 서비스 / 기타</a></li>
+			</ol>
+		</form>
+	</div>
+	<div class="complainButton">
+		<h1>
+			고객센터 <span class="number">09:00 ~ 18:00</span>
+		</h1>
+		<br>
+		<h3>평일 : 전체 문의 상담 가능</h3>
+		<h3>주말/공휴일 : 집 mobel은 서비스 및 기타에 관련 문의에 한해 전화 상담 가능</h3>
+		<br>
+		<h1>
+			☏<span class="number">1600-0000</span>
+		</h1>
+	</div>
+	<div class="but" onclick="Q()">
+		<button class="b1" onclick="off(event)">전체</button>
+		<button class="b1" onclick="off(event)">주문/결제</button>
+		<button class="b1" onclick="off(event)">배송</button>
+		<button class="b1" onclick="off(event)">취소/환불</button>
+		<button class="b1" onclick="off(event)">반품/교환</button>
+		<button class="b1" onclick="off(event)">
+			로그인/<br>회원정보
+		</button>
+		<button class="b1" onclick="off(event)">서비스/기타</button>
+	</div>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
