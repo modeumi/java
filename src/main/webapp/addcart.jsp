@@ -17,7 +17,7 @@ function gocart() {
 <h2> 장바구니에 물건이 추가되었습니다.</h2>
 
 <button onclick = "gocart();">
-<span><img src = "img/cart.jsp"></span>
+<span><img src = "img/carti.jpg" width="30px" height="30px"></span>
 <span> 장바구니 </span>
 </button>
 <button onclick = "window.close();">
