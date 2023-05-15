@@ -1,16 +1,25 @@
 package model;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Review {
+	
+	public String reviewnum;
 	public int itemid;
 	public String name;
 	public String text;
-	public String img;
+	public Map<Integer,String> img;
 	public double star;
 	public Date date;
 	
 	
+	public String getReviewnum() {
+		return reviewnum;
+	}
+	public void setReviewnum(String reviewnum) {
+		this.reviewnum = reviewnum;
+	}
 	public int getItemid() {
 		return itemid;
 	}
@@ -29,10 +38,11 @@ public class Review {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public String getImg() {
+
+	public Map<Integer, String> getImg() {
 		return img;
 	}
-	public void setImg(String img) {
+	public void setImg(Map<Integer, String> img) {
 		this.img = img;
 	}
 	public double getStar() {

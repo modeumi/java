@@ -8,9 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.xdevapi.Result;
+
 import model.DBConnection;
 import model.Item;
 import model.Member;
+import model.Review;
 
 public class DaoImpl {
 
@@ -203,7 +206,7 @@ public class DaoImpl {
 		return result;
 	}
 
-	public Item addcart(int id,int num) {
+	public Item addcart(int id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -213,7 +216,6 @@ public class DaoImpl {
 			pstmt = conn.prepareStatement("select * from item where id = '" + id + "' ");
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				item.setCount(num);
 				item.setId(rs.getInt("id"));
 				item.setName(rs.getString("name"));
 				item.setImg(rs.getString("image"));
@@ -239,4 +241,25 @@ public class DaoImpl {
 		}
 		return item;
 	}
+	
+//	public Review getreview (Review review, int num) {
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		try {
+//			conn = DBConnection.getConnection();
+//			pstmt = conn.prepareStatement("select * from review where itemid = ?");
+//			pstmt.setInt(1, num);
+//			rs = pstmt.executeQuery();
+//			while (rs.next()) {
+//				review.setItemid(rs.getInt(2));
+//				review.setName(rs.getString(3));
+//				review.setText(rs.getString(4));
+//				review.set
+//				Map<Integer,Review> item_review = hash
+//				
+//			}
+//		}
+//	}
+	
 }

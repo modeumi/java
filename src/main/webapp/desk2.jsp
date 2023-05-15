@@ -88,7 +88,7 @@ width: 30px;
 
 	<div id="itempage">
 		<div id="itemimg">
-			<img src="img/desk/desk1.png" width="400px" height="400px">
+			<img src="img/desk/desk2.png" width="400px" height="400px">
 		</div>
 		<div id="iteminfo">
 			<div>
@@ -97,8 +97,8 @@ width: 30px;
 			</div>
 			<div id="but">
 				<form id="itemnum" action="AddcartServlet" method="post">
-					<input type="hidden" name="itemnum" value="1001"> <input
-						type="hidden" name="page" value="desk1.jsp">
+					<input type="hidden" name="itemnum" value="1002"> 
+					<input type="hidden" name="page" value="desk2.jsp">
 						<div> 수량</div>
 						<br>
 					<button onclick="decreaseQuantity()">-</button>

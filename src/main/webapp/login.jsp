@@ -36,8 +36,6 @@
     
   </style>
   <script type="text/javascript">
- // alert("없는 아이디와 비밀번호입니다.");
-  //window.location.href = 'login.jsp';
   function showPassword(){
       var passwordInput = document.getElementById("pw");
        if (passwordInput.type === "password") {
