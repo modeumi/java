@@ -65,34 +65,8 @@ body a {
 </style>
 
 <script type="text/javascript">
-// 체크박스에 따른 상태 변경
 
-// 아이템 제거 -------------------------------------------
-function removeItem(itemId) {
-	  // cart 맵에서 아이템 제거
-	  cart.delete(itemId);
-
-	  // 페이지 새로고침
-	  location.reload();
-	}
-	
-//아이템 수량 변경 -----------------------------------------------------------------
-function decreasecount(event) {
-	event.preventDefault();
-	var quantityInput = document.getElementById("quantity");
-	var quantity = parseInt(quantityInput.value);
-	if (quantity > 1) {
-	  quantityInput.value = quantity - 1;
-	}
-	alert(quantity);
-}
-
-function increasecount(event) {
-	event.preventDefault();
-	var quantityInput = document.getElementById("quantity");
-	var quantity = parseInt(quantityInput.value);
-	quantityInput.value = quantity + 1;
-}
+// 제품 삭제 (V)
 var ans;
 function submititem(){
 	const deletei = window.open("deleteitem.jsp", "delete",
@@ -103,12 +77,24 @@ function submititem(){
 		}
 	}
 }
+// 제품 수량 변경(V)
+function changequantity(itemId) {
+	// itemId가 곧 itementry.key 니까 아래방법으로 가져와도 무관
+    var quantitySelect = document.getElementById("quantitydefault" + itemId);
+	// 선택한 값을 new로 저장 
+	var newQuantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
+    // 같은 방법으로 itemid에 맞는 가격을 가져옴
+	var itemPriceElement = document.getElementById("itemprice" + itemId);
+	var itemPrice = parseInt(itemPriceElement.innerHTML);
+    var totalPrice = itemPrice * newQuantity;
+    document.getElementById("totalpay"+itemId).innerHTML = totalPrice;
+  }
+  
 </script>
 
 </head>
 <%@ include file="header.jsp"%>
 <body>
-
 	<div class="banner_top">장바구니 현황</div>
 	<br>
 	<c:if test="${empty cart}">
@@ -121,49 +107,67 @@ function submititem(){
 			<c:forEach items="${cart}" var="itemEntry">
 				<div class="itemlist">
 					<div>
-					<form action = "deleteitemServlet" method = "post"  id= "deleteitem">
-					<input type = "hidden" value = "${itemEntry.key}" name = "key">
-					</form>
-					<a href = "#"  onclick = "submititem()"><img src = "img/delete.png" width = "20px" height = "20px"></a>
-<!-- 						<input type="checkbox" name="itemIds" -->
-<%-- 							value="${itemEntry.key}" onchange="updateSelectedItems();" --%>
-<!-- 							 checked="checked"> -->
+						<form action="deleteitemServlet" method="post" id="deleteitem">
+							<input type="hidden" value="${itemEntry.key}" name="key">
+						</form>
+						<a href="#" onclick="submititem()"><img src="img/delete.png"
+							width="20px" height="20px"></a>
 					</div>
 					<div>
-						<img src="${itemEntry.value.getImg()}"
-							width="200px" height="200px">
-					<div>${itemEntry.value.getName()}</div>
+						<img src="${itemEntry.value.getImg()}" width="200px"
+							height="200px">
+						<div>${itemEntry.value.getName()}</div>
 					</div>
 					<div>
-						<div>\ ${itemEntry.value.getPrice()}</div>
+						<div>
+							<span>\</span> <span id="itemprice${itemEntry.key}">${itemEntry.value.getPrice()}
+							</span>
+						</div>
 					</div>
 				</div>
 				<div>
-					수량
-					<button onclick="decreasecount();">-</button>
-					<input type="text" id="quantity" class="quantity"
-						value="${itemEntry.value.getCount()}" readonly>
-					<button onclick="increasecount();">+</button>
+					수량 <select name="quantity" id="quantitydefault${itemEntry.key}"
+						onchange="changequantity(${itemEntry.key})">
+						<%
+						for (int i = 1; i <= 10; i++) {
+						%>
+						<option value="<%=i%>"><%=i%></option>
+						<%
+						}
+						%>
+					</select>
 				</div>
 				<div>
-					총금액 : <span id="totalpay"> ${itemEntry.value.getPrice() * itemEntry.value.getCount()}
-					</span>
+					총금액 : <span id="totalpay${itemEntry.key}" >
+						${itemEntry.value.getPrice() * itemEntry.value.getCount()} </span>
+						<input type="hidden"  id = "totalpay" value = "${itemEntry.value.getPrice() * itemEntry.value.getCount()}">
 				</div>
 			</c:forEach>
 		</div>
-	</c:if>
 	<p>
+		<c:set var="totalCount" value="0" />
+		  <c:set var="totalPrice" value="0" />
+		
+		  <c:forEach items="${cart}" var="itemEntry">
+		    <c:set var="item" value="${itemEntry.value}" />
+		    <c:set var="count" value="${item.getCount()}" />
+		    <c:set var="price" value="${item.getPrice()}" />
+		
+		    <c:set var="totalCount" value="${totalCount + count}" />
+		    <c:set var="totalPrice" value="${totalPrice + count * price}" />
+		  </c:forEach>
 	<div>
-		<span> 결재금액 </span> <span id="totalPrice"> 결재금액 </span> 원
+		<span> 결재금액 </span> <span id = "totalitemprice"> ${totalPrice} </span> 원
 	</div>
 	<button>
-		<span id="itemCount"> 상품 토탈갯수 </span> <span> 개 상품 구매하기</span>
+		<span  id = "itemnum"> ${totalCount}</span> <span> 개 상품 구매하기</span>
 	</button>
 	<br>
 	<button onclick="window.history.back()">
 		<span>뒤로가기</span> <span><img src="img/로고.png" width='30px'
 			height='30px'></span>
 	</button>
+	</c:if>
 	<br>
 	<br>
 	<%@ include file="footer.jsp"%>
