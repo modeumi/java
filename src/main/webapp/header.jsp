@@ -78,6 +78,7 @@
 		  var now = new Date();
 		  var time = now.getTime() + 30 * 60 * 1000;
 		  sessionStorage.setItem('sessionTime', time);
+		  location.reload();
 		}
 
 		function initTimer() {

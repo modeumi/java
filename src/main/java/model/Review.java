@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public class Review {
 	public int itemid;
 	public String name;
 	public String text;
-	public Map<Integer,String> img;
+	public ArrayList<String> img;
 	public double star;
 	public Date date;
 	
@@ -39,10 +40,10 @@ public class Review {
 		this.text = text;
 	}
 
-	public Map<Integer, String> getImg() {
+	public ArrayList<String> getImg() {
 		return img;
 	}
-	public void setImg(Map<Integer, String> img) {
+	public void setImg(ArrayList<String> img) {
 		this.img = img;
 	}
 	public double getStar() {

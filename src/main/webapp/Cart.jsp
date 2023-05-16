@@ -81,20 +81,32 @@ function submititem(){
 function changequantity(itemId) {
 	// itemId가 곧 itementry.key 니까 아래방법으로 가져와도 무관
     var quantitySelect = document.getElementById("quantitydefault" + itemId);
-	// 선택한 값을 new로 저장 
+	// 선택한 값을 new로 int값으로 저장 
 	var newQuantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
     // 같은 방법으로 itemid에 맞는 가격을 가져옴
 	var itemPriceElement = document.getElementById("itemprice" + itemId);
 	var itemPrice = parseInt(itemPriceElement.innerHTML);
     var totalPrice = itemPrice * newQuantity;
     document.getElementById("totalpay"+itemId).innerHTML = totalPrice;
+    // 값을 서블렛으로 전송하여 갱신처리 
+    document.getElementById("itemIdInput").value = itemId;
+    document.getElementById("quantityInput").value = newQuantity;
+    document.getElementById("myForm").submit();
+    location.reload();
   }
-  
+
 </script>
 
 </head>
 <%@ include file="header.jsp"%>
 <body>
+
+<form id="myForm" action="updatecountServlet" method="post" target="_blank" style="display: none;">
+  <input type="hidden" name="itemId" id="itemIdInput">
+  <input type="hidden" name="quantity" id="quantityInput">
+</form>
+
+
 	<div class="banner_top">장바구니 현황</div>
 	<br>
 	<c:if test="${empty cart}">
@@ -136,16 +148,26 @@ function changequantity(itemId) {
 						}
 						%>
 					</select>
+					<script>
+					  var countValue = ${itemEntry.value.getCount()}
+					  var quantitydefault = document.getElementById("quantitydefault${itemEntry.key}");
+					  quantitydefault.value = countValue;
+					</script>
 				</div>
 				<div>
-					총금액 : <span id="totalpay${itemEntry.key}" >
-						${itemEntry.value.getPrice() * itemEntry.value.getCount()} </span>
-						<input type="hidden"  id = "totalpay" value = "${itemEntry.value.getPrice() * itemEntry.value.getCount()}">
+					총금액 : <span id="totalpay${itemEntry.key}" onchange = "changepay()">
+						${itemEntry.value.getPrice() * itemEntry.value.getCount()} </span> 
 				</div>
 			</c:forEach>
+			<script>
+			var sendprice = document.getElementById("totalpay${itemEntry.key}");
+			var sendcount = document.getElementById("quantitydefault${itemEntry.key}");
+			</script>
 		</div>
-	<p>
-		<c:set var="totalCount" value="0" />
+		<div>
+		</div>
+		<p>
+		 <c:set var="totalCount" value="0" />
 		  <c:set var="totalPrice" value="0" />
 		
 		  <c:forEach items="${cart}" var="itemEntry">
@@ -156,17 +178,20 @@ function changequantity(itemId) {
 		    <c:set var="totalCount" value="${totalCount + count}" />
 		    <c:set var="totalPrice" value="${totalPrice + count * price}" />
 		  </c:forEach>
-	<div>
-		<span> 결재금액 </span> <span id = "totalitemprice"> ${totalPrice} </span> 원
-	</div>
-	<button>
-		<span  id = "itemnum"> ${totalCount}</span> <span> 개 상품 구매하기</span>
-	</button>
-	<br>
-	<button onclick="window.history.back()">
-		<span>뒤로가기</span> <span><img src="img/로고.png" width='30px'
-			height='30px'></span>
-	</button>
+
+  <div>
+    총 결제 금액: ${totalPrice} 원
+  </div>
+		<button>
+		<span> 총 </span>
+		<span> ${totalCount} 개 </span>
+			<span>구매하기</span>
+		</button>
+		<br>
+		<button onclick="window.history.back()">
+			<span>뒤로가기</span> <span><img src="img/로고.png" width='30px'
+				height='30px'></span>
+		</button>
 	</c:if>
 	<br>
 	<br>
