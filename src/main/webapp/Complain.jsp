@@ -1,25 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+<%@page import="org.reflections.util.FilterBuilder.Include"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>°í°´¼¾ÅÍ</title>
+<meta charset="UTF-8">
+<title>ê³ ê°ì„¼í„°</title>
 <style>
+body{
+padding-top: 55px;
+}
 .complainMune {
-   position: absolute;
    top: 50%;
    left: 50%;
-   transform: translate(-100%, -100%);
+   transform: translate(-50%, -3%);
    width: 400px;
    padding: 5px;
 }
-
+section {
+	display: flex;
+	justify-content: center;
+/* 	align-items: center; */
+	text-align: left;
+	margin-bottom: 100px;
+}
 .complainButton {
    position: absolute;
    top: 50%;
    left: 50%;
-   transform: translate(10%, -100%);
+   transform: translate(10%, -115%);
    width: 400px;
    padding: 5px;
    background: #dcdcdc;
@@ -30,7 +39,7 @@ ol {
 }
 
 .number {
-   color: blue;
+   color: green;
 }
 
 .but {
@@ -42,6 +51,7 @@ ol {
    transform: translate(-48%, 100%);
    width: 850px;
    padding: 10px;
+   margin-bottom: 100%;
 }
 
 .b1 {
@@ -53,7 +63,7 @@ ol {
 }
 
 ul {
-   position: absolute;
+   position: absolute; 
    top: 70%;
    left: 50%;
    transform: translateX(-50%);
@@ -64,48 +74,56 @@ ul {
    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
    list-style-type: none;
 }
+.empty-space {
+  height: 300px;
+}
 </style>
 <script type="text/javascript">
    function off(event){
-      var buttons = document.getElementsByTagName("button");  // ¸ğµç ¹öÆ° °¡Á®¿À±â
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].style.backgroundColor = "#ACFFEF";// ¸ğµç ¹öÆ° »ö»óÀ» ³ì»öÀ¸·Î ¼³Á¤
-        buttons[i].style.color = "black";
+      var b1s = document.getElementsByClassName("b1");  // ëª¨ë“  ë²„íŠ¼ ê°€ì ¸ì˜¤ê¸°
+      for (var i = 0; i < b1s.length; i++) {
+    	  b1s[i].style.backgroundColor = "#ACFFEF";// ëª¨ë“  ë²„íŠ¼ ìƒ‰ìƒì„ ë…¹ìƒ‰ìœ¼ë¡œ ì„¤ì •
+    	  b1s[i].style.color = "black";
       }
-      event.target.style.backgroundColor = "Green";// Å¬¸¯ÇÑ ¹öÆ° »ö»ó º¯°æ
+      event.target.style.backgroundColor = "Green";// í´ë¦­í•œ ë²„íŠ¼ ìƒ‰ìƒ ë³€ê²½
       event.target.style.color = "white";
       
    }
    function Q(){
-      // »õ·Î¿î ul ¿ä¼Ò »ı¼º
+	// ê¸°ì¡´ì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  faq-list ìˆ¨ê¸°ê¸°
+	   const allFaqLists = document.querySelectorAll('.faq-list');
+	   allFaqLists.forEach(faqList => {
+	     faqList.style.display = 'none';
+	   });
+      // ìƒˆë¡œìš´ ul ìš”ì†Œ ìƒì„±
       const faqList = document.createElement("ul");
-      faqList.classList.add("faq-list"); // faq-list Å¬·¡½º Ãß°¡
+      faqList.classList.add("faq-list"); // faq-list í´ë˜ìŠ¤ ì¶”ê°€
 
-      // °¢°¢ÀÇ Áú¹®°ú ´äº¯À» ´ã°í ÀÖ´Â °´Ã¼
+      // ê°ê°ì˜ ì§ˆë¬¸ê³¼ ë‹µë³€ì„ ë‹´ê³  ìˆëŠ” ê°ì²´
       const faqData = [
         {
-          question: "¹è¼ÛÇÏ´Âµ¥ ¾ó¸¶³ª °É¸®³ª¿ä?",
-          answer: "¹è¼Û ½Ã°£Àº Áö¿ª¿¡ µû¶ó ´Ù¸£¸ç º¸Åë 2~3ÀÏ Á¤µµ ¼Ò¿äµË´Ï´Ù.",
+          question: "ë°°ì†¡í•˜ëŠ”ë° ì–¼ë§ˆë‚˜ ê±¸ë¦¬ë‚˜ìš”?",
+          answer: "ë°°ì†¡ ì‹œê°„ì€ ì§€ì—­ì— ë”°ë¼ ë‹¤ë¥´ë©° ë³´í†µ 2~3ì¼ ì •ë„ ì†Œìš”ë©ë‹ˆë‹¤.",
         },
         {
-          question: "ÁÖ¹®Ãë¼Ò´Â ¾î¶»°ÔÇÏ³ª¿ä?",
-          answer: "ÁÖ¹® Ãë¼Ò´Â ¸¶ÀÌÆäÀÌÁö¿¡¼­ °¡´ÉÇÕ´Ï´Ù. ¶Ç´Â °í°´¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ½Ã¸é µµ¿òµå¸®°Ú½À´Ï´Ù.",
+          question: "ì£¼ë¬¸ì·¨ì†ŒëŠ” ì–´ë–»ê²Œí•˜ë‚˜ìš”?",
+          answer: "ì£¼ë¬¸ ì·¨ì†ŒëŠ” ë§ˆì´í˜ì´ì§€ì—ì„œ ê°€ëŠ¥í•©ë‹ˆë‹¤. ë˜ëŠ” ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì‹œë©´ ë„ì›€ë“œë¦¬ê² ìŠµë‹ˆë‹¤.",
         },
         {
-          question: "Á¦Ç°ÀÇ ÀÚ¼¼ÇÑ Á¤º¸¸¦ ¾Ë°í ½Í¾î¿ä",
-          answer: "Á¦Ç°ÀÇ ÀÚ¼¼ÇÑ Á¤º¸´Â Á¦Ç° »ó¼¼ÆäÀÌÁö¿¡¼­ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.",
+          question: "ì œí’ˆì˜ ìì„¸í•œ ì •ë³´ë¥¼ ì•Œê³  ì‹¶ì–´ìš”",
+          answer: "ì œí’ˆì˜ ìì„¸í•œ ì •ë³´ëŠ” ì œí’ˆ ìƒì„¸í˜ì´ì§€ì—ì„œ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
         },
         {
-          question: "Á¦Ç°ÀÌ ºÒ·®ÀÏ ¶§´Â?",
-          answer: "ºÒ·® Á¦Ç°ÀÎ °æ¿ì °í°´¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ½Ã¸é ½Å¼ÓÇÏ°Ô Ã³¸®ÇØµå¸®°Ú½À´Ï´Ù.",
+          question: "ì œí’ˆì´ ë¶ˆëŸ‰ì¼ ë•ŒëŠ”?",
+          answer: "ë¶ˆëŸ‰ ì œí’ˆì¸ ê²½ìš° ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì‹œë©´ ì‹ ì†í•˜ê²Œ ì²˜ë¦¬í•´ë“œë¦¬ê² ìŠµë‹ˆë‹¤.",
         },
         {
-          question: "ºñÈ¸¿ø ¹× ÀüÈ­ÁÖ¹®ÀÌ °¡´ÉÇÑ°¡¿ä?",
-          answer: "ºñÈ¸¿ø ÁÖ¹®°ú ÀüÈ­ÁÖ¹® ¸ğµÎ °¡´ÉÇÕ´Ï´Ù. ÀÚ¼¼ÇÑ ³»¿ëÀº °í°´¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ¼¼¿ä.",
+          question: "ë¹„íšŒì› ë° ì „í™”ì£¼ë¬¸ì´ ê°€ëŠ¥í•œê°€ìš”?",
+          answer: "ë¹„íšŒì› ì£¼ë¬¸ê³¼ ì „í™”ì£¼ë¬¸ ëª¨ë‘ ê°€ëŠ¥í•©ë‹ˆë‹¤. ìì„¸í•œ ë‚´ìš©ì€ ê³ ê°ì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì„¸ìš”.",
         },
       ];
     
-      // faqData °´Ã¼¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ ±â¹İÀ¸·Î µ¿ÀûÀ¸·Î li ¿ä¼Ò »ı¼º ¹× Ãß°¡
+      // faqData ê°ì²´ì— ìˆëŠ” ë°ì´í„°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë™ì ìœ¼ë¡œ li ìš”ì†Œ ìƒì„± ë° ì¶”ê°€
       faqData.forEach((data) => {
         const faqItem = document.createElement("li");
         faqItem.classList.add("q1");
@@ -116,13 +134,13 @@ ul {
 
         const answer = document.createElement("p");
         answer.textContent = data.answer;
-        answer.style.display = "none"; // ÃÊ±â¿¡´Â ´äº¯À» ¼û±è
+        answer.style.display = "none"; // ì´ˆê¸°ì—ëŠ” ë‹µë³€ì„ ìˆ¨ê¹€
         faqItem.appendChild(answer);
 
         const hr = document.createElement("hr");
         faqItem.appendChild(hr);
 
-        // Áú¹® ¹öÆ°¿¡ ÀÌº¥Æ® ¸®½º³Ê Ãß°¡
+        // ì§ˆë¬¸ ë²„íŠ¼ì— ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ì¶”ê°€
         question.addEventListener("click", () => {
           if (answer.style.display === "none") {
             answer.style.display = "block";
@@ -138,64 +156,73 @@ ul {
           });
         });
 
-        faqList.appendChild(faqItem); // li ¿ä¼Ò¸¦ ul ¿ä¼Ò¿¡ Ãß°¡
+        faqList.appendChild(faqItem); // li ìš”ì†Œë¥¼ ul ìš”ì†Œì— ì¶”ê°€
       });
 
-      // »õ·Î »ı¼ºÇÑ ul ¿ä¼Ò¸¦ HTML ¹®¼­¿¡ Ãß°¡
+      // ìƒˆë¡œ ìƒì„±í•œ ul ìš”ì†Œë¥¼ HTML ë¬¸ì„œì— ì¶”ê°€
       document.body.appendChild(faqList);
     }
-  function w(){
-      
-   }
-</script>
+
+   </script>
+   <%@ include file="header.jsp"%>
 </head>
 <body>
-
+	<p>
+	<header></header>
+	<hr>
+	<br>
+   <section>
    <div class="complainMune">
-      <!-- ¹«¾ùÀ» µµ¿Íµå¸±±î¿ä Ã¢ -->
+      <!-- ë¬´ì—‡ì„ ë„ì™€ë“œë¦´ê¹Œìš” ì°½ -->
       <h3>
-         ¡á ¹«¾ùÀ» µµ¿Íµå¸±±î¿ä?
-         <h3>
+         â–  ë¬´ì—‡ì„ ë„ì™€ë“œë¦´ê¹Œìš”?
+         </h3>
             <hr>
             <form action="" method="post">
                <ol>
                   <br>
-                  <li>Q.<a href="#"> ÁÖ¹® / °áÁ¦ </a></li>
+                  <li>Q.<a href="#"> ì£¼ë¬¸ / ê²°ì œ </a></li>
                   <br>
-                  <li>Q.<a href="#"> ¹è¼Û°ü·Ã</a></li>
+                  <li>Q.<a href="#"> ë°°ì†¡ê´€ë ¨</a></li>
                   <br>
-                  <li>Q.<a href="#"> Ãë¼Ò / È¯ºÒ</a></li>
+                  <li>Q.<a href="#"> ì·¨ì†Œ / í™˜ë¶ˆ</a></li>
                   <br>
-                  <li>Q.<a href="#"> ¹İÇ° / ±³È¯</a></li>
+                  <li>Q.<a href="#"> ë°˜í’ˆ / êµí™˜</a></li>
                   <br>
-                  <li>Q.<a href="#"> ·Î±×ÀÎ / È¸¿øÁ¤º¸</a></li>
+                  <li>Q.<a href="#"> ë¡œê·¸ì¸ / íšŒì›ì •ë³´</a></li>
                   <br>
-                  <li>Q.<a href="#"> ¼­ºñ½º / ±âÅ¸</a></li>
+                  <li>Q.<a href="#"> ì„œë¹„ìŠ¤ / ê¸°íƒ€</a></li>
                </ol>
             </form>
    </div>
    <div class="complainButton">
-      <h1>
-         °í°´¼¾ÅÍ <span class="number">09:00 ~ 18:00</span>
-      </h1>
+      <h2>
+         ê³ ê°ì„¼í„° <br><span class="number">09:00 ~ 18:00</span>
+      </h2>
       <br>
-      <h3>ÆòÀÏ : ÀüÃ¼ ¹®ÀÇ »ó´ã °¡´É</h3>
-      <h3>ÁÖ¸»/°øÈŞÀÏ : Áı mobelÀº ¼­ºñ½º ¹× ±âÅ¸¿¡ °ü·Ã ¹®ÀÇ¿¡ ÇÑÇØ ÀüÈ­ »ó´ã °¡´É</h3>
+      <h4>í‰ì¼ : ì „ì²´ ë¬¸ì˜ ìƒë‹´ ê°€ëŠ¥</h4>
+      <h4>ì£¼ë§/ê³µíœ´ì¼ : ì§‘ mobelì€ ì„œë¹„ìŠ¤ ë° ê¸°íƒ€ì— ê´€ë ¨ ë¬¸ì˜ì— í•œí•´ ì „í™” ìƒë‹´ ê°€ëŠ¥</h4>
       <br>
-      <h1>
-         ¢Î<span class="number">1600-0000</span>
-      </h1>
+      <h2>
+         â˜<span class="number">1600-0000</span>
+      </h2>
    </div>
+      </section>
+   <section>
    <div class="but" onclick="Q()">
-      <button class="b1" onclick="off(event)">ÀüÃ¼</button>
-      <button class="b1" onclick="off(event)">ÁÖ¹®/°áÁ¦</button>
-      <button class="b1" onclick="off(event)">¹è¼Û</button>
-      <button class="b1" onclick="off(event)">Ãë¼Ò/È¯ºÒ</button>
-      <button class="b1" onclick="off(event)">¹İÇ°/±³È¯</button>
-      <button class="b1" onclick="off(event)">
-         ·Î±×ÀÎ/<br>È¸¿øÁ¤º¸
-      </button>
-      <button class="b1" onclick="off(event)">¼­ºñ½º/±âÅ¸</button>
+      <button class="b1" onclick="off(event)">ì „ì²´</button>
+      <button class="b1" onclick="off(event)">ì£¼ë¬¸/ê²°ì œ</button>
+      <button class="b1" onclick="off(event)">ë°°ì†¡</button>
+      <button class="b1" onclick="off(event)">ì·¨ì†Œ/í™˜ë¶ˆ</button>
+      <button class="b1" onclick="off(event)">ë°˜í’ˆ/êµí™˜</button>
+      <button class="b1" onclick="off(event)">ë¡œê·¸ì¸/<br>íšŒì›ì •ë³´</button>
+      <button class="b1" onclick="off(event)">ì„œë¹„ìŠ¤/ê¸°íƒ€</button>
    </div>
+   </section>
+    <section>
+    <div class="empty-space"></div>
+    </section>
+  <br>
+   	<footer><%@ include file="footer.jsp"%></footer>
 </body>
 </html>

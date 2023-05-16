@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>회원가입</title>
 <style>
+
 .join {
 	position: absolute;
 	top: 50%;
@@ -82,37 +83,32 @@
 			return;
 		}
 	}
-    function changeEmailDomain() {
-	        var selectElement = document.getElementsByName("site")[0];
-	        var inputDomain = document.getElementById("inputDomain");
-	        if (selectElement.value === "직접입력") {
-	            inputDomain.style.display = "inline-block";
-	        } else {
-	           // inputDomain.style.display = "none";
-	        }
-	    }
-    function changeEmailDomain() {
-        const select = document.querySelector('select[name="site"]');
-        const inputDomain = document.querySelector('#inputDomain input[name="domain"]');
-        const emailInput = document.querySelector('#email');
+	function changeEmailDomain() {
+	    const select = document.querySelector('select[name="site"]');
+	    const inputDomain = document.querySelector('#inputDomain input[name="domain"]');
+	    const emailInput = document.querySelector('#email');
 
-        const selectedValue = select.value;
-        if (selectedValue !== "직접입력") {
-          inputDomain.value = selectedValue;
-          emailInput.value = ""; // 선택된 값으로 입력된 이메일 초기화
-        } else {
-          inputDomain.value = "";
-        }
-        function doublecheck(){
-    	 
-      }
+	    const selectedValue = select.value;
+	    if (selectedValue !== "직접입력") {
+	        inputDomain.value = selectedValue;
+	        emailInput.value = ""; // 선택된 값으로 입력된 이메일 초기화
+	        //inputDomain.style.display = "none"; // 입력 필드 숨기기
+	    } else {
+	        inputDomain.value = "";
+	        //inputDomain.style.display = "inline-block"; // 입력 필드 보이기
+	    }
+	    // checkbox에 선택된 값이 inputDomain에 표시되도록 변경
+	    const checkboxValues = Array.from(document.querySelectorAll('input[name="checkbox"]:checked')).map(checkbox => checkbox.value);
+	    inputDomain.value = inputDomain.value + " " + checkboxValues.join(" ");
+	  }
+	
 </script>
 <body>
 	<div class="join">
 		<form action="JoinServlet" method="post" name="member">
 			<div class="title">
-				<img src="img/로고.png" width="150" height="100"><a
-					href="./homepage.jsp"></a>
+				<a href="home.jsp"><img src="img/로고.png" width="150"
+					height="100"></a>
 			</div>
 			<center>
 				<h2>회원가입</h2>
@@ -124,18 +120,30 @@
 				</p>
 				<div class="impo">
 					<p>
-						아 이 디 : <input type="text" name="id" onchange="checkLogin()">
-						<input type="button" value="중복확인" onclick="doublecheck()">
+						아 이 디 : <input type="text" id ="idInput"name="id" onchange="checkLogin()">
+						<input type="button" value="중복확인" onclick="doublecheck()"></p>
+						<span id="idCheckMsg"></span>
+					<br>
+					<p>
+						별 명 : <input type="text" name="nickname" onchange="checkLogin()">
+					</p>
+					<br>
 					<p>
 						비밀번호 : <input type="password" name="pw" id="pw"
-							onchange="checkLogin()"> <input type="button"
-							value="🔒" onclick="showPassword1()">
+							onchange="checkLogin()"> <input type="button" value="🔒"
+							onclick="showPassword1()">
+					</p>
+					<br>
 					<p>
 						비밀번호확인 : <input type="password" name="pwc" id="pwc"
-							onchange="checkPw()"> <input type="button" value="🔒"?
+							onchange="checkPw()"> <input type="button" value="🔒"
 							onclick="showPassword2()">
+					</p>
+					<br>
 					<p>
 						이름: <input type="text" name="name" onchange="checkname()">
+					</p>
+					<br>
 				</div>
 			</div>
 			<hr>
@@ -145,17 +153,17 @@
 			<div class="memberimp">
 				<p>
 					이메일 <input type="text" name="email" id="email"
-						placeholder="이메일을 입력해주세요"> 
-						@<span id="inputDomain"> 
-						<input type="text" name="domain" id="domain" placeholder="도메인을 입력해주세요">
-					    </span>
-						<select name="site" onchange="changeEmailDomain()">
+						placeholder="이메일을 입력해주세요"> @<span id="inputDomain">
+						<input type="text" name="domain" id="domain"
+						placeholder="도메인을 입력해주세요">
+					</span> <select name="site" onchange="changeEmailDomain()">
 						<option value="직접입력">직접입력</option>
-						<option value="@naver.com">naver.com</option>
-						<option value="@daum.net">daum.net</option>
-						<option value="@gmail.net">gmail.net</option>
-					</select> 
+						<option value="naver.com">naver.com</option>
+						<option value="daum.net">daum.net</option>
+						<option value="gmail.net">gmail.net</option>
+					</select>
 				</p>
+				<br>
 				<p>
 					연락처 : <select name="phone1" onselect="checkMember()">
 						<option value="010">010</option>
@@ -166,10 +174,12 @@
 					</select> -<input type="text" maxlength="4" size="4" name="phone2">-
 					<input type="text" maxlength="4" size="4" name="phone3"
 						onchange="checkMember()">
+				</p>
+				<br>
 				<center>
 					<p>
-						<input type="submit" value="가입하기"> 
-						<a href ="home.jsp"><input type="button" value="취소" onclick="">
+						<input type="submit" value="가입하기"> <a href="home.jsp"><input
+							type="button" value="취소" onclick="home.jsp">
 				</center>
 			</div>
 		</form>

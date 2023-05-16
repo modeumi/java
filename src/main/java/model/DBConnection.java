@@ -8,7 +8,7 @@ package model;
 		public static Connection getConnection()throws SQLException,
 		ClassNotFoundException{
 			Connection conn =null;
-			String url ="jdbc:mysql://localhost:3306/JSPBOOKDB";
+			String url ="jdbc:mysql://localhost:3306/MOBEL";
 			String user ="root";
 			String password ="java";
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.DBConnection;
+import model.Item;
 import model.Member;
 
 public class DaoImpl implements MemberDao {
@@ -19,13 +20,14 @@ public class DaoImpl implements MemberDao {
 			Member member = null;
 			try {
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("SELECT ID, PASSWD, NAME FROM MEMBER WHERE ID ='" 
+				rs = stmt.executeQuery("SELECT * FROM MEMBER WHERE ID ='" 
 				     + id + "'");
 				if (rs.next()) {
 					member = new Member()
 							.setId(rs.getString("ID"))
 							.setPw(rs.getString("PASSWD"))
-							.setName(rs.getString("NAME"));
+							.setName(rs.getString("NAME"))
+							.setNickname(rs.getString("nickname"));
 				}
 			} catch (Exception e) {
 				throw e;
@@ -49,14 +51,15 @@ public class DaoImpl implements MemberDao {
 		ResultSet rs = null;
 		Member member = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT ID, PASSWD, NAME FROM MEMBER WHERE ID =? AND PASSWD=?");
+			pstmt = conn.prepareStatement("SELECT ID,NICKNAME, PASSWD, NAME FROM MEMBER WHERE ID =? AND PASSWD=?");
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				member = new Member().setId(rs.getString(1))
-						             .setPw(rs.getString(2))
-						             .setName(rs.getString(3));
+						             .setNickname(rs.getString(2))
+						             .setPw(rs.getString(3))
+						             .setName(rs.getString(4));
 
 			}
 
@@ -80,12 +83,13 @@ public class DaoImpl implements MemberDao {
 		Connection conn = DBConnection.getConnection();
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO MEMBER(ID, PASSWD, NAME, EMAIL, PHONE)" + "VALUES(?,?,?,?,?)");
+			pstmt = conn.prepareStatement("INSERT INTO MEMBER(ID, NICKNAME, PASSWD, NAME, EMAIL, PHONE)" + "VALUES(?,?,?,?,?,?)");
 			pstmt.setString(1, Member.getId());
-			pstmt.setString(2, Member.getPw());
-			pstmt.setString(3, Member.getName());
-			pstmt.setString(4, Member.getEmail());
-			pstmt.setString(5, Member.getPhone());
+			pstmt.setString(2, Member.getNickname());
+			pstmt.setString(3, Member.getPw());
+			pstmt.setString(4, Member.getName());
+			pstmt.setString(5, Member.getEmail());
+			pstmt.setString(6, Member.getPhone());
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw e;
@@ -106,13 +110,16 @@ public class DaoImpl implements MemberDao {
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBConnection.getConnection();
-			pstmt = conn.prepareStatement("UPDATE MEMBER SET PASSWD=?, NAME=?, EMAIL=?, PHONE=? WHERE ID=?");
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET PASSWD=?, NAME=?, EMAIL=?, PHONE=?,nickname =? WHERE ID=?");
 			pstmt.setString(1, Member.getPw());
 			pstmt.setString(2, Member.getName());
 			pstmt.setString(3, Member.getEmail());
 			pstmt.setString(4, Member.getPhone());
-			pstmt.setString(5, Member.getId());
-			pstmt.executeUpdate();
+			pstmt.setString(5, Member.getNickname());
+			pstmt.setString(6, Member.getId());
+			pstmt.executeUpdate(Member.getId());
+			Member member = selectOne(Member.getId());
+			return member;
 		} catch (Exception e) {
 			e.printStackTrace();// throw e;
 		} finally {
@@ -203,6 +210,42 @@ public class DaoImpl implements MemberDao {
 	     }
 	     return result;
 	 }
+	public Item addcart(int id,int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Item item = new Item();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from item where id = '" + id + "' ");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				item.setCount(num);
+				item.setId(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setImg(rs.getString("image"));
+				item.setPrice(rs.getInt("price"));
+				return item;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return item;
+	}
 	
 }
 

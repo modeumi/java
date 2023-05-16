@@ -34,9 +34,11 @@ public class JoinServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		try {
 			DaoImpl memberinfoDao = new DaoImpl();
-			memberinfoDao.insert(new Member().setId(request.getParameter("id")).setPw(request.getParameter("pw"))
+			memberinfoDao.insert(new Member().setId(request.getParameter("id")).setNickname(request.getParameter("nickname")).setPw(request.getParameter("pw"))
 					.setName(request.getParameter("name")).setEmail(request.getParameter("email"))
 					.setPhone(request.getParameter("phone")));
 
