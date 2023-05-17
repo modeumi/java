@@ -31,6 +31,7 @@ public class LogoutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		
 		 HttpSession session = request.getSession();
 		 session.invalidate();
 		 String alertScript = "<script>alert('로그아웃 되었습니다.');"

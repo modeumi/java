@@ -3,18 +3,20 @@ package model;
 import java.util.Date;
 
 public class Buy {
-	public String username;
-	public String itemname;
-	public String mainimg;
-	public int itemId;
-	public Date buydate;
 	public	int count;
+	public int itemId;
+	public String mainimg;
+	public String itemname;  
+	public int price;
 	
-	public String getUsername() {
-		return username;
+	public String userid;
+	public Date buydate;
+	
+	public String getUserid() {
+		return userid;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public String getItemname() {
 		return itemname;
@@ -52,5 +54,4 @@ public class Buy {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int price;
 }

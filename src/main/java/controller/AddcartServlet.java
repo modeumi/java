@@ -65,8 +65,8 @@ public class AddcartServlet extends HttpServlet {
 		}
 		if (cart.containsKey(item.getId())) {
 			Item existingItem = cart.get(item.getId());
-		    existingItem.setCount(existingItem.getCount() + item.getCount());
-			cart.put(item.getId(), item);
+		    existingItem.setCount(existingItem.getCount() + count);
+			cart.put(item.getId(), existingItem);
 			session.setAttribute("cart", cart);
 		} else {
 			cart.put(item.getId(), item);

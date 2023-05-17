@@ -72,10 +72,21 @@ width: 30px;
 	
 	function opencart() {
 		if (sessionValue !== "null") {
-			document.getElementById("itemnum").submit();
+			document.getElementById("itemnum").action = "AddcartServlet";
+		    document.getElementById("itemnum").submit();
 			const cart = window.open("addcart.jsp", "cart",
 					"width = 300px, height = 200px");
 			cart.opnert = window;
+		} else {
+			alert("로그인을 먼저 해주십시오.");
+			location.href = "login.jsp";
+		}
+	}
+
+	function gobuy(){
+		if (sessionValue !== "null") {
+			 document.getElementById("itemnum").action = "NowBuyServlet";
+	        document.getElementById("itemnum").submit();
 		} else {
 			alert("로그인을 먼저 해주십시오.");
 			location.href = "login.jsp";
@@ -106,7 +117,7 @@ width: 30px;
 					<button onclick="increaseQuantity()">+</button>
 					<p>
 					<hr/>
-				<a href="#"><img src="img/buy.png" width="100px" height="40px">
+				<a href="#" onclick="gobuy()"><img src="img/buy.png" width="100px" height="40px">
 				</a> 
 				<a href="#" onclick="opencart()"><img src="img/cart.png"
 					width="100px" height="40px"></a>

@@ -182,11 +182,13 @@ function changequantity(itemId) {
   <div>
     총 결제 금액: ${totalPrice} 원
   </div>
-		<button>
+		<a href = "PurchasePage.jsp"> <button>
 		<span> 총 </span>
 		<span> ${totalCount} 개 </span>
 			<span>구매하기</span>
-		</button>
+		</button></a>
+		<form id = "sendbuy" action ="purchaseServlet" method = "post">
+		</form>
 		<br>
 		<button onclick="window.history.back()">
 			<span>뒤로가기</span> <span><img src="img/로고.png" width='30px'

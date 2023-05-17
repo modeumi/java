@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>로그인</title>
 
   <style>
@@ -36,6 +36,8 @@
     
   </style>
   <script type="text/javascript">
+ // alert("없는 아이디와 비밀번호입니다.");
+  //window.location.href = 'login.jsp';
   function showPassword(){
       var passwordInput = document.getElementById("pw");
        if (passwordInput.type === "password") {
@@ -51,7 +53,7 @@
 <body>
   <div class="login">
     <form action="LoginServlet" method="post">
-   <div class="title"><img src="img/로고.png" width="150" height="100"><a href="./homepage.jsp"></a></div>
+   <div class="title"><img src="img/로고.png" width="150" height="100"><a href="homepage.jsp"></a></div>
    <center><h2>로그인</h2></center>
     <hr>
     <div class = "input">

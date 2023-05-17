@@ -47,11 +47,11 @@ public class LoginServlet extends HttpServlet {
 		        HttpSession session = request.getSession();
 		        session.setAttribute("member", member);
 		        session.setAttribute("log_id", member.getId());
+		        session.setAttribute("log_nickname", member.getNickname());
 		        session.setAttribute("log_pw",member.getPw());
 		        session.setAttribute("log_name", member.getName());
 		        session.setAttribute("log_phone", member.getPhone());
 		        session.setAttribute("log_email", member.getEmail());
-		        session.setMaxInactiveInterval(1800);
 		        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		        rd.forward(request, response);
 		    } else {

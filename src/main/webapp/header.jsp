@@ -132,12 +132,12 @@
 								</c:when>
 
 								<c:otherwise>
-									<a href=""><img class="profile" src="img/프로필.png"
+									<a href="Mypage2.jsp"><img src="img/프로필.png"
 										width="40px" height="40px"></a>
 									<button onclick="invalid()">로그아웃</button>
 									<a href="Complain.jsp"><input type="button" value="고객센터"
 										id="contomer"></a>
-									<a href="ShoppingMarket.jsp"><img src="img/carti.jpg"
+									<a href="Cart.jsp"><img src="img/carti.jpg"
 										width="35px" height="35px"> </a>
 
 								</c:otherwise>

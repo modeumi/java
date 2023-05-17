@@ -1,19 +1,18 @@
 package Dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.cj.xdevapi.Result;
 
 import model.DBConnection;
 import model.Item;
 import model.Member;
-import model.Review;
 
 public class DaoImpl {
 
@@ -26,8 +25,11 @@ public class DaoImpl {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT ID, PASSWD, NAME FROM MEMBER WHERE ID ='" + id + "'");
 			if (rs.next()) {
-				member = new Member().setId(rs.getString("ID")).setPw(rs.getString("PASSWD"))
-						.setName(rs.getString("NAME"));
+				member = new Member()
+						.setId(rs.getString("ID"))
+						.setPw(rs.getString("PASSWD"))
+						.setName(rs.getString("NAME"))
+						.setNickname(rs.getString("nickname"));
 			}
 		} catch (Exception e) {
 			throw e;
@@ -56,7 +58,12 @@ public class DaoImpl {
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				member = new Member().setId(rs.getString(1)).setPw(rs.getString(2)).setName(rs.getString(3)).setEmail(rs.getString(4)).setPhone(rs.getString(5));
+				member = new Member().setId(rs.getString(1))
+						.setNickname(rs.getString(2))
+						.setPw(rs.getString(3))
+						.setName(rs.getString(4))
+						.setEmail(rs.getString(5))
+						.setPhone(rs.getString(6));
 				return member;
 			}
 		} catch (Exception e) {
@@ -79,12 +86,13 @@ public class DaoImpl {
 		Connection conn = DBConnection.getConnection();
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO MEMBER(ID, PASSWD, NAME, EMAIL, PHONE)" + "VALUES(?,?,?,?,?)");
+			pstmt = conn.prepareStatement("INSERT INTO MEMBER(ID, nickname ,PASSWD, NAME, EMAIL, PHONE)" + "VALUES(?,?,?,?,?,?)");
 			pstmt.setString(1, Member.getId());
-			pstmt.setString(2, Member.getPw());
-			pstmt.setString(3, Member.getName());
-			pstmt.setString(4, Member.getEmail());
-			pstmt.setString(5, Member.getPhone());
+			pstmt.setString(2, Member.getNickname());
+			pstmt.setString(3, Member.getPw());
+			pstmt.setString(4, Member.getName());
+			pstmt.setString(5, Member.getEmail());
+			pstmt.setString(6, Member.getPhone());
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw e;
@@ -98,20 +106,23 @@ public class DaoImpl {
 			}
 
 		}
-	} // int
+	} 
 
 	public Member update(Member Member) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBConnection.getConnection();
-			pstmt = conn.prepareStatement("UPDATE MEMBER SET PASSWD=?, NAME=?, EMAIL=?, PHONE=? WHERE ID=?");
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET PASSWD=?, NAME=?, EMAIL=?, PHONE=?,nickname =? WHERE ID=?");
 			pstmt.setString(1, Member.getPw());
 			pstmt.setString(2, Member.getName());
 			pstmt.setString(3, Member.getEmail());
 			pstmt.setString(4, Member.getPhone());
-			pstmt.setString(5, Member.getId());
+			pstmt.setString(5, Member.getNickname());
+			pstmt.setString(6, Member.getId());
 			pstmt.executeUpdate();
+			Member member = selectOne(Member.getId());
+			return member;
 		} catch (Exception e) {
 			e.printStackTrace();// throw e;
 		} finally {
@@ -176,35 +187,34 @@ public class DaoImpl {
 
 	public int Idcheck(String id) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+	    PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = -1;
-		String sql = "select id from member where id=?";
-		try {
-			conn = DBConnection.getConnection();
+		String sql = "select id from member where id=?"; 
+		try { 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = 0;
-			} else {
+				return result;
+			}else {
 				result = 1;
+				return result;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-			}
-		}
-		return result;
-	}
+		}catch (SQLException e) {
+			result = 1;
+		}finally {
+	         try {
+	             if (rs != null) rs.close();
+	             if (pstmt != null) pstmt.close();
+	             if (conn != null) conn.close();
+	         }catch (SQLException e) {
+	             // error handling
+	         }
+	     }
+	     return result;
+	 }
 
 	public Item addcart(int id) {
 		Connection conn = null;
@@ -240,6 +250,38 @@ public class DaoImpl {
 			}
 		}
 		return item;
+	}
+	public void purchase (Item item,String id,String type) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		LocalDate date = LocalDate.now();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("insert into purchase_history values(?,?,?,?,?,?,?,?)");
+			pstmt.setDate(1, Date.valueOf(date));
+			pstmt.setString(2, id);
+			pstmt.setInt(3,item.getId());
+			pstmt.setString(4, item.getImg());
+			pstmt.setString(5, item.getName());
+			pstmt.setInt(6, item.getCount());
+			pstmt.setInt(7, item.getPrice());
+			pstmt.setString(8, type);
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 //	public Review getreview (Review review, int num) {
