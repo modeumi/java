@@ -148,6 +148,7 @@ body a {
 			<c:set var="price" value="${item.getPrice()}" />
 			<c:set var="totalPrice" value="${totalPrice + count * price}" />
 		</c:forEach>
+		<div> 예상 적립 포인트 : ${Math.floor(totalPrice/100)} P</div>
 		<div>결제 금액 : ${totalPrice} 원</div>
 		<form action="purchaseServlet" method="post">
 			<div>결제 방법</div>

@@ -128,7 +128,7 @@ function changequantity(itemId) {
 					<div>
 						<img src="${itemEntry.value.getImg()}" width="200px"
 							height="200px">
-						<div>${itemEntry.value.getName()}</div>
+						<div><a href = "${itemEntry.value.getUrl()}">${itemEntry.value.getName()} </a></div>
 					</div>
 					<div>
 						<div>

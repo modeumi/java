@@ -2,11 +2,11 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
+import java.util.List;
 
 public class Review {
 	
-	public String reviewnum;
+	public int ordernum;
 	public int itemid;
 	public String name;
 	public String text;
@@ -15,11 +15,11 @@ public class Review {
 	public Date date;
 	
 	
-	public String getReviewnum() {
-		return reviewnum;
+	public int getOrdernum() {
+		return ordernum;
 	}
-	public void setReviewnum(String reviewnum) {
-		this.reviewnum = reviewnum;
+	public void setOrdernum(int ordernum) {
+		this.ordernum = ordernum;
 	}
 	public int getItemid() {
 		return itemid;

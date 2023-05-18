@@ -7,8 +7,16 @@ public class Member {
 	private String name;
 	private String phone;
 	private String email;
+	private int point; 
 	
-	
+	public int getPoint() {
+		return point;
+	}
+	public Member setPoint(int point) {
+		this.point = point;
+		return this;
+
+	}
 	public String getId() {
 		return id;
 	}

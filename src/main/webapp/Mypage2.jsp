@@ -9,7 +9,9 @@
 body {
 	padding-top: 55px;
 }
-
+a {
+	text-decoration-line: none;
+}
 section {
 	display: flex;
 	align-items: center;
@@ -85,6 +87,9 @@ section {
 						<td>0<br>리뷰
 						</td>
 				</table>
+				<div style = "text-align: center;"> 
+				<a href = "PurchaseHistory.jsp"><img src = "img/bill.jpg" width="150px" height="150px"> 구매내역 </a>
+				<div> 포인트 잔액 : ${sessionScope.log_point}</div>
 			</div>
 		</div>
 	</section>

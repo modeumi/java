@@ -16,7 +16,7 @@ import model.Member;
 /**
  * Servlet implementation class Update
  */
-@WebServlet(name = "UpdateSetvlet", urlPatterns = { "/UpdateSetvlet" })
+@WebServlet(name = "UpdateServlet", urlPatterns = { "/UpdateServlet" })
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

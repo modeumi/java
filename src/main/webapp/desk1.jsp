@@ -119,7 +119,8 @@ body {
 					<p>
 					<hr />
 					<a href="#" onclick="gobuy()"><img src="img/buy.png"
-						width="100px" height="40px"> </a> <a href="#"
+						width="100px" height="40px"> </a>
+						 <a href="#"
 						onclick="opencart()"><img src="img/cart.png" width="100px"
 						height="40px"></a>
 				</form>

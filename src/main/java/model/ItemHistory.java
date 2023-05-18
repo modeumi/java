@@ -1,13 +1,24 @@
 package model;
 
-public class Item {
+import java.util.Date;
+
+public class ItemHistory {
 	public int count;
 	public int id;
 	public String img;
 	public String name;
 	public int price;
+	public Date date; 
+	public String type;
 	public String url;
+	public String review;
 	
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
 	public String getUrl() {
 		return url;
 	}
@@ -44,5 +55,16 @@ public class Item {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 }
