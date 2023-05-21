@@ -1,17 +1,15 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Review {
 	
 	public int ordernum;
 	public int itemid;
-	public String name;
+	public String userid;
 	public String text;
-	public ArrayList<String> img;
-	public double star;
+	public Image img;
+	public int star;
 	public Date date;
 	
 	
@@ -27,11 +25,11 @@ public class Review {
 	public void setItemid(int itemid) {
 		this.itemid = itemid;
 	}
-	public String getName() {
-		return name;
+	public String getUserid() {
+		return userid;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public String getText() {
 		return text;
@@ -39,17 +37,16 @@ public class Review {
 	public void setText(String text) {
 		this.text = text;
 	}
-
-	public ArrayList<String> getImg() {
+	public Image getImg() {
 		return img;
 	}
-	public void setImg(ArrayList<String> img) {
+	public void setImg(Image img) {
 		this.img = img;
 	}
-	public double getStar() {
+	public int getStar() {
 		return star;
 	}
-	public void setStar(double star) {
+	public void setStar(int star) {
 		this.star = star;
 	}
 	public Date getDate() {

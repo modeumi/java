@@ -4,26 +4,53 @@ import java.util.Date;
 
 public class ItemHistory {
 	public int count;
-	public int id;
+	public int itemid;
 	public String img;
-	public String name;
+	public String itemname;
+	public String userid;
 	public int price;
 	public Date date; 
 	public String type;
-	public String url;
+	public int point;
 	public String review;
+	public String url;
 	
-	public String getReview() {
-		return review;
-	}
-	public void setReview(String review) {
-		this.review = review;
-	}
+	
 	public String getUrl() {
 		return url;
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public int getItemid() {
+		return itemid;
+	}
+	public void setItemid(int itemid) {
+		this.itemid = itemid;
+	}
+	public String getItemname() {
+		return itemname;
+	}
+	public void setItemname(String itemname) {
+		this.itemname = itemname;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
 	}
 	public int getCount() {
 		return count;
@@ -31,23 +58,11 @@ public class ItemHistory {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getImg() {
 		return img;
 	}
 	public void setImg(String img) {
 		this.img = img;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public int getPrice() {
 		return price;

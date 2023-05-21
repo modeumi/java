@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 		    String id = request.getParameter("id");
 		    String pw = request.getParameter("pw");
 		    Member member = memberDao.exist(id, pw);
-		    Map<Integer,ItemHistory> item = memberDao.history(id);
+		    Map<Integer,ItemHistory> item = memberDao.Select_Purchase(id);
 		    HttpSession session = request.getSession();
 		    if (member != null) {
 		        session.setAttribute("member", member);

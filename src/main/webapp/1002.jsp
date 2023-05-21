@@ -47,9 +47,8 @@ body {
 #but {
 	margin-top: 70px;
 }
-
 #quantity {
-	width: 30px;
+width: 30px;
 }
 </style>
 <script type="text/javascript">
@@ -100,7 +99,7 @@ body {
 
 	<div id="itempage">
 		<div id="itemimg">
-			<img src="img/desk/desk1.png" width="400px" height="400px">
+			<img src="img/desk/desk2.png" width="400px" height="400px">
 		</div>
 		<div id="iteminfo">
 			<div>
@@ -109,20 +108,19 @@ body {
 			</div>
 			<div id="but">
 				<form id="itemnum" action="AddcartServlet" method="post">
-					<input type="hidden" name="itemnum" value="1001"> <input
-						type="hidden" name="page" value="desk1.jsp">
-					<div>수량</div>
-					<br>
+					<input type="hidden" name="itemnum" value="1002"> 
+					<input type="hidden" name="page" value="1002.jsp">
+						<div> 수량</div>
+						<br>
 					<button onclick="decreaseQuantity()">-</button>
 					<input type="text" id="quantity" name="quantity" value="1" readonly>
 					<button onclick="increaseQuantity()">+</button>
 					<p>
-					<hr />
-					<a href="#" onclick="gobuy()"><img src="img/buy.png"
-						width="100px" height="40px"> </a>
-						 <a href="#"
-						onclick="opencart()"><img src="img/cart.png" width="100px"
-						height="40px"></a>
+					<hr/>
+				<a href="#" onclick="gobuy()"><img src="img/buy.png" width="100px" height="40px">
+				</a> 
+				<a href="#" onclick="opencart()"><img src="img/cart.png"
+					width="100px" height="40px"></a>
 				</form>
 			</div>
 		</div>

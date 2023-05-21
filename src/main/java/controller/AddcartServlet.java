@@ -49,6 +49,7 @@ public class AddcartServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
+		
 		String paraid = request.getParameter("itemnum");
 		String page = request.getParameter("page");	
 		String countst = request.getParameter("quantity");
@@ -60,6 +61,7 @@ public class AddcartServlet extends HttpServlet {
 		Item item = daoimpl.addcart(id);
 		item.setCount(count);
 		Map<Integer, Item> cart = (Map<Integer, Item>) session.getAttribute("cart");
+
 		if (cart == null) {
 			cart = new HashMap<>();
 		}

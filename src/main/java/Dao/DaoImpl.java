@@ -1,11 +1,9 @@
 package Dao;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.DBConnection;
+import model.Image;
 import model.Item;
 import model.ItemHistory;
 import model.Member;
@@ -182,19 +181,20 @@ public class DaoImpl {
 				if (conn != null)
 					conn.close();
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return Members;
 	}
 
-	public int Idcheck(String id) {
+	public int idcheck(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = -1;
-		String sql = "select id from member where id=?";
 		try {
-			pstmt = conn.prepareStatement(sql);
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("select id from member where id = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -204,18 +204,21 @@ public class DaoImpl {
 				result = 1;
 				return result;
 			}
-		} catch (SQLException e) {
-			result = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null)
+				if (rs != null) {
 					rs.close();
-				if (pstmt != null)
+				}
+				if (pstmt != null) {
 					pstmt.close();
-				if (conn != null)
+				}
+				if (conn != null) {
 					conn.close();
-			} catch (SQLException e) {
-				// error handling
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		return result;
@@ -296,7 +299,7 @@ public class DaoImpl {
 		}
 	}
 
-	public void purchase(Item item, String id, String type) {
+	public void Insert_Purchase(Item item, String id, String type) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		LocalDate date = LocalDate.now();
@@ -304,7 +307,8 @@ public class DaoImpl {
 		Point(point, id);
 		try {
 			conn = DBConnection.getConnection();
-			pstmt = conn.prepareStatement("insert into purchase_history values(?,?,?,?,?,?,?,?,?,?)");
+			pstmt = conn.prepareStatement(
+					"insert into purchase_history(date,userid,itemid,image,itemname,count,price,type,point,review) values(?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setDate(1, Date.valueOf(date));
 			pstmt.setString(2, id);
 			pstmt.setInt(3, item.getId());
@@ -332,7 +336,7 @@ public class DaoImpl {
 		}
 	}
 
-	public Map<Integer, ItemHistory> history(String id) {
+	public Map<Integer, ItemHistory> Select_Purchase(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
@@ -344,29 +348,30 @@ public class DaoImpl {
 			conn = DBConnection.getConnection();
 			pstmt1 = conn.prepareStatement("select * from purchase_history where userid = ?");
 			pstmt2 = conn.prepareStatement("select * from item where id = ?");
-			
+
 			pstmt1.setString(1, id);
 			rs = pstmt1.executeQuery();
-			
+
 			while (rs.next()) {
 				ItemHistory items = new ItemHistory();
-				ordernum = rs.getInt("order");
+				ordernum = rs.getInt("ordernum");
 				pstmt2.setString(1, rs.getString("itemid"));
 				rs2 = pstmt2.executeQuery();
-				
+
 				if (rs2.next()) {
 					items.setUrl(rs2.getString("url"));
 				}
-					items.setId(rs.getInt("itemid"));
-					items.setImg(rs.getString("image"));
-					items.setName(rs.getString("itemname"));
-					items.setCount(rs.getInt("count"));
-					items.setPrice(rs.getInt("price"));
-					items.setDate(rs.getDate("date"));
-					items.setType(rs.getString("type"));
-					items.setReview(rs.getString("review"));
-					
-					item.put(ordernum, items);
+
+				items.setItemid(rs.getInt("itemid"));
+				items.setImg(rs.getString("image"));
+				items.setItemname(rs.getString("itemname"));
+				items.setCount(rs.getInt("count"));
+				items.setPrice(rs.getInt("price"));
+				items.setDate(rs.getDate("date"));
+				items.setType(rs.getString("type"));
+				items.setReview(rs.getString("review"));
+
+				item.put(ordernum, items);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -394,61 +399,23 @@ public class DaoImpl {
 		return item;
 	}
 
-	public Review write (Review review) {
+	public Review write(Review review) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		LocalDate date = LocalDate.now();
 		try {
 			conn = DBConnection.getConnection();
-			pstmt = conn.prepareStatement("insert into review(ordernum,itemid,name,image,text,star,date) value (?,?,?,?,?,?,?) ");
+			pstmt = conn
+					.prepareStatement("insert into review(ordernum,itemid,userid,text,star,date) value (?,?,?,?,?,?) ");
 			pstmt.setInt(1, review.getOrdernum());
 			pstmt.setInt(2, review.getItemid());
-			pstmt.setString(3, review.getName());
+			pstmt.setString(3, review.getUserid());
 			pstmt.setString(4, review.getText());
-			pstmt.setArray(5, (Array) review.getImg());
-			pstmt.setDouble(6, review.getStar());
-			pstmt.setDate(7, Date.valueOf(date));
+			pstmt.setDouble(5, review.getStar());
+			pstmt.setDate(6, Date.valueOf(date));
 			review = getreview(review.getOrdernum());
 			return review;
-		}catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return review;
-	}
-	
-	
-	public Review getreview (int num) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Review review = new Review();
-		try {
-			conn = DBConnection.getConnection();
-			pstmt = conn.prepareStatement("select * from review where ordernum = ?");
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				review.setOrdernum(rs.getInt("ordernum"));
-				review.setItemid(rs.getInt("itemid"));
-				review.setName(rs.getString("name"));
-				review.setText(rs.getString("text"));
-				review.setImg((ArrayList<String>) rs.getArray("image"));
-				review.setStar(rs.getDouble("star"));
-				review.setDate(rs.getDate("date"));
-				return review;
-			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -465,4 +432,271 @@ public class DaoImpl {
 		return review;
 	}
 
+	public Image imageload(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Image image = new Image();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from image where ordernum =?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				image.setImage1(rs.getString(2));
+				image.setImage2(rs.getString(3));
+				image.setImage3(rs.getString(4));
+				return image;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return image;
+	}
+
+	public Review firstreview(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Review review = new Review();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from purchase_history where ordernum = ?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				review.setOrdernum(num);
+				review.setDate(rs.getDate("date"));
+				review.setUserid(rs.getString("userid"));
+				review.setText("상품은 어떠셧나요? 고객님의 소중한 리뷰 감사합니다!");
+				review.setImg(null);
+				review.setStar(0);
+				review.setItemid(rs.getInt("itemid"));
+				return review;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return review;
+	}
+
+	public Review getreview(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Review review = new Review();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from review where ordernum = ?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Image img = imageload(num);
+				review.setOrdernum(rs.getInt("ordernum"));
+				review.setItemid(rs.getInt("itemid"));
+				review.setUserid(rs.getString("userid"));
+				review.setText(rs.getString("text"));
+				review.setImg(img);
+				review.setStar(rs.getInt("star"));
+				review.setDate(rs.getDate("date"));
+				return review;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return review;
+	}
+
+	public ItemHistory OrderToItem(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ItemHistory history = new ItemHistory();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("select * from purchase_history where ordernum =?");
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				history.setDate(rs.getDate(2));
+				history.setUserid(rs.getString(3));
+				history.setItemid(rs.getInt(4));
+				history.setImg(rs.getString(5));
+				history.setItemname(rs.getString(6));
+				history.setCount(rs.getInt(7));
+				history.setPrice(rs.getInt(8));
+				history.setType(rs.getString(9));
+				history.setReview(rs.getString(11));
+				return history;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return history;
+	}
+
+	public void Insert_Review(Review review) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		LocalDate date = LocalDate.now();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("insert into review(ordernum,itemid,userid,text,star,date)"
+					+ " values (?,?,?,?,?,?)" + " on duplicate key update "
+					+ "text = values(text), star = values(star), date = values(date); ");
+			pstmt2 = conn.prepareStatement("update purchase_history set review = ? where ordernum = ?  ");
+
+			pstmt.setInt(1, review.getOrdernum());
+			pstmt.setInt(2, review.getItemid());
+			pstmt.setString(3, review.getUserid());
+			pstmt.setString(4, review.getText());
+			pstmt.setInt(5, review.getStar());
+			pstmt.setDate(6, Date.valueOf(date));
+			pstmt.executeUpdate();
+			pstmt2.setString(1, "Y");
+			pstmt2.setInt(2, review.getOrdernum());
+			pstmt2.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void Insert_Image(int order, Image image) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement("insert into image (ordernum, image1,image2,image3)" + " values (?,?,?,?)"
+					+ " on duplicate key update "
+					+ "image1 = values(image1), image2 = values(image2), image3 = values(image3); ");
+			pstmt.setInt(1, order);
+			pstmt.setString(2, image.getImage1());
+			pstmt.setString(3, image.getImage2());
+			pstmt.setString(4, image.getImage3());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public Map<Integer, Review> Select_Review(int itemid) {
+		Connection conn = null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		Review review = new Review();
+		Image image = new Image();
+		Map<Integer, Review> reviews = new HashMap<>();
+		try {
+			conn = DBConnection.getConnection();
+			pstmt1 = conn.prepareStatement("select * from review where itemid = ?");
+			pstmt1.setInt(1, itemid);
+			rs = pstmt1.executeQuery();
+			while (rs.next()) {
+				pstmt2 = conn.prepareStatement("select * from image where ordernum =?");
+				pstmt2.setInt(1, rs.getInt(1));
+				if (rs.next()) {
+					image.setImage1(rs.getString(2));
+					image.setImage2(rs.getString(3));
+					image.setImage3(rs.getString(4));
+				}
+				review.setOrdernum(rs.getInt(1));
+				review.setItemid(rs.getInt(2));
+				review.setUserid(rs.getString(3));
+				review.setText(rs.getString(4));
+				review.setStar(rs.getInt(5));
+				review.setDate(rs.getDate(6));
+				review.setImg(image);
+				reviews.put(rs.getInt(1), review);
+			}
+			return reviews;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt2 != null) {
+					pstmt2.close();
+				}
+				if (pstmt1 != null) {
+					pstmt1.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return reviews;
+	}
 }

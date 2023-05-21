@@ -1,5 +1,7 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="model.*"%>
@@ -10,7 +12,7 @@ Map<Integer, ItemHistory> itemhistory = (Map<Integer, ItemHistory>) session.getA
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>möbel</title>
 <style type="text/css">
 body {
 	padding-top: 54px;
@@ -18,7 +20,8 @@ body {
 
 #banner {
 	margin: 10%;
-	background-color : #99E000;
+	margin-top : 3%;
+	margin-bottom : 3%;
 	border: 3px solid #99E000;
 	border-radius: 20px;
 	width: 80%;
@@ -33,6 +36,7 @@ body {
 	height: 100%;
 	background-color: #99E000;
 	border: 3px solid #99E000;
+	border-radius: 20px;
 }
 
 .itemhis {
@@ -74,23 +78,20 @@ text-align :left;
 </style>
 <script type="text/javascript">
 
-function gocart(){
-	document.getElementById("cart").action = "AddcartServlet";
-	 document.getElementById("cart").submit();
+function gocart(ordernum){
+	document.getElementById(ordernum).action = "AddcartServlet";
+	document.getElementById(ordernum).submit();
 }
-function write(purchasenum){
-	document.getElementById("cart").action = "ReviewServlet";
-	 document.getElementById("cart").submit();
-}
-}
-function rewrite(purchasenum){
-	document.getElementById("cart").action = "ReviewServlet";
-	 document.getElementById("cart").submit();
-}
+
+function gowrite(ordernum){
+	document.getElementById(ordernum).action = "ReviewServlet";
+	 document.getElementById(ordernum).submit();
+	 var reviews = window.open('dummy.jsp','','width = 450px,height = 700px ,resizable=no, scrollbars=0');
 }
 </script>
 
 <%@ include file="header.jsp"%>
+
 </head>
 <body>
 	<div id="banner">
@@ -108,36 +109,41 @@ function rewrite(purchasenum){
 		</c:if>
 		<c:if test = "${not empty itemhistory}">
 			<c:forEach var="items" items="${itemhistory}">
+				<form action = "AddcartServlet" id = "${items.key}" method = "post">
+				<input type="hidden" name = "reviewitem" value = "${items.key}">
+				<input type="hidden" name = "reviewhistory" value = "${items.value.getReview()}">
+				<input type="hidden" name = "itemnum" value = "${items.value.getItemid()}">
+				<input type="hidden" name = "page" value = "PurchaseHistory.jsp">
+				<input type="hidden" name = "quantity" value = "1">
+				</form>
 				<div class="itemhis">
 					<div class="itemdate">주문 일자 : ${items.value.getDate()}</div>
 						<span><img src="${items.value.getImg()}" class="itemimg"></span>
 				<span class = "textslot">
 					<span>
 						상품명 : <a href="${items.value.getUrl()}">
-							${items.value.getName()}</a></span>
+							${items.value.getItemname()}</a></span>
 					<span>금액 : ${items.value.getPrice()}</span>
 					<span>수량 : ${items.value.getCount()}</span>
+					<span> ${items.value.getReview()}</span>
 				</span>
 				<div class = "review_button">
-				<button onclick  = "gocart();">
-				<span> <img src = "img/gocart.png"width="100px" height="40px"></span></button>
+				
+				<a href = "#" onclick  = "gocart('${items.key}')">
+				<img src = "img/gocart.png"width="200px" height="70px"></a>
+				
+				<a href = "#" onclick = "gowrite('${items.key}')">
 <!-- 				작성한 리뷰가 없을때 -->
-				<c:if test = ${items.value.getReview === 'N' }>
-				<button onclick = "write(${items.key})">
-				<span> <img src = "img/review.png"width="100px" height="40px"></span></button>
+				<c:if test = "${items.value.getReview() eq 'N'}">
+				<img src = "img/review.png"width="200px" height="70px">
 				</c:if >
 <!-- 				리뷰가 있을때 -->
-				<c:if test = ${items.value.getReview === 'Y' }>
-				<button onclick = "rewrite(${items.key})">
-				<span> <img src = "img/updatereview.png"width="100px" height="40px"></span></button>
+				<c:if test = "${items.value.getReview() eq 'Y' }">
+				<img src = "img/updatereview.png"width="200px" height="70px">
 				</c:if>
-				<form action = "AddcartServlet" name = "cart" method = "post">
-				<input type="hidden" name = "reviewitem" value = "${items.key}">
-				<input type="hidden" name = "reviewhistory" value = "${items.value.getReview}">
-				<input type="hidden" name = "itemnum" value = "${items.value.getItemid}">
-				<input type="hidden" name = "page" value = "PurchaseHistory.jsp">
-				<input type="hidden" name = "quantity" value = "1">
-				</form>
+				
+				</a>
+				
 				</div>
 				</div>
 					<hr />

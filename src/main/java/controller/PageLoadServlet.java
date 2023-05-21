@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,20 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Dao.DaoImpl;
-import model.Item;
-import model.ItemHistory;
+import model.Review;
 
 /**
- * Servlet implementation class purchaseServlet
+ * Servlet implementation class PageLoadServlet
  */
-@WebServlet("/purchaseServlet")
-public class purchaseServlet extends HttpServlet {
+@WebServlet("/PageLoadServlet")
+public class PageLoadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public purchaseServlet() {
+    public PageLoadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,20 +44,16 @@ public class purchaseServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
-		String type = request.getParameter("typepay");
-		Map<Integer,Item> cart = (Map<Integer,Item>) session.getAttribute("cart");
-		String id = (String)session.getAttribute("log_id");
-		Collection<Item> items = cart.values();
+		
+		String key = request.getParameter("itemnum");
+		int intkey = Integer.parseInt(key);
+		
 		DaoImpl daoimpl = new DaoImpl();
-		for (Item item : items) {
-			daoimpl.Insert_Purchase(item,id,type);
-		}
-		cart.clear();
-		 Map<Integer,ItemHistory> item = daoimpl.Select_Purchase(id);
-		 session.setAttribute("itemhistory", item);
-		String alertScript = "<script>alert('구매가 완료되었습니다.');"
-				+ "window.location.href = 'home.jsp';</script>";
-			response.getWriter().println(alertScript);
+		
+		Map<Integer, Review> reviews =	daoimpl.Select_Review(intkey);
+		session.setAttribute("reviews", reviews);
+		
+		response.sendRedirect(key+ ".jsp");
 	}
 
 }

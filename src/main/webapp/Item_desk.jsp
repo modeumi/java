@@ -59,10 +59,21 @@ text-align: left;
 	border-bottom: 2px dotted black;
 }
 </style>
+<script type="text/javascript">
+function pageload(itemid) {
+	document.getElementById("itemid").value = itemid;
+	document.getElementById("pageload").submit();
+	
+}
+
+</script>
 <%@ include file = "header.jsp" %>
 </head>
 <body>
 <%@ include file = "Item_mould.jsp" %>
+<form action = "PageLoadServlet" id = "pageload" method = "post" >
+<input type = "hidden" name = "itemid"  id = "itemid" value = "" >
+</form>
 		<div id="eventbanner">
 			<img src="img/banner.png" width="100%" height="250px" />
 		</div>
@@ -72,10 +83,10 @@ text-align: left;
 			<h2>인기상품</h2>
 			<table class="items_field">
 				<tr>
-					<td class="item_slot"><a href="desk1.jsp"><img
+					<td class="item_slot"><a href="#" onclick = "pageload(1001)"><img
 							src="img/desk/desk1.png" width="100%" height="100%" /> <br>
 							책상 1 </a><br> 39,800원</td>
-					<td class="item_slot"><a href="desk2.jsp"><img
+					<td class="item_slot"><a href="#" onclick = "pageload(1002)"><img
 							src="img/desk/desk2.png" width="100%" height="100%" /> <br>
 							책상 2 </a><br> 49,800원</td>
 					<td class="item_slot"><a href="desk3.jsp"><img
