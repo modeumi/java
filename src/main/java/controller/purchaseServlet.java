@@ -56,17 +56,13 @@ public class purchaseServlet extends HttpServlet {
 		String stringaddpoint = request.getParameter("subtotalprice");
 		int addpoint = Integer.parseInt(stringaddpoint);
 		addpoint = addpoint/100;
-		System.out.println(addpoint + " 적립");
 		//사용한 포인트 
 		String stringpoint = request.getParameter("subusepoint");
-		System.out.println(stringpoint + "사용");
 		int usepoint = Integer.parseInt(stringpoint);
 		// 현재 포인트
 		int totalpoint = (int)session.getAttribute("log_point");
-		System.out.println(totalpoint + "현재");
 		// 현재 포인트 - 사용한 포인트 + 적립 포인트 
 		int beforepoint = totalpoint - usepoint + addpoint;
-		System.out.println(beforepoint + " 적용");
 		session.setAttribute("log_point", beforepoint);
 		daoimpl.Update_Point(id,beforepoint);
 		
