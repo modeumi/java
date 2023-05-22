@@ -137,7 +137,7 @@
 									<button onclick="invalid()">로그아웃</button>
 									<a href="Complain.jsp"><input type="button" value="고객센터"
 										id="contomer"></a>
-									<a href="Cart.jsp"><img src="img/carti.jpg"
+									<a href="ShoppingMarket.jsp"><img src="img/carti.jpg"
 										width="35px" height="35px"> </a>
 
 								</c:otherwise>

@@ -70,13 +70,16 @@ public class AddReviewServlet extends HttpServlet {
 		String stringitemid = request.getParameter("itemid");
 		int itemid = Integer.parseInt(stringitemid);
 		
-		String userid = request.getParameter("userid");
+		String userid =(String) session.getAttribute("log_id");
+		
+		String nickname = (String) session.getAttribute("log_nickname");
 		
 		review.setStar(star);
 		review.setText(text);
 		review.setOrdernum(ordernum);
 		review.setItemid(itemid);
 		review.setUserid(userid);
+		review.setNickname(nickname);
 		
 		daoimpl.Insert_Review(review);
 		daoimpl.Insert_Image(ordernum, image);

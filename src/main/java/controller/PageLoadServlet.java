@@ -45,13 +45,13 @@ public class PageLoadServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
 		
-		String key = request.getParameter("itemnum");
+		String key = request.getParameter("itemid");
 		int intkey = Integer.parseInt(key);
 		
 		DaoImpl daoimpl = new DaoImpl();
 		
 		Map<Integer, Review> reviews =	daoimpl.Select_Review(intkey);
-		session.setAttribute("reviews", reviews);
+		session.setAttribute("itemreviews", reviews);
 		
 		response.sendRedirect(key+ ".jsp");
 	}

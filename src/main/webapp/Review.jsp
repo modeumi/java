@@ -118,7 +118,7 @@ var rating = 0;
 function fillStars(starCount) {
   for (var i = 1; i <= 5; i++) {
 	  //rating 은 별점이 들어간 메인 div  
-    var star = document.getElementById('rating').children[i - 1];
+    var star = children[i - 1];
     if (i <= starCount) {
       star.classList.add('filled');
     } else {

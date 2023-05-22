@@ -46,15 +46,36 @@ public class purchaseServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		int point = 0;
 		HttpSession session = request.getSession();
+		DaoImpl daoimpl = new DaoImpl();
 		String type = request.getParameter("typepay");
 		Map<Integer,Item> cart = (Map<Integer,Item>) session.getAttribute("cart");
 		String id = (String)session.getAttribute("log_id");
+		//적립 될 포인트
+		String stringaddpoint = request.getParameter("subtotalprice");
+		int addpoint = Integer.parseInt(stringaddpoint);
+		addpoint = addpoint/100;
+		System.out.println(addpoint + " 적립");
+		//사용한 포인트 
+		String stringpoint = request.getParameter("subusepoint");
+		System.out.println(stringpoint + "사용");
+		int usepoint = Integer.parseInt(stringpoint);
+		// 현재 포인트
+		int totalpoint = (int)session.getAttribute("log_point");
+		System.out.println(totalpoint + "현재");
+		// 현재 포인트 - 사용한 포인트 + 적립 포인트 
+		int beforepoint = totalpoint - usepoint + addpoint;
+		System.out.println(beforepoint + " 적용");
+		session.setAttribute("log_point", beforepoint);
+		daoimpl.Update_Point(id,beforepoint);
+		
 		Collection<Item> items = cart.values();
-		DaoImpl daoimpl = new DaoImpl();
+		
 		for (Item item : items) {
 			daoimpl.Insert_Purchase(item,id,type);
 		}
+		// 적립 포인트 +
 		cart.clear();
 		 Map<Integer,ItemHistory> item = daoimpl.Select_Purchase(id);
 		 session.setAttribute("itemhistory", item);

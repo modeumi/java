@@ -3,13 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="model.Item"%>
-<%@ page import="com.google.gson.Gson"%>
+<%
+Map<Integer, Item> cart = (Map<Integer, Item>) session.getAttribute("cart");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mobel</title>
 <link
@@ -18,45 +19,20 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 
-<script type="text/javascript">
-	var linkback = linkback || {};
-	(function() {
-		var d = document, scr = d.createElement('script'), tar = d
-				.getElementsByTagName('script')[0];
-		scr.type = 'text/javascript';
-		scr.async = true;
-		var dt = new Date();
-		var date_s = dt.getFullYear().toString()
-				+ ('0' + (dt.getMonth() + 1)).slice(-2)
-				+ ('0' + dt.getDate()).slice(-2);
-		scr.src = 'https://linkback.contentsfeed.com/src/' + date_s
-				+ '/lb4ohouse.min.js';
-		scr.charset = 'UTF-8';
-		if (!linkback.l) {
-			linkback.l = true;
-			tar.parentNode.insertBefore(scr, tar);
-		}
-	})();
-</script>
-
 <style type="text/css">
-body {
-	padding-top: 54px;
-}
-
 .fontst {
 	font-size: 20px;
 	font-face: '맑은고딕';
 }
 
-/*footer */
+/*footer*/
 .css-a23 {
 	padding: 40px 0px;
 	background-color: rgb(247, 249, 250);
 }
 
 .css-a24 {
-	/* padding: 0px 16px; */
+	/*padding: 0px 16px;*/
 	padding: 0px 60px;
 	box-sizing: border-box;
 	font-size: 12px;
@@ -147,6 +123,7 @@ button {
 	flex-direction: column;
 	gap: 12px;
 	margin-top: 12px;
+	/* flex-direction: row; */
 }
 
 .css-a34 {
@@ -278,6 +255,7 @@ ul {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	padding-inline-start: 40px;
+	list-style: none;
 }
 
 li {
@@ -308,6 +286,13 @@ dl {
 	/* -moz-osx-font-smoothing: grayscale; */
 }
 
+/* 위와 아래의 간격을 맞춰줌*/
+blockquote, body, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4,
+	h5, h6, input, legend, li, ol, p, pre, td, textarea, th, ul {
+	margin: 0;
+	padding: 0;
+}
+
 /* .commerce-cart-wrap */
 .cont12-cart-wrap {
 	-webkit-box-flex: 1;
@@ -315,8 +300,15 @@ dl {
 	position: relative;
 	background-color: #f5f5f5;
 }
-
+/* -webkit-flex: 1 0 auto; 
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;  */
 .container {
+	margin-right: auto;
+	margin-left: auto;
+	width: 1136px;
+	max-width: 100%;
 	box-sizing: border-box;
 	min-height: 1px;
 }
@@ -325,11 +317,36 @@ dl {
 	position: relative;
 }
 
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	margin-right: -10px;
+	margin-left: -10px;
+}
+
+/* .col-lg-8 */
 .col-a11 {
+	padding-right: 10px;
+	padding-left: 10px;
 	position: relative;
+	width: 100%;
 	min-height: 1px;
 	box-sizing: border-box;
 	-webkit-box-flex: 0;
+	flex: 0066.6666666667%;
+	max-width: 66.6666666667%;
+}
+
+/* .col-md-7  */
+.col-a13 {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.col-12 {
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 .commerce-cart__content {
@@ -546,7 +563,6 @@ article {
 
 /* 타이틀 문구적용 */
 .product-small-item__title {
-	text-align: left;
 	min-width: 0;
 	font-size: 15px;
 	font-weight: 500;
@@ -554,7 +570,6 @@ article {
 	line-height: 21px;
 	overflow-wrap: break-word;
 	transition: opacity .1s;
-	min-width: 0;
 }
 
 /* 무료배송, 업체배송 문구 */
@@ -827,8 +842,8 @@ dd {
 }
 
 ._3SroY {
-	background-color: #35c5f0;
-	border-color: #35c5f0;
+	background-color: #40A940;
+	border-color: #40A940;
 	color: #fff;
 }
 
@@ -847,48 +862,21 @@ dd {
 	border-width: 1px;
 	border-style: solid;
 	border-image: initial;
+	background-color : #40A940;
 	text-decoration: none;
-	transition: color 0.1s ease 0s, background-color 0.1s ease 0s,
-		border-color 0.1s ease 0s;
+	/*transition: color 0.1s ease 0s, background-color 0.1s ease 0s,
+		border-color 0.1s ease 0s;*/
 	border-radius: 4px;
 }
-/*============================================================ */
-.banner_top {
-	background-color: #EAEAEA;
-	text-align: center;
-	border: 4px groove #D5D5D5;
-	font-size: 20px;
-	font-face: '맑은고딕';
-	margin-left: 10%;
-	margin-bottom: 20px;
-	width: 80%;
-	height: 40px;
-	width: 80%;
-}
 
-.mainbut {
-	margin-top: 15px;
-	text-align: center;
-	width: 20%;
-	height: 30px;
-	background-color: white;
-	border: 2px solid black;
-	text-align: center;
-}
-
-li {
-	list-style: none;
-}
-
-body a {
-	text-decoration-line: none;
-}
+/* element.style {
+    position: sticky;
+    top: 80.75px;
+    transition: top 0.1s ease 0s;
+}    		       */
 </style>
-<script type="text/javascript">
-	
-</script>
-<%@ include file="header.jsp"%>
 </head>
+<div style="padding-top: 54px"><%@ include file="header.jsp"%></div>
 <body>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -896,118 +884,49 @@ body a {
 		crossorigin="anonymous"></script>
 	<br>
 	<br>
+
 	<br>
-	<div class=" banner_top">장바구니 현황</div>
-	<%-- 		<%  --%>
-	<!-- 	Map<Integer, Item> cart = (Map<Integer, Item>) session.getAttribute("cart"); -->
-	<%-- 	%> --%>
-
-	<script>
-	Map<Integer, Item> cart = (Map<Integer, Item>) session.getAttribute("cart");
-	
-<%-- var cart = JSON.parse('<%= new Gson().toJson(session.getAttribute("cart")) %>'); --%>
-// 		function deleteitem(itemnum) {
-// 		var Itemnum = parseInt(itemnum);
-// 			alert (itemnum);
-// 			alert (Itemnum);
-// 			      delete cart[1];
-// 			console.log(cart);
-// 			location.reload();
-// 		}
-function updateSelectedItems() {
-    var itemIds = document.getElementsByName("itemIds");
-    var totalPrice = 0;
-    var itemCount = 0;
-    for (var i = 0; i < itemIds.length; i++) {
-        var itemId = itemIds[i].value;
-        if (itemIds[i].checked) {
-            var item = ${cart[itemId]};
-            totalPrice += item.price + item.count;
-            itemCount += item.count;
-        }
-    }
-    document.getElementById("totalPrice").innerHTML = totalPrice;
-    document.getElementById("itemCount").innerHTML = itemCount;
-}
-function removeItem(itemId) {
-	  // cart 맵에서 아이템 제거
-	  cart.delete(itemId);
-
-	  // 페이지 새로고침
-	  location.reload();
-	}
-// 아이템 수량 변경 -----------------------------------------------------------------
-function decreaseQuantity() {
-  var quantityInput = document.getElementById("quantity");
-  var quantity = parseInt(quantityInput.value);
-  if (quantity > 1) {
-    quantityInput.value = quantity - 1;
-  }
-}
-
-function increaseQuantity() {
-  var quantityInput = document.getElementById("quantity");
-  var quantity = parseInt(quantityInput.value);
-  quantityInput.value = quantity + 1;
-}
-// -----------------------------------------------------------------
-	</script>
-	<c:if test="${empty cart}">
-		<img src="img/empty.png" style='margin: 30px'>
-		<br>
-		<a href="Item_desk.jsp"><button class="mainbut">상품 보러가기</button></a>
-	</c:if>
-	<c:if test="${not empty cart}">
-		<div class="cont12-cart-wrap">
-			<div class="container">
-				<div class="commerce-cart row">
-					<div class="commerce-cart__content-wrap col-12 col-a13 col-a11">
-						<div class="commerce-cart__content">
-							<div class="sticky-container commerce-cart__header-wrap">
-								<div class="sticky-child commerce-cart__header">
-									<span class="commerce-cart__header__left"> <label
-										class="_catp1 _catp2">
-											<div class="_catb3">
-												<input type="checkbox" class="_Cui01" value="" checked="">
-												<span class="_Cui02"> <svg width="1em" height="1em"
-														viewBox="0 0 16 16" class="_2uftR">
+	<div class="cont12-cart-wrap">
+		<div class="container">
+			<div class="commerce-cart row">
+				<div class="commerce-cart__content-wrap col-12 col-a13 col-a11">
+					<div class="commerce-cart__content">
+						<div class="sticky-container commerce-cart__header-wrap">
+							<div class="sticky-child commerce-cart__header">
+								<span class="commerce-cart__header__left"> <label
+									class="_catp1 _catp2">
+										<div class="_catb3">
+											<input type="checkbox" class="_Cui01" value="" checked="">
+											<span class="_Cui02"> <svg width="1em" height="1em"
+													viewBox="0 0 16 16" class="_2uftR">
 <path fill="currentColor" d="">
 </path></svg></span>
-											</div> <!-- M6.185 10.247l7.079-7.297 1.435 1.393-8.443 8.703L1.3 8.432l1.363-1.464z -->
+										</div> <!-- M6.185 10.247l7.079-7.297 1.435 1.393-8.443 8.703L1.3 8.432l1.363-1.464z -->
 
-											<span class="_1an3J"> <span
-												class="commerce-cart__header__caption">모두선택</span></span>
-									</label></span> <span class="commerce-cart__header__right">
+										<span class="_1an3J"> <span
+											class="commerce-cart__header__caption">모두선택</span></span>
+								</label></span> <span class="commerce-cart__header__right">
 
-										<button class="commerce-cart__header__delete"
-											onclick="deleteitem()">선택삭제</button>
-									</span>
-								</div>
+									<button class="commerce-cart__header__delete" type="button">선택삭제</button>
+								</span>
 							</div>
-							<!-- 						<ul class="commerce-cart__content__group-list"> -->
-							<div class="commerce-cart__content__group-item">
+						</div>
+						<ul class="commerce-cart__content__group-list">
+							<li class="commerce-cart__content__group-item">
 								<article class="commerce-cart__group">
 									<h1 class="commerce-cart__group__header">(주)더조은가구 배송</h1>
-									<!-- 									<ul class="commerce-cart__group__item-list"> -->
-									<div class="commerce-cart__group__item">
-										<article class="cart_delg">
-
-											<ul class="cart_delg__product-list">
-												<!-- =============여기부터 아이템 추가========= -->
+									<ul class="commerce-cart__group__item-list">
+										<li class="commerce-cart__group__item">
+											<article class="cart_delg">
 												<c:forEach items="${cart}" var="itemEntry">
-													<%-- 												<c:forEach var="entry" items="${cart}"> --%>
-													<%-- 													<c:set var="item" value="${entry.value}" /> --%>
-													<%-- 													<c:set var="itemnum" value="${inum+1}" /> --%>
-													<%-- 													<c:set var = "inum" value = "${itemnum}" /> --%>
-													<li class="cart_dgpi">
-														<article class="cart-p">
+												<ul class="cart_delg__product-list">
+													<li class="cart_dgpi"><article class="cart-p">
 															<div class="cart-p_select">
 																<div class="._catb3">
-																	<input type="checkbox" class="_Cui01" name="itemIds"
-																		value="${itemEntry.key}"
-																		onclick="updateSelectedItems()" checked=""> <span
-																		class="_Cui02"><svg width="1em" height="1em"
-																			viewBox="0 0 16 16" class="_2uftR">
+																	<input type="checkbox" class="_Cui01" value=""
+																		checked=""> <span class="_Cui02"><svg
+																			width="1em" height="1em" viewBox="0 0 16 16"
+																			class="_2uftR">
 
 <path fill="currentColor" d=""> 
 </path>
@@ -1018,115 +937,212 @@ function increaseQuantity() {
 																class="product-small-item product-small-item--clickable"
 																href="#">
 																<div class="product-small-item_image">
-																	<picture>
-																	<source type="image/webp"
-																		src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167410493975978867.jpg?w=256&amp;h=256&amp;c=c&amp;webp=1"
-																		srcset="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167410493975978867.jpg?w=360&amp;h=360&amp;c=c&amp;webp=1 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167410493975978867.jpg?w=480&amp;h=480&amp;c=c&amp;webp=1 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167410493975978867.jpg?w=720&amp;h=720&amp;c=c&amp;webp=1 3x">
-
-																	<img alt="상품 이미지" src="${itemEntry.value.getImg()}"
-																		width="200px" height="200px"></picture>
+																	<img alt="상품 이미지"
+																		src="${itemEntry.value.getImg()}">
 																</div>
 
 																<div class="product-small-item_content">
-																	<div class="product-small-item__title">${itemEntry.value.getName()}</div>
+																	<h1 class="product-small-item__title">${itemEntry.value.getName()}</h1>
 																	<p class="css-deu01">무료배송&nbsp;|&nbsp;업체직접배송</p>
-																	<div>금액 : ${itemEntry.value.getPrice} 원</div>
-															</div>
-																
+																</div>
 															</a>
-															<div> 수량</div>
-																<button onclick="decreaseQuantity()">-</button>
-																<input type="text" id="quantity" value=" ${itemEntry.value.getCount}" readonly>
-																<button onclick="increaseQuantity()">+</button>
-															<div> 총금액 </div>
-																 <span class="cart-p_subtotal">
-																  <span class="cart-p_subtotal_number">${itemEntry.value.getPrice * itemEntry.value.getCount}</span>
-																	원
-																</span>
-															<button class="cart-p_delete" aria-label="삭제"
-																onclick="removeItem('${itemEntry.key}')"> 	
+															<button class="cart-p_delete" type="button"
+																aria-label="삭제" onclick="submititem()">
 																<svg width="12" height="12" viewBox="0 0 12 12"
 																	fill="currentColor" preserveAspectRatio="xMidYMid meet">
-																		<path fill-rule="nonzero"
+                                                               
+                                                               <path fill-rule="nonzero"
 																		d="M6 4.6L10.3.3l1.4 1.4L7.4 6l4.3 4.3-1.4 1.4L6 7.4l-4.3 4.3-1.4-1.4L4.6 6 .3 1.7 1.7.3 6 4.6z">
-																		</path></svg>
+                                                               
+                                                               </path></svg>
+                                                               <script type="text/javascript">
+                                                               var ans;
+                                                               function submititem(){
+                                                               	const deletei = window.open("deleteitem.jsp", "delete",
+                                                               			"width = 300px, hei`ght = 200px");
+                                                               	deletei.onbeforeunload = function() {
+                                                               		if (ans == 1){
+                                                               		document.getElementById("deleteitem").submit();
+                                                               		}
+                                                               	}
+                                                               }
+                                                               </script>
 															</button>
-															<div>
+															<ul class="carted-product__option-list">
+
+																<!-- __option-list__item" 상품코드박스 크기 늘려주는 용도-->
+																<li class="cart-p__option-list__item"><article
+																		class="css-deu02">
+																		<h2 class="css-deu03">그레이</h2> <!-- 색깔정보... -->
+																		<button type="button" aria-label="삭제"
+																			class="css-deu04">
+																			<span class="_dismiss_16 css-deu05"> </span>
+																		</button>
+
+																		<div class="css-deu06">
+																			<div class="css-deu07 ">
+																				<p>
+																					<label>수량</span> <select name="quantity"
+																						id="quantitydefault${itemEntry.key}"
+																						onchange="changequantity(${itemEntry.key})">
+																							<%
+																							for (int i = 1; i <= 10; i++) {
+																							%>
+																							<option value="<%=i%>"><%=i%></option>
+																							<%
+																							}
+																							%>
+																					</select> <script>
+					                                                                var countValue = ${itemEntry.value.getCount()}
+					                                                                var quantitydefault = document.getElementById("quantitydefault${itemEntry.key}");
+					                                                                quantitydefault.value = countValue;
+					                                                                </script>
+																			</div>
+																			<div class="css-deu10 ">
+																			<span id="itemprice${itemEntry.key}"> ${itemEntry.value.getPrice()}</span>
+																			</div>
+																		</div>
+																	</article></li>
+															</ul>
 															<div class="cart-p_footer">
 																<span class="cart-p_footer_left">
+																	<button class="cart-p_edit-btn" type="button">옵션변경</button>|
 																	<button class="cart-p_order-btn" type="button">바로구매</button>
+																</span> <span class="cart-p_subtotal"> <span
+																	class="cart-p_subtotal_number">총금액 : <span
+																		id="totalpay${itemEntry.key}" onchange="changepay()">
+																			${itemEntry.value.getPrice() * itemEntry.value.getCount()}
 																	</span>
+																</span>원
+																</span>
 															</div>
-														</article>
-													</li>
-												</c:forEach>
-
-											</ul>
-											<!--=========여기까지 아이템 끝?=========== -->
-											<footer class="cart-group_footer">
-												<p class="cart-group_total">배송비 무료</p>
-											</footer>
-										</article>
-									</div>
-									<!-- 									</ul> -->
+														</article></li>
+												</ul>
+</c:forEach>
+								<c:set var="totalCount" value="0" />
+										  <c:set var="totalPrice" value="0" />
+										
+										  <c:forEach items="${cart}" var="itemEntry">
+										    <c:set var="item" value="${itemEntry.value}" />
+										    <c:set var="count" value="${item.getCount()}" />
+										    <c:set var="price" value="${item.getPrice()}" />
+										
+										    <c:set var="totalCount" value="${totalCount + count}" />
+										    <c:set var="totalPrice" value="${totalPrice + count * price}" />
+										  </c:forEach>
+												<footer class="cart-group_footer">
+													<p class="cart-group_total">배송비 무료</p>
+												</footer>
+											</article>
+										</li>
+									</ul>
 								</article>
+							</li>
+						</ul>
+						<dl class="cart_sum cart-con_summary">
+							<div class="cart_sum_row">
+								<dt>총 상품금액</dt>
+								<dd>
+									<span class="number">${totalPrice}  원</span>
+								</dd>
 							</div>
-							<!-- 						</ul> -->
-						</div>
+							<div class="cart_sum_row">
+								<dt>총 배송비</dt>
+								<dd>
+									+ <span class="number">0</span>원
+								</dd>
+							</div>
+							<div class="cart_sum_row">
+								<dt>총 할인금액</dt>
+								<dd>
+									- <span class="number">388,000</span>원
+								</dd>
+							</div>
+							<div class="cart_sum_row cart_sum_row-total">
+								<dt>결제금액</dt>
+								<dd>
+									<span class="number">1,712,000</span>원
+								</dd>
+							</div>
+						</dl>
 					</div>
+				</div>
 
 
+				<div class="cart-side-wrap col-12 col-md-5 col-lg-4">
+					<div class="sticky-container cart-side-container"
+						style="position: sticky; top: 80.75px; transition: top 0.1s ease 0s;">
+						<div class="sticky-child cart-side" style="position: relative;">
+							<dl class="cart_sum cart-side-sum">
 
-					<div class="cart-side-wrap col-12 col-md-5 col-lg-4">
-						<div class="sticky-container cart-side-container"
-							style="position: sticky; top: 80.75px; transition: top 0.1s ease 0s;">
-							<div class="sticky-child cart-side" style="position: relative;">
-								<dl class="cart_sum cart-side-sum">
-									<div class="cart_sum_row">
-										<dt>총 상품금액</dt>
-										<dd>
-											<span class="number1" id="totalPrice"></span> 원
+								<div class="cart_sum_row">
+									<dt>총 상품금액</dt>
+									<dd>
+										<span class="number">${totalPrice} </span>원
+									</dd>
+								</div>
+								<div class="cart_sum_row">
+									<dt>총 배송비</dt>
+									<dd>
+										+ <span class="number">3000</span>원
+									</dd>
+								</div>
+								<div class="cart_sum_row">
+									<dt>총 할인금액</dt>
+									<dd>
+										- <span class="number">500</span>원
+									</dd>
+								</div>
+								<div class="cart_sum_row  cart_sum_row-total">
+									<dt>결제금액</dt>
+									<dd>
+										<span class="number">${itemEntry.value.getPrice() * itemEntry.value.getCount() + 3000}</span>원
+									</dd>
+								</div>
+							</dl>
+						</div>
 
-											<!-- 											<script> -->
-											<!-- 												const priceElements = document -->
-											<!--  														.querySelectorAll('.cart-p_subtotal_number'); -->
-											<!-- 												let sum = 0;// 												 -->
-											<!-- 												for (let i = 0; i < priceElements.length; i++) { -->
-											<!--  													sum += parseInt(priceElements[i].textContent -->
-											<!--  															.trim()); -->
-											<!-- 											} -->
-											<!-- 												const newTotalSpan = document -->
-											<!-- 														.createElement('div'); -->
-											<!-- 												newTotalSpan.classList -->
-											<!-- 													.add('number1'); -->
-											<%-- 												newTotalSpan.textContent = `${sum.toLocaleString()}원`; --%>
-											<!-- 												const classtry = document -->
-											<!--  														.querySelector('.classtry'); -->
-											<!-- 											classtry -->
-											<!-- 													.appendChild(newTotalSpan); -->
-											<!-- 											</script> -->
-
-
-										</dd>
-									</div>
-								</dl>
-							</div>
-
-							<div class="cart-side_order">
-								<button class="_1eWD8 _3SroY _27do9 cart-side_btn" type="button">
-									<span span id="itemCount"> </span> <span> 개 상품 구매하기</span>
-								</button>
-							</div>
+						<div class="cart-side_order">
+							<a href = "PurchasePage.jsp"><button class="_1eWD8 _3SroY _27do9 cart-side_btn" type="button">
+							<span> 총 </span>
+		                    <span> ${totalCount} 개 </span>
+			                <span>구매하기</span></button>
+							</a>
+			                </button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</c:if>
+	</div>
+
 
 	<br>
 	<br>
-	<%@ include file="footer.jsp"%>
 
+
+	<footer><%@ include file="footer.jsp"%></footer>
 </body>
 </html>
+
+
+
+<!-- .carted-product__order-btn:nth-child(n+2) {
+  	margin-left: 14px;} 
+        
+ svg[Attributes Style] {
+    width: 12;
+    height: 12;
+    fill: currentcolor;}
+
+ svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;}  -->
+
+
+<!-- ol, ul {
+    list-style: none;
+    list-style-position: initial;
+    list-style-image: initial;
+    list-style-type: none;}  -->
+

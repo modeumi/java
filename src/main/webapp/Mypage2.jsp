@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="java.util.*"%>
+<%@ page import="model.*"%>
+<%
+Map<Integer, ItemHistory> itemhistory = (Map<Integer, ItemHistory>) session.getAttribute("itemhistory");
+Map<Integer, Review> myreview = (Map<Integer, Review>) session.getAttribute("myreview");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +71,7 @@ section {
 	</nav>
 	<section>
 		<div class="point">
-			<h3 class="nickname">
+			<h3 class="nickname"></h3>
 			<c:choose>
 					<c:when test="${empty sessionScope.log_nickname}">
 						<!-- Display default text when session attribute is empty -->
@@ -74,6 +82,8 @@ section {
 						<h4><c:out value="${sessionScope.log_nickname}"/> 님 반갑습니다.</h4>
 					</c:otherwise>
 				</c:choose>
+				<c:set var = "purchasecount" value = "${itemhistory.size()}" />
+				<c:set var = "reviewcount" value = "${myreview.size()}" />
 			<br>
 			<div class="box">
 				<table class="box2">
@@ -81,10 +91,10 @@ section {
 						<td>0<br>포인트
 						</td>
 						<td>|</td>
-						<td>0<br>쿠폰
+						<td>${purchasecount}<br>구매한상품
 						</td>
 						<td>|</td>
-						<td>0<br>리뷰
+						<td>${reviewcount}<br>리뷰
 						</td>
 				</table>
 				<div style = "text-align: center;"> 
@@ -109,7 +119,7 @@ section {
 						<td>0<br>쿠폰
 						</td>
 						<td>|</td>
-						<td>0<br>리뷰
+						<td>${reviewcount}<br>리뷰
 						</td>
 				</table>
 			</div>

@@ -7,12 +7,18 @@ public class Review {
 	public int ordernum;
 	public int itemid;
 	public String userid;
+	public String nickname;
 	public String text;
 	public Image img;
 	public int star;
 	public Date date;
 	
-	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getOrdernum() {
 		return ordernum;
 	}

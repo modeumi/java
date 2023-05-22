@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="model.Item"%>
+<%@ page import="model.*"%>
 <%
 Map<Integer, Item> cart = (Map<Integer, Item>) session.getAttribute("cart");
+Member member = (Member) session.getAttribute("member");
 %>
 <!DOCTYPE html>
 <html>
@@ -97,7 +98,36 @@ body a {
 		} else if (type === "insert") {
 			vinsert.style.display = "block";
 		}
+	}
+	
+	function usepoint(totalPrice, memberPoint) {
+		var usePointInput = document.getElementById("usepoint");
+		var usePoint = parseInt(usePointInput.value);
 
+		var numberPattern = /^[0-9]+$/;
+		if (!numberPattern.test(usePointInput.value)) {
+			alert("숫자만 입력해주세요.");
+			usePointInput.value = "";
+			return;
+		}
+		
+		if (usePoint > memberPoint) {
+			alert("사용 가능한 포인트는 " + memberPoint + " 점 입니다.");
+			usePointInput.value = "";
+			return;
+		}
+
+		var payableAmount = totalPrice - usePoint;
+		document.getElementById("totalprice").textContent = "결제 금액 : " + payableAmount + "원";
+		document.getElementById("subusepoint").value =usePoint;
+	}
+
+	function useall(totalPrice, memberPoint) {
+		document.getElementById("usepoint").value = memberPoint;
+		usepoint(totalPrice, memberPoint); // 값들을 인자로 전달합니다.
+	}
+	function submitform() {
+		document.getElementById("dopurchase").submit();
 	}
 </script>
 <%@ include file="header.jsp"%>
@@ -117,6 +147,7 @@ body a {
 	</script>
 	<div id="panel">
 		<div id="banner">
+		<c:set var ="member" value = "${member}" />
 			<h2>구매 내역서</h2>
 		</div>
 		<hr />
@@ -149,15 +180,23 @@ body a {
 			<c:set var="totalPrice" value="${totalPrice + count * price}" />
 		</c:forEach>
 		<div> 예상 적립 포인트 : ${Math.floor(totalPrice/100)} P</div>
-		<div>결제 금액 : ${totalPrice} 원</div>
-		<form action="purchaseServlet" method="post">
+		<div> 포인트 사용  : 
+		<span><input type ="text" id = "usepoint" name= "usepoint" size = '5px' ></span>
+		<span style = "margin-right : '3px' "> <button onclick = "usepoint(${totalPrice},${member.getPoint()})"> 적용 </button></span>
+		<span style = "margin-right : '3px' "> <button onclick = "useall(${totalPrice},${member.getPoint()})" > 모두 사용</button></span>
+		</div>
+		<form action="purchaseServlet" id = "dopurchase"method="post">
+		<div id = "totalpoint" > 현재 잔여 포인트 : ${member.getPoint()} P</div>
+		<div id ="totalprice">결제 금액 : ${totalPrice} 원</div>
 			<div>결제 방법</div>
 			<input type="radio" name="typepay" value="card"
 				onchange="changetype('card')"> 카드 <input type="radio"
 				name="typepay" value="easy" onchange="changetype('easy')">
 			간편결제 <input type="radio" name="typepay" value="insert"
 				onchange="changetype('insert')"> 통장 입금
-
+				
+	<input type = "hidden" id ="subusepoint"  name = "subusepoint" value ="">
+	<input type="hidden" name = "subtotalprice" value = "${totalPrice}">
 			<div id="payfield">
 				<div id="vcard">
 					<div>
@@ -195,7 +234,7 @@ body a {
 				</div>
 			</div>
 			<p>
-				<input type="submit" value="구매하기">
+				<button onclick = "submitform()" > 구매 하기</button>
 		</form>
 	</div>
 	<%@ include file="footer.jsp"%>

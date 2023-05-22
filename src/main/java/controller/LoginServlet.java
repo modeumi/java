@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import Dao.DaoImpl;
 import model.ItemHistory;
 import model.Member;
+import model.Review;
 
 /**
  * 
@@ -46,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 		    String pw = request.getParameter("pw");
 		    Member member = memberDao.exist(id, pw);
 		    Map<Integer,ItemHistory> item = memberDao.Select_Purchase(id);
+		    Map<Integer,Review> myreview = memberDao.My_Select_Review(id);
 		    HttpSession session = request.getSession();
 		    if (member != null) {
 		        session.setAttribute("member", member);
@@ -63,6 +65,7 @@ public class LoginServlet extends HttpServlet {
 		        response.getWriter().println(alertScript);
 		    }
 		    if (item !=null) {
+		    	session.setAttribute("myreview", myreview);
 		    	session.setAttribute("itemhistory", item);
 		    }
 		} catch (Exception e) {

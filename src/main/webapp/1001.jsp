@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.util.*"%>
 <%@ page import="model.*"%>
 
 <%
 String logId = (String) session.getAttribute("log_id");
-Map<Integer, Review> review = (Map<Integer, Review>) session.getAttribute("reviews");
+Map<Integer, Review> reviews = (Map<Integer, Review>) session.getAttribute("itemreviews");
+System.out.print(reviews);
 %>
 
 
@@ -56,37 +58,10 @@ body {
 	width: 30px;
 }
 
-#reviewpage {
-	margin-top: 20px;
-}
 
-#review_banner {
-	background-color: glay;
-	border: 2px solid black;
-	text-align: center;
-	font: bold;
-	width: 100%;
-	height: 10%;
-}
-
-.reviewslot {
-	margin: 5%;
-	padding: 5%;
-	width: 100%;
-	display: block;
-}
-
-.itemhis {
-	padding: 10px;
-	background-color: white;
-	width: 90%;
-	display: block;
-	text-align: left;
-}
 </style>
 <script type="text/javascript">
-		var sessionValue = "<%=logId%>
-	";
+		var sessionValue = "<%=logId%>";
 
 	function decreaseQuantity() {
 		event.preventDefault();
@@ -142,8 +117,7 @@ body {
 			</div>
 			<div id="but">
 				<form id="itemnum" action="AddcartServlet" method="post">
-					<input type="hidden" name="itemnum" value="1001"> <input
-						type="hidden" name="page" value="1001.jsp">
+					<input type="hidden" name="itemnum" value="1001"> 
 					<div>수량</div>
 					<br>
 					<button onclick="decreaseQuantity()">-</button>
@@ -158,29 +132,8 @@ body {
 				</form>
 			</div>
 		</div>
-		<div id="reviewpage">
-			<c:if test="${empty review }">
-		등록된 리뷰가 없습니다 .
-		</c:if>
-			<c:otherwise>
-				<c:forEach var="review" items="${review}">
-					<div class="reviewslot">
-						<div class="itemdate">주문 일자 : ${review.getDate()}</div>
-						<br>
-						<div class="itemhis">
-						<div> <img src="img/${review.getImg().getImage1()}" onmouseup="올리면 이미지 바뀌는거" onmouseout="때면 이미지 원상복구"></div>
-							<div id="smallwidth">
-								<img src="img/${review.getImg().getImage1()}" class="itemimg">
-							</div>
-							<div class="textslot">
-								<span> ${review.getText()}</span>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</c:otherwise>
-		</div>
 	</div>
+	<%@ include file="reviewform.jsp"%>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
