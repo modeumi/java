@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>회원탈퇴</title>
 <style type="text/css">
 body {
@@ -130,8 +130,8 @@ button {
 		placeholder="선택하신 항목에 대한 자세한 이유를 남겨주시면 서비스 개선에 큰 도움이 됩니다."
 		style="width: 1000px; height: 500px" maxlength="2000">
 	
-		<button type="button"><a href="deleteMember.jsp">탈퇴신청</a></button>
-		<button type="button"><a href="Mypage2.jsp">취소하기</a></button>
+		<button type="button"><a href="delete.jsp">탈퇴신청</a></button>
+		<button type="button">취소하기</button>
 
 </body>
 </html>

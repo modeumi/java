@@ -34,10 +34,10 @@ public class UpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); 
-	    response.setContentType("text/html; charset=utf-8"); 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 	    HttpSession session = request.getSession();
-	    
+		
 		try {
 			DaoImpl userinfoDao = new DaoImpl();
 			Member member = userinfoDao.update(new Member()
@@ -47,12 +47,14 @@ public class UpdateServlet extends HttpServlet {
 					.setPhone(request.getParameter("phone1"))
 					.setId(request.getParameter("id"))
 					.setNickname(request.getParameter("nickname")));
-			    session.setAttribute("log_id", member.getId());
-			    session.setAttribute("log_pw", member.getPw());
-			    session.setAttribute("log_name", member.getName());
-			    session.setAttribute("log_nickname", member.getNickname());
-			    RequestDispatcher rd = request.getRequestDispatcher("Mypage2.jsp");
-		        rd.forward(request, response);
+			session.setAttribute("log_id", member.getId());
+			session.setAttribute("log_pw", member.getPw());
+			session.setAttribute("log_name", member.getName());
+			session.setAttribute("log_nickname", member.getNickname());
+			String alertScript = "<script>alert('수정이 완료되었습니다.');" + "window.location.href = 'Mypage2.jsp';</script>";
+	        response.getWriter().println(alertScript);
+			//RequestDispatcher rd = request.getRequestDispatcher("Mypage2.jsp");
+			//rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

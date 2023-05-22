@@ -25,7 +25,7 @@
     border-radius: 20px;
     width: 100px;
     height: 50px;
-    background-color: #98FB98; 
+    background-color: white; 
     }
     
   </style>
@@ -62,14 +62,14 @@
       <h5><li><button id="myButton" class ="profileB" onclick="showSubMenu2()">설정</a></li></h5>
     </ul>
     </nav>
-     
+     <hr>
 <nav style="display: flex; justify-content: center; align-items: center;">
 <hr>
     <div class="submenu1">
     <ul id="sub-menu1" style="display: flex;">
       <li><a href="#"><h4>좋아요</h4></a></li>
       <li><a href="#"><h4>스크립트</h4></a></li>
-      <li><a href="#"><h4>쿠폰</h4></a></li>
+      <li><a href="#"><h4>구매내역</h4></a></li>
     </ul>
    </div>
    <div class ="submenu2">

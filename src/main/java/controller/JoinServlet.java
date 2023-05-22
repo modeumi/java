@@ -38,7 +38,7 @@ public class JoinServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		try {
 			DaoImpl memberinfoDao = new DaoImpl();
-			memberinfoDao.insert(new Member().setId(request.getParameter("id")).setNickname(request.getParameter("nickname")).setPw(request.getParameter("pw"))
+			memberinfoDao.insert(new Member().setId(request.getParameter("id")).setPw(request.getParameter("pw"))
 					.setName(request.getParameter("name")).setEmail(request.getParameter("email"))
 					.setPhone(request.getParameter("phone")));
 

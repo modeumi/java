@@ -43,13 +43,12 @@ body {
 	align-content: center;
 	text-align: center;
 	/* margin-left: 100px; */
-	padding-top: 55px;
+	padding-top: 54px;
 }
 
 body a {
 	text-decoration-line: none;
 }
-
 
 h1[class] {
 	align-content: left;
@@ -64,13 +63,11 @@ text-align: center;
 	text-align : center;
 	font-size: 20px;
 	font-face: '맑은고딕';
-	
 }
 
 .low {
 	float: left;
 }
-
 
 .log {
 	display: flex;
@@ -136,18 +133,12 @@ footer {
 	justify-content: space-around;
 }
 
-* /
-
 body, html {
 	font-family: OhouseSans, "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕",
 		"Malgun Gothic", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	letter-spacing: -0.4px;
 }
-
-
-
-
 
 a {
 	text-decoration: none;
@@ -193,6 +184,7 @@ button {
 	-webkit-box-align: center;
 	align-items: center;
 	height: 32px;
+	
 	border-radius: 4px;
 	padding: 0px 8px;
 	font-weight: 400;
@@ -216,8 +208,6 @@ button {
 	grid-auto-flow: column;
 	gap: 20px 10px;
 }
-
-
 
 .css-c20 {
 	display: grid;

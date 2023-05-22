@@ -8,7 +8,7 @@ package model;
 		public static Connection getConnection()throws SQLException,
 		ClassNotFoundException{
 			Connection conn =null;
-			String url ="jdbc:mysql://localhost:3306/MOBEL";
+			String url ="jdbc:mysql://localhost:3306/mobel?autoReconnect=true&verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=utf8";
 			String user ="root";
 			String password ="java";
 			Class.forName("com.mysql.cj.jdbc.Driver");

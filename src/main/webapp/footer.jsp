@@ -8,6 +8,7 @@
 <style type="text/css">
 
  body { 
+ border-top : 1px solid black;
  text-align: center; 
 } 
 
