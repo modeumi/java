@@ -206,7 +206,7 @@ border-left : 1px dotted black;
 									</p>
 									<div class="css-a33">
 										<!-- eocurwa1 -->
-										<button class="css-a34">카톡 상담(평일 09:00~18:00)</button>
+										<a href = "https://open.kakao.com/o/sPhneQlf"><button class="css-a34">카톡 상담(평일 09:00~18:00)</button></a>
 										<br>
 										<button class="css-a34">
 										<span> <a href = "#">이메일 문의</a></span>

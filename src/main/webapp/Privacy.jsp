@@ -10,11 +10,8 @@ body{
 padding-top: 55px;
 }
 .update {
-	top: 50%;
-	left: 50%;
-	width: 1000px;
+	width: 80%;
 	height: 200%;
-	padding: 5px;
 	background-color: white;
 	padding: 20px;
 	border-radius: 10px;
@@ -27,10 +24,8 @@ padding-top: 55px;
 
 .delete {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(10%, -450%);
-	width: 600px;
+	top: 34%;
+	left: 83%;
 	padding: 5px;
 	color: red
 }
@@ -44,6 +39,9 @@ section {
 
 h2 {
 	text-align: left;
+}
+.readonlyback {
+background-color: #D8D8D8;
 }
 </style>
 <script type="text/javascript">
@@ -76,7 +74,7 @@ h2 {
 			</center>
 			<div class="loginimp">
 				<div class="impo">
-				<p>아이디 :<input type ="text" value="${sessionScope.log_id}" name ="id" id="id">
+				<p>아이디 :<input type ="text" value="${sessionScope.log_id}" name ="id" id="id" readonly="readonly" class = "readonlyback">
 					<p>
 						비밀번호 : <input type="password" name="pw" id="pw"
 							onchange="checkLogin()">

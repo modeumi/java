@@ -59,7 +59,6 @@ body {
 #payfield {
 	margin: 5px;
 	padding: 10px;
-	border: 1px solid black;
 }
 
 body a {
@@ -179,7 +178,6 @@ body a {
 			<c:set var="price" value="${item.getPrice()}" />
 			<c:set var="totalPrice" value="${totalPrice + count * price}" />
 		</c:forEach>
-		<div> 예상 적립 포인트 : ${Math.floor(totalPrice/100)} P</div>
 		<div> 포인트 사용  : 
 		<span><input type ="text" id = "usepoint" name= "usepoint" size = '5px' ></span>
 		<span style = "margin-right : '3px' "> <button onclick = "usepoint(${totalPrice},${member.getPoint()})"> 적용 </button></span>
@@ -187,6 +185,8 @@ body a {
 		</div>
 		<form action="purchaseServlet" id = "dopurchase"method="post">
 		<div id = "totalpoint" > 현재 잔여 포인트 : ${member.getPoint()} P</div>
+		<br>
+		<div> 예상 적립 포인트 : ${Math.round(totalPrice/100)} P</div>
 		<div id ="totalprice">결제 금액 : ${totalPrice} 원</div>
 			<div>결제 방법</div>
 			<input type="radio" name="typepay" value="card"

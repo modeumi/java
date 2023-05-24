@@ -26,11 +26,13 @@
 	border-bottom: 1px solid black;
 }
 
+
 .col-5 {
 	width : 57%;
 	display: flex;
 	align-items: center;
-}
+    justify-content: flex-end;
+    }
 .col-5 > * {
   margin-right: 10px;
 }
@@ -38,6 +40,41 @@
 .col-1 {
 	display: flex;
 	align-items: center;
+}
+#loginBtn{
+           border-top-left-radius: 5px;
+           border-bottom-left-radius: 5px;
+           margin-right:-4px;
+           border: 1px solid #40A940;
+           background-color: rgba(0,0,0,0);
+           color: #40A940;
+           padding: 5px;
+}
+#singupBtn{
+           border-top-right-radius: 5px;
+           border-bottom-right-radius: 5px;    
+           margin-left:-3px;
+           border: 1px solid #40A940;
+           background-color: rgba(0,0,0,0);
+           color: #40A940;
+           padding: 5px;
+}        
+#loginBtn, #singupBtn,#logout button{
+            border: 1px solid #40A940;
+            background-color: rgba(0,0,0,0);
+            color: #40A940;
+            padding: 5px;
+}
+#logoutBtn{ 
+           border-radius: 5px;
+           border: 1px solid #40A940;
+           background-color: rgba(0,0,0,0);
+           color: #40A940;
+           padding: 5px;
+}
+#loginBtn, #singupBtn button:hover{
+            color:white;
+            background-color: #40A940;
 }
 </style>
 
@@ -92,6 +129,17 @@
 			    document.getElementById('timer').innerHTML = minStr + ':' + secStr;
 			  }, 1000);
 		}
+		function changecolor(event) {
+			  var btn = document.getElementById("logoutBtn");
+			  btn.style.backgroundColor = "#40A940";
+			  btn.style.color = "white";
+			}
+
+			function resetcolor(event) {
+			  var btn = document.getElementById("logoutBtn");
+			  btn.style.backgroundColor = "rgba(0, 0, 0, 0)";
+			  btn.style.color = "#40A940";
+			}
 </script>
 </head>
 <body>
@@ -108,7 +156,9 @@
 								height="60px"></a>
 						</h1>
 					</div>
+					
 					<div class="col-5" >
+					
 						<c:choose>
 							<c:when test="${not empty sessionScope.member}">
 							<div>로그인 시간 </div>
@@ -118,28 +168,22 @@
 								<button onclick="extendSessionTime()">시간연장</button>
 							</c:when>
 						</c:choose>
-
-						<span><input type="text" placeholder="통합검색"
-							autocomplete="off" aria-autocomplete="list" value=""> <c:choose>
-
+							<c:choose>
 								<c:when test="${empty sessionScope.member}">
-									<a href="login.jsp"><input type="button" value="로그인"
-										id="loginBtn"></a>
-									<a href="TermsOfUse.jsp"><input type="button" value="회원가입"
-										id="singupBtn"></a>
-									<a href="Complain.jsp"><input type="button" value="고객센터"
-										id=""></a>
+									<a href="login.jsp"><button id="loginBtn">로그인</button></a>
+									<a href="TermsOfUse.jsp"><button id="singupBtn">회원가입</button></a>
+									<a href="Complain.jsp" style="margin-left: 20px"><img src="img/고객센터.png"
+										width="40px" height="40px"></a>
 								</c:when>
 
 								<c:otherwise>
 									<a href="Mypage2.jsp"><img src="img/프로필.png"
 										width="40px" height="40px"></a>
-									<button onclick="invalid()">로그아웃</button>
-									<a href="Complain.jsp"><input type="button" value="고객센터"
-										id="contomer"></a>
-									<a href="ShoppingMarket.jsp"><img src="img/carti.jpg"
-										width="35px" height="35px"> </a>
-
+									<button id="logoutBtn" onclick="invalid()"onmouseenter="changecolor()" onmouseleave="resetcolor()">로그아웃</button>
+									<a href="Complain.jsp" style="margin-left: 20px"><img src="img/고객센터.png"
+										width="40px" height="40px"></a>
+									<a href="ShoppingMarket.jsp"><img src="img/carti.png"
+										width="40px" height="40px"> </a>
 								</c:otherwise>
 
 							</c:choose> </span>

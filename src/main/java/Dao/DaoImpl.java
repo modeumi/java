@@ -754,5 +754,43 @@ public class DaoImpl {
 			}
 		}
 	}
+	public Item Select_item(int id){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Item item = new Item();
+		try { 
+			conn = DBConnection.getConnection();
+			pstmt =conn.prepareStatement("select * from item where id = ?");
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				item.setId(rs.getInt("id"));
+				item.setName(rs.getString("name"));
+				item.setImg(rs.getString("image"));
+				item.setPrice(rs.getInt("price"));
+				item.setUrl(rs.getString("url"));
+				item.setCount(1);
+				return item;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return item;
+	}
 		
 }

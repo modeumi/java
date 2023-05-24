@@ -38,13 +38,15 @@ public class UpdateServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 	    HttpSession session = request.getSession();
 		
+	    String phone = request.getParameter("phone1") + "-" + request.getParameter("phone2") + "-" + request.getParameter("phone3");
+	    String email = request.getParameter("email" ) + "@" + request.getParameter("domain");
 		try {
 			DaoImpl userinfoDao = new DaoImpl();
 			Member member = userinfoDao.update(new Member()
 					.setPw(request.getParameter("pw"))
 					.setName(request.getParameter("name"))
-					.setEmail(request.getParameter("email"))
-					.setPhone(request.getParameter("phone1"))
+					.setEmail(email)
+					.setPhone(phone)
 					.setId(request.getParameter("id"))
 					.setNickname(request.getParameter("nickname")));
 			session.setAttribute("log_id", member.getId());

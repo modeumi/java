@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function gocart() {
-	window.opener.location.href = "Cart.jsp";
+	window.opener.location.href = "ShoppingMarket.jsp";
 	window.close();
 }
 </script>

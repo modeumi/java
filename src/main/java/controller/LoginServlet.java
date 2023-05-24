@@ -68,6 +68,7 @@ public class LoginServlet extends HttpServlet {
 		    	session.setAttribute("myreview", myreview);
 		    	session.setAttribute("itemhistory", item);
 		    }
+		
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}

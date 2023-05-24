@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*"%>
 <%@ page import="model.*"%>
+<%
+Map<Integer, Review> reviews = (Map<Integer, Review>) session.getAttribute("itemreviews");
+%>
 <!DOCTYPE html>
 <html>
 <head>

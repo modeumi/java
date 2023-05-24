@@ -1,5 +1,8 @@
 package controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import Dao.DaoImpl;
 import model.Image;
@@ -21,6 +25,7 @@ import model.Review;
  */
 @WebServlet("/AddReviewServlet")
 public class AddReviewServlet extends HttpServlet {
+	 private static final String SAVE_DIRECTORY = "/img/upload"; // 파일이 저장될 폴더 경로
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -50,9 +55,23 @@ public class AddReviewServlet extends HttpServlet {
 		DaoImpl daoimpl = new DaoImpl();
 	    HttpSession session = request.getSession();
 
-		String file1 = request.getParameter("files1");
-		String file2 = request.getParameter("files2");
-		String file3 = request.getParameter("files3");
+	    for (int i =1; i <=3; i++ ) {
+	    	Part file+i = request.getPart("file"+i);
+	    }
+		Part file1 = request.getPart("files1");
+		Part file2 = request.getPart("files2");
+		Part file3 = request.getPart("files3");
+		String filename1 = getFileName(file1);
+		String filename2 = getFileName(file2);
+		String filename3 = getFileName(file3);
+		
+		 String savePath = getServletContext().getRealPath("") + File.separator + SAVE_DIRECTORY;
+	        File saveDir = new File(savePath);
+	        if (!saveDir.exists()) {
+	            saveDir.mkdir();
+	        }
+	        String filePath = savePath + File.separator + filename1;
+	        file1.write(filePath);
 		
 		String starpoint = request.getParameter("starpoint");
 		int star =  Integer.parseInt(starpoint);
@@ -63,9 +82,9 @@ public class AddReviewServlet extends HttpServlet {
 		int ordernum = Integer.parseInt(stringkey);
 		
 		Image image = new Image();
-		image.setImage1(file1);
-		image.setImage2(file2);
-		image.setImage3(file3);
+		image.setImage1(filename1);
+		image.setImage2(filename2);
+		image.setImage3(filename3);
 		
 		String stringitemid = request.getParameter("itemid");
 		int itemid = Integer.parseInt(stringitemid);
@@ -89,6 +108,16 @@ public class AddReviewServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<script> alert('리뷰 등록이 완료되었습니다'); window.close(); reviews.location.reload(); </script>");
+	}
+
+	private String getFileName(Part part) {
+		   String contentDispositionHeader = part.getHeader("content-disposition");
+	        for (String header : contentDispositionHeader.split(";")) {
+	            if (header.trim().startsWith("filename")) {
+	                return header.substring(header.indexOf('=') + 1).trim().replace("\"", "");
+	            }
+	        }
+		return null;
 	}
 
 }

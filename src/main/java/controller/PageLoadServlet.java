@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Dao.DaoImpl;
+import model.Item;
 import model.Review;
 
 /**
@@ -53,7 +55,29 @@ public class PageLoadServlet extends HttpServlet {
 		Map<Integer, Review> reviews =	daoimpl.Select_Review(intkey);
 		session.setAttribute("itemreviews", reviews);
 		
-		response.sendRedirect(key+ ".jsp");
+		Map<Integer, Item> select_item = (Map<Integer, Item>) session.getAttribute("ItemField");
+		if (select_item == null) {
+			select_item = new HashMap<>();
+		}
+		
+		Item initem = new Item();
+		initem = daoimpl.Select_item(intkey);
+		
+		System.out.println(initem.getCount());
+		System.out.println(initem.getId());
+		System.out.println(initem.getImg());
+		System.out.println(initem.getName());
+		System.out.println(initem.getPrice());
+		System.out.println(initem.getUrl());
+		
+		select_item.put(initem.getId(), initem);
+    	session.setAttribute("ItemField", select_item);
+    	
+    	System.out.println(session.getAttribute("ItemField"));
+    	select_item = (Map<Integer,Item>) session.getAttribute("ItemField");
+    	System.out.println(select_item.values());
+    	
+		response.sendRedirect( key+ ".jsp");
 	}
 
 }

@@ -51,7 +51,6 @@ public class AddcartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String paraid = request.getParameter("itemnum");
-		String page = request.getParameter("page");	
 		String countst = request.getParameter("quantity");
 		int count = Integer.parseInt(countst);
 		int id = Integer.parseInt(paraid);
@@ -74,7 +73,7 @@ public class AddcartServlet extends HttpServlet {
 			cart.put(item.getId(), item);
 			session.setAttribute("cart", cart);
 		}
-		response.sendRedirect(page);
+		response.sendRedirect(id + ".jsp");
 	}
 
 }
