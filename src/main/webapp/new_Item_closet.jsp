@@ -267,7 +267,7 @@ p {
 		<br>
 	  <div class="production-feed container">	
 	   <div>
-		<div class="row" style= "padding-top: 0px; transform: translateY(0px);">
+		<div class="row">
 		 <div class="col-style">		  
 		    <article class="item_style">
 		     <a class="item_style2" href="#"></a>

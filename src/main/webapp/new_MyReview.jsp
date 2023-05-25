@@ -268,7 +268,8 @@ function gowrite(ordernum){
 					<div id="banner">
 						<header class="headstyle">
 							<h1 class="hstyle">
-								내가 작성한 리뷰 <span class="count">2</span>
+							<c:set var = "reviewcount" value = "${myreview.size()}" />
+								내가 작성한 리뷰 <span class="count">${reviewcount}</span>
 							</h1>
 							<div class="hright">
 								<a href = "PurchaseHistory.jsp"><button type="button">다른 리뷰 쓰기</button></a>
