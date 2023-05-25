@@ -3,12 +3,11 @@ package model;
 import java.util.Date;
 
 public class Buy {
-	public	int count;
+	public int count;
 	public int itemId;
 	public String mainimg;
 	public String itemname;  
 	public int price;
-	
 	public String userid;
 	public Date buydate;
 	
