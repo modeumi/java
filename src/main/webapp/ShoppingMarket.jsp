@@ -635,8 +635,8 @@ function changequantity(itemId) {
 					                                                                </script>
 																						</div>
 																						<div class="css-deu10 ">
-																							<span id="itemprice${itemEntry.key}">
-																								${itemEntry.value.getPrice()}</span>
+																							가격 : <span id="itemprice${itemEntry.key}">
+																								${itemEntry.value.getPrice()} 원</span>
 																						</div>
 																					</div>
 																				</article></li>

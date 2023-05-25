@@ -186,7 +186,7 @@ function submitform() {
 								<select name="domain" id = "domain" style="border-radius: 5px; margin-left: 10px;">
 									<option value="naver.com">naver.com</option>
 									<option value="gmail.com">gmail.com</option>
-									<option value="daum.com">daum.net</option>
+									<option value="daum.net">daum.net</option>
 									<option value="kakao.com">kakao.com</option>
 									<option value="hanmail.net">hanmail.net</option>
 							</select>

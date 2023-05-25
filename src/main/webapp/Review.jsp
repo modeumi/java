@@ -46,6 +46,7 @@ float: left;
 
 #smallwidth{
 width : 40%;
+margin-right: 11px;
 }
 .itemimg {
 text-align :left;
@@ -63,8 +64,9 @@ text-align :left;
 .textslot {
 	line-height : 1.7;
 	margin-top : 18px;
+	margin-left : 5px;
 	padding : 10px;
-	display: inline-grid;
+	display: contents;
 }
 .filefield {
 	width : 100%;
@@ -152,10 +154,10 @@ function deleteFile(id) {
 					<br>
 				<div class="itemhis">
 					<div id = "smallwidth"><img src="${items.getImg()}" class="itemimg"></div>
-					<div class="textslot"> <span> 상품명 : <a
-							href="${items.getUrl()}"> ${items.getItemname()}</a></span> <span>금액
-							: ${items.getPrice()}</span> <span>수량 :
-							${items.getCount()}</span>
+					<div class="textslot"> <span> 상품명 : <br> <a
+							href="${items.getUrl()}"> ${items.getItemname()}</a></span> <br><span>금액
+							: ${items.getPrice()} 원</span><br> <span>수량 :
+							${items.getCount()} 개</span>
 							</div>
 				</div>
 		</div>

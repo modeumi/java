@@ -36,10 +36,9 @@ padding : 30px;
 	 
 .asty {
 	margin: 4px;
-	width : 80%;
 	border-radius: 19px;
-	padding-left: 14px;
-    padding-right: 14px;
+	padding-left: 45px;
+    padding-right: 45px;
     color: rgb(47, 52, 56);
 	border: 1px solid rgb(89 249 185);
 	box-sizing: border-box;

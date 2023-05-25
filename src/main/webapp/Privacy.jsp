@@ -7,7 +7,7 @@
 <title>정보수정</title>
 <style>
 body{
-padding-top: 55px;
+padding-top: 54px;
 }
 .update {
 	width: 80%;
@@ -74,7 +74,7 @@ background-color: #D8D8D8;
 			</center>
 			<div class="loginimp">
 				<div class="impo">
-				<p>아이디 :<input type ="text" value="${sessionScope.log_id}" name ="id" id="id" readonly="readonly" class = "readonlyback">
+				<p>아이디 : <input type ="text" value="${sessionScope.log_id}" name ="id" id="id" readonly="readonly" class = "readonlyback">
 					<p>
 						비밀번호 : <input type="password" name="pw" id="pw"
 							onchange="checkLogin()">
@@ -88,18 +88,18 @@ background-color: #D8D8D8;
 					</p>
 							<br>	
 					<p>
-						이름: <input type="text" name="name" onchange="checkname()" value = "${sessionScope.log_name}">
+						이름 : <input type="text" name="name" onchange="checkname()" value = "${sessionScope.log_name}">
 					</p>
 						<br>
 						<p>
-						별 명 :<input type ="text" name="nickname" id="nickname" value = "${sessionScope.log_nickname}">
+						별 명 : <input type ="text" name="nickname" id="nickname" value = "${sessionScope.log_nickname}">
 						<br>
 				</div>
 			</div>	
 			
 			<div class="memberimp">
 				<p>
-					이메일 <input type="text" name="email" id="email"
+					이메일 : <input type="text" name="email" id="email"
 						value = "${sessionScope.log_email.split('@')[0]}"> 
 						@<span id="inputDomain"> 
 						<input type="text" name="domain" id="domain"
