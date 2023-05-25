@@ -103,7 +103,7 @@ margin-left: 0.1rem
 		<div class="frame">
 			<div class="screpbook">
 							<button>
-								<a href = "MyReview.jsp"><img src="img/스크랩북.png"> <br> 리뷰 <br> ${reviewcount}</a><br>
+								<a href = "new_MyReview.jsp"><img src="img/스크랩북.png"> <br> 리뷰 <br> ${reviewcount}</a><br>
 							</button>
 							<button>
 								<img src="img/하트.png"><br> 좋아요<br> 0
@@ -139,7 +139,7 @@ margin-left: 0.1rem
 						<td>${purchasecount}<br><a href = "PurchaseHistory.jsp">구매내역</a>
 						</td>
 						<td>|</td>
-						<td>${reviewcount}<br><a href = "MyReview.jsp">리뷰</a>
+						<td>${reviewcount}<br><a href = "new_MyReview.jsp">리뷰</a>
 						</td>
 				</table>
 			</div>

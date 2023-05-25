@@ -51,6 +51,7 @@ public class ReviewServlet extends HttpServlet {
 		String ordernum = request.getParameter("reviewitem");
 		String YorN = request.getParameter("reviewhistory");
 		String itemnum = request.getParameter("itemnum");
+		String url = request.getParameter("page");
 		int num = Integer.parseInt(itemnum);
 		int order= Integer.parseInt(ordernum);
 		DaoImpl daoimpl = new DaoImpl();
@@ -72,7 +73,7 @@ public class ReviewServlet extends HttpServlet {
 			session.setAttribute("review", review);
 		}
 		
-		response.sendRedirect("PurchaseHistory.jsp");
+		response.sendRedirect(url);
 	}
 
 }

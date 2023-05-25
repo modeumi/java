@@ -1,13 +1,12 @@
 package controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,24 +54,6 @@ public class AddReviewServlet extends HttpServlet {
 		DaoImpl daoimpl = new DaoImpl();
 	    HttpSession session = request.getSession();
 
-	    for (int i =1; i <=3; i++ ) {
-	    	Part file+i = request.getPart("file"+i);
-	    }
-		Part file1 = request.getPart("files1");
-		Part file2 = request.getPart("files2");
-		Part file3 = request.getPart("files3");
-		String filename1 = getFileName(file1);
-		String filename2 = getFileName(file2);
-		String filename3 = getFileName(file3);
-		
-		 String savePath = getServletContext().getRealPath("") + File.separator + SAVE_DIRECTORY;
-	        File saveDir = new File(savePath);
-	        if (!saveDir.exists()) {
-	            saveDir.mkdir();
-	        }
-	        String filePath = savePath + File.separator + filename1;
-	        file1.write(filePath);
-		
 		String starpoint = request.getParameter("starpoint");
 		int star =  Integer.parseInt(starpoint);
 		
@@ -81,10 +62,14 @@ public class AddReviewServlet extends HttpServlet {
 		String stringkey = request.getParameter("ordernum");
 		int ordernum = Integer.parseInt(stringkey);
 		
+		String file1= request.getParameter("files1");
+		String file2 = request.getParameter("files2");
+		String file3 = request.getParameter("files3");
+		
 		Image image = new Image();
-		image.setImage1(filename1);
-		image.setImage2(filename2);
-		image.setImage3(filename3);
+		image.setImage1(file1);
+		image.setImage2(file2);
+		image.setImage3(file3);
 		
 		String stringitemid = request.getParameter("itemid");
 		int itemid = Integer.parseInt(stringitemid);

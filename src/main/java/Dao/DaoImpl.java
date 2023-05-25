@@ -262,7 +262,7 @@ public class DaoImpl {
 	}
 
 
-	public void Insert_Purchase(Item item, String id, String type) {
+	public void Insert_Purchase(Item item, String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		LocalDate date = LocalDate.now();
@@ -270,7 +270,7 @@ public class DaoImpl {
 		try {
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(
-					"insert into purchase_history(date,userid,itemid,image,itemname,count,price,type,point,review) values(?,?,?,?,?,?,?,?,?,?)");
+					"insert into purchase_history(date,userid,itemid,image,itemname,count,price,point,review) values(?,?,?,?,?,?,?,?,?)");
 			pstmt.setDate(1, Date.valueOf(date));
 			pstmt.setString(2, id);
 			pstmt.setInt(3, item.getId());
@@ -278,9 +278,8 @@ public class DaoImpl {
 			pstmt.setString(5, item.getName());
 			pstmt.setInt(6, item.getCount());
 			pstmt.setInt(7, item.getPrice());
-			pstmt.setString(8, type);
-			pstmt.setInt(9, point);
-			pstmt.setString(10, "N");
+			pstmt.setInt(8, point);
+			pstmt.setString(9, "N");
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -792,5 +791,43 @@ public class DaoImpl {
 		}
 		return item;
 	}
-		
+		public int Check_id (String id) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int check = 0;
+			try {
+				conn = DBConnection.getConnection();
+				pstmt = conn.prepareStatement("select id from member where id = ?");
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					// 중복된 아이디 존재
+					check = 1;
+					return check;
+				}else {
+					//중복 아이디 미존재
+					check = 2;
+					return check;
+				}
+			}catch (Exception e) {
+				// 중복 아이디 미존재로 인한 sql 오류
+				check = 2;
+				return check;
+			}finally {
+				try {
+					if (rs != null) {
+						rs.close();
+					}
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 }

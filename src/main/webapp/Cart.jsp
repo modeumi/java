@@ -174,7 +174,6 @@ function changequantity(itemId) {
 		    <c:set var="item" value="${itemEntry.value}" />
 		    <c:set var="count" value="${item.getCount()}" />
 		    <c:set var="price" value="${item.getPrice()}" />
-		
 		    <c:set var="totalCount" value="${totalCount + count}" />
 		    <c:set var="totalPrice" value="${totalPrice + count * price}" />
 		  </c:forEach>

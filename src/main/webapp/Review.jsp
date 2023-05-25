@@ -160,7 +160,7 @@ function deleteFile(id) {
 				</div>
 		</div>
 	<div class="reviewfield">
-	<form action = "AddReviewServlet" method = "post">
+	<form action = "AddReviewServlet" method = "post" >
 	<input type = "hidden" name = "ordernum" value = "${review.getOrdernum()}">
 	<input type = "hidden" name = "itemid" value = "${review.getItemid()}">
 	<input type = "hidden" name = "userid" value = "${review.getUserid()}">

@@ -52,6 +52,7 @@ public class AddcartServlet extends HttpServlet {
 		
 		String paraid = request.getParameter("itemnum");
 		String countst = request.getParameter("quantity");
+		String page = request.getParameter("page");
 		int count = Integer.parseInt(countst);
 		int id = Integer.parseInt(paraid);
 

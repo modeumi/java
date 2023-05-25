@@ -49,7 +49,7 @@ public class purchaseServlet extends HttpServlet {
 		int point = 0;
 		HttpSession session = request.getSession();
 		DaoImpl daoimpl = new DaoImpl();
-		String type = request.getParameter("typepay");
+//		String type = request.getParameter("typepay");
 		Map<Integer,Item> cart = (Map<Integer,Item>) session.getAttribute("cart");
 		String id = (String)session.getAttribute("log_id");
 		//적립 될 포인트
@@ -69,7 +69,7 @@ public class purchaseServlet extends HttpServlet {
 		Collection<Item> items = cart.values();
 		
 		for (Item item : items) {
-			daoimpl.Insert_Purchase(item,id,type);
+			daoimpl.Insert_Purchase(item,id);
 		}
 		// 적립 포인트 +
 		cart.clear();

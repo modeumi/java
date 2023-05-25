@@ -70,7 +70,7 @@ public class NowBuyServlet extends HttpServlet {
 			cart.put(item.getId(), item);
 			session.setAttribute("cart", cart);
 		}
-		response.sendRedirect("PurchasePage.jsp");
+		response.sendRedirect("PurchasePage2.jsp");
 	}
 
 }

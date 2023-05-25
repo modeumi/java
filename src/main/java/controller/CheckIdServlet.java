@@ -1,9 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,20 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Dao.DaoImpl;
-import model.Item;
-import model.Review;
 
 /**
- * Servlet implementation class PageLoadServlet
+ * Servlet implementation class CheckIdServlet
  */
-@WebServlet("/PageLoadServlet")
-public class PageLoadServlet extends HttpServlet {
+@WebServlet("/CheckIdServlet")
+public class CheckIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PageLoadServlet() {
+    public CheckIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,29 +41,27 @@ public class PageLoadServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
-		
-		String key = request.getParameter("itemid");
-		int intkey = Integer.parseInt(key);
-		
 		DaoImpl daoimpl = new DaoImpl();
-		
-		Map<Integer, Review> reviews =	daoimpl.Select_Review(intkey);
-		session.setAttribute("itemreviews", reviews);
-		
-		Map<Integer, Item> select_item = (Map<Integer, Item>) session.getAttribute("ItemField");
-		if (select_item == null) {
-			select_item = new HashMap<>();
+		String id= request.getParameter("idcheck");
+		int check = daoimpl.Check_id(id);
+		// 1이면 중복 2면 미중복 
+		if (check == 1) {
+			session.setAttribute("idcheck", "false");
+			session.setAttribute("idfield", id);
+			 String alertScript = "<script>alert('중복된 아이디 입니다.');" + 
+			"location.reload();"+
+			"window.history.back();document.getElementById('idcheck').value = '"+id+"';</script>";
+		        response.getWriter().println(alertScript);
+		}
+		if (check == 2) {
+			session.setAttribute("idcheck", "true");
+			session.setAttribute("idfield", id);
+			String alertScript = "<script>alert('사용 가능한 아이디 입니다.');" +
+		"window.location.href = 'Idcheck.jsp';"+
+		"document.getElementById('idcheck').value = '"+id+"';</script>";
+	        response.getWriter().println(alertScript);
 		}
 		
-		Item initem = new Item();
-		initem = daoimpl.Select_item(intkey);
-		
-		
-		select_item.put(initem.getId(), initem);
-    	session.setAttribute("ItemField", select_item);
-    	
-    	select_item = (Map<Integer,Item>) session.getAttribute("ItemField");
-		response.sendRedirect( key+ ".jsp");
 	}
 
 }

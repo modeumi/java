@@ -88,15 +88,11 @@ background-color: #D8D8D8;
 					</p>
 							<br>	
 					<p>
-						이름: <input type="text" name="name" onchange="checkname()">
+						이름: <input type="text" name="name" onchange="checkname()" value = "${sessionScope.log_name}">
 					</p>
 						<br>
 						<p>
-						별 명 :<input type ="text" name="nickname" id="nickname">
-					<p>	
-						프로필 이미지 : <a href=""><img class="profile" src="img/프로필.png"
-							width="50px" height="50px"></a>
-						</p>
+						별 명 :<input type ="text" name="nickname" id="nickname" value = "${sessionScope.log_nickname}">
 						<br>
 				</div>
 			</div>	
@@ -104,10 +100,10 @@ background-color: #D8D8D8;
 			<div class="memberimp">
 				<p>
 					이메일 <input type="text" name="email" id="email"
-						placeholder="이메일을 입력해주세요"> 
+						value = "${sessionScope.log_email.split('@')[0]}"> 
 						@<span id="inputDomain"> 
 						<input type="text" name="domain" id="domain"
-						placeholder="도메인을 입력해주세요">
+						value ="${sessionScope.log_email.split('@')[1]}">
 					    </span>
 						<select name="site" onchange="changeEmailDomain()">
 						<option value="직접입력">직접입력</option>
@@ -118,15 +114,15 @@ background-color: #D8D8D8;
 				</p>
 				<br>
 				<p>
-					연락처 : <select name="phone1" onselect="checkMember()">
+					연락처 : <select name="phone1" onselect="checkMember()" value = "${sessionScope.log_phone.split('-')[0]}">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="019">019</option>
 						<option value="017">017</option>
 						<option value="016">016</option>
-					</select> -<input type="text" maxlength="4" size="4" name="phone2">-
+					</select> -<input type="text" maxlength="4" size="4" name="phone2" value = "${sessionScope.log_phone.split('-')[1]}">-
 					<input type="text" maxlength="4" size="4" name="phone3"
-						onchange="checkMember()">
+						onchange="checkMember()" value = "${sessionScope.log_phone.split('-')[2]}">
 				</p>
 				<center>
 				<br>

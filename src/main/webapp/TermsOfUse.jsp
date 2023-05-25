@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>이용약관</title>
 <style>
-    .checkbox{
+	    .checkbox{
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -19,9 +19,8 @@
     }
     .terms{
       position: absolute;
-      top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, 5%);
       width : 600px ; padding : 5px ;
       border:5px solid #123456;
     }
@@ -53,6 +52,7 @@ function allcheck() {
 </script>
 </head>
 <body>
+<div id = "field">
 <div class="terms">
      <form action="join.jsp" method="post">
    <div class="title"><img src="img/로고.png" width="150" height="100"><a href="./homepage.jsp"></a></div>
@@ -70,6 +70,7 @@ function allcheck() {
     <center><p><input type="button" value="취소">
    <input type="submit" value="확인"></p></center>
     </form> 
+  </div>
   </div>
 </body>
 </html>

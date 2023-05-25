@@ -6,12 +6,10 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <style>
-
 .join {
 	position: absolute;
-	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%,0%);
 	width: 600px;
 	padding: 5px;
 	border: 5px solid #123456;
@@ -25,6 +23,10 @@
 	display: block;
 	margin: 0 auto;
 }
+#Button_Style {
+margin-left: 30%;
+}
+
 </style>
 <script type="text/javascript">
    function showPassword1() {
@@ -101,6 +103,9 @@
 	    const checkboxValues = Array.from(document.querySelectorAll('input[name="checkbox"]:checked')).map(checkbox => checkbox.value);
 	    inputDomain.value = inputDomain.value + " " + checkboxValues.join(" ");
 	  }
+	function doublecheck(){
+		window.open ("Idcheck.jsp","","width=500px, height=150px");
+	}
 	
 </script>
 <body>
@@ -120,10 +125,11 @@
 				</p>
 				<div class="impo">
 					<p>
-						아 이 디 : <input type="text" id ="idInput"name="id" onchange="checkLogin()">
-						<input type="button" value="중복확인" onclick="doublecheck()"></p>
-						<span id="idCheckMsg"></span>
-					<br>
+						아 이 디 : <input type="text" id="idInput" name="id"
+							onchange="checkLogin()"> <input type="button"
+							value="중복확인" onclick="doublecheck()">
+					</p>
+					<span id="idCheckMsg"></span> <br>
 					<p>
 						별 명 : <input type="text" name="nickname" onchange="checkLogin()">
 					</p>
@@ -176,11 +182,11 @@
 						onchange="checkMember()">
 				</p>
 				<br>
-				<center>
-					<p>
-						<input type="submit" value="가입하기"> <a href="home.jsp"><input
-							type="button" value="취소" onclick="home.jsp">
-				</center>
+				<p>
+				<div id="Button_Style">
+					<input type="submit" value="가입하기"> <a href="home.jsp"><input
+						type="button" value="취소" onclick="home.jsp">
+				</div>
 			</div>
 		</form>
 	</div>

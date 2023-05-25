@@ -13,9 +13,11 @@ Map<Integer, Review> myreview = (Map<Integer, Review>) session.getAttribute("myr
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+body {
+padding-top: 54px;
+}
 #reviewpage {
-	margin: 10%
+	margin: 10%;
 }
 
 .itembody {
@@ -101,11 +103,21 @@ Map<Integer, Review> myreview = (Map<Integer, Review>) session.getAttribute("myr
 <script type="text/javascript">
 
 function imgclick(key ,img){
-	var imageElement = document.getElementById(key);
+	var imageElement = document.getElementById("main"+key);
 	var newImageSource = img;
 	imageElement.src = newImageSource;
 }
 
+function gocart(ordernum){
+	document.getElementById(ordernum).action = "AddcartServlet";
+	document.getElementById(ordernum).submit();
+}
+
+function gowrite(ordernum){
+	document.getElementById(ordernum).action = "ReviewServlet";
+	 document.getElementById(ordernum).submit();
+	 var reviews = window.open('dummy.jsp','','width = 450px,height = 700px ,resizable=no, scrollbars=0');
+}
 </script>
 <%@ include file="header.jsp"%>
 </head>
@@ -121,24 +133,33 @@ function imgclick(key ,img){
 			<c:if test="${not empty myreview }">
 				<c:forEach items="${myreview}" var="entry" varStatus="status">
 					<c:set var="review" value="${entry.value}" />
+					<form action = "AddcartServlet" id = "${entry.key}" method = "post">
+						<input type="hidden" name = "reviewitem" value = "${entry.key}">
+						<input type="hidden" name = "reviewhistory" value = "Y">
+						<input type="hidden" name = "itemnum" value = "${review.getItemid()}">
+						<input type="hidden" name = "page" value = "MyReview.jsp">
+						<input type="hidden" name = "quantity" value = "1">
+					</form>
 					<div class="reviewslot">
 						<div class=" imagefield">
 							<c:if test="${not empty review.getImg().getImage1()}">
-								<img src="img/${review.getImg().getImage1()}" class="imageslot"
-									onclick="imgclick(${entry.key},'img/${review.getImg().getImage1()}')">
+								<img src="img/upload/${review.getImg().getImage1()}" class="imageslot"
+									onclick="imgclick(${entry.key},'img/upload/${review.getImg().getImage1()}')">
+									
 							</c:if>
 							<c:if test="${not empty review.getImg().getImage2() }">
-								<img src="img/${review.getImg().getImage2()}" class="imageslot"
-									onclick="imgclick(${entry.key},'img/${review.getImg().getImage2()}')">
+								<img src="img/upload/${review.getImg().getImage2()}" class="imageslot"
+									onclick="imgclick(${entry.key},'img/upload/${review.getImg().getImage2()}')">
 							</c:if>
 							<c:if test="${not empty review.getImg().getImage3() }">
-								<img src="img/${review.getImg().getImage3()}" class="imageslot"
-									onclick="imgclick(${entry.key},'img/${review.getImg().getImage3()}')">
+								<img src="img/upload/${review.getImg().getImage3()}" class="imageslot"
+									onclick="imgclick(${entry.key},'img/upload/${review.getImg().getImage3()}')">
 							</c:if>
 						</div>
 						<div class="reviewinslot">
-							<img src="img/${review.getImg().getImage1()}" class="mainimage"
-								id="${entry.key}">
+							<img src="img/upload/${review.getImg().getImage1()}" class="mainimage"
+								id="main${entry.key}">
+								<br>
 
 							<div class="textfield">
 
@@ -146,7 +167,11 @@ function imgclick(key ,img){
 								<span>${review.getText()}</span>
 							</div>
 							<div class="review_button">
-								<img src="img/updatereview.png" width="200px" height="70px">
+								<a href="#" onclick="gocart('${entry.key}')"> <img
+									src="img/gocart.png" width="200px" height="70px"></a> <a
+									href="#" onclick="gowrite('${entry.key}')"> <img
+									src="img/updatereview.png" width="200px" height="70px">
+								</a>
 							</div>
 						</div>
 					</div>

@@ -38,6 +38,7 @@ body {
 }
 
 #itemimg {
+	border-radius :10px;
 	position: relative;
 	width: 70%;
 	height: 30%;
@@ -103,9 +104,12 @@ body {
 <%@ include file="header.jsp"%>
 </head>
 <body>
+<c:set var="key" value="1001" />
+	<c:forEach var="ItemField" items='${ItemField}'>
+		<c:if test="${ItemField.key ==key }">
 	<div id="itempage">
 		<div id="itemimg">
-			<img src="img/desk/desk1.png" width="400px" height="400px">
+			<img src="${ItemField.value.getImg()}" width="400px" height="400px">
 		</div>
 		<div id="iteminfo">
 			<div>
@@ -117,9 +121,9 @@ body {
 					<input type="hidden" name="itemnum" value="1001">
 					<div>수량</div>
 					<br>
-					<button onclick="decreaseQuantity()">-</button>
-					<input type="text" id="quantity" name="quantity" value="1" readonly>
-					<button onclick="increaseQuantity()">+</button>
+						<button onclick="decreaseQuantity()">-</button>
+						<input type="text" id="quantity" name="quantity" value="1" readonly>
+						<button onclick="increaseQuantity()">+</button>
 					<p>
 					<hr />
 					<a href="#" onclick="gobuy()"><img src="img/buy.png"
@@ -130,6 +134,8 @@ body {
 			</div>
 		</div>
 	</div>
+	</c:if>
+	</c:forEach>
 	<%@ include file="reviewform.jsp"%>
 	<%@ include file="footer.jsp"%>
 </body>

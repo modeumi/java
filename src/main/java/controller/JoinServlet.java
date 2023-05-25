@@ -36,12 +36,17 @@ public class JoinServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		DaoImpl memberinfoDao = new DaoImpl();
+		  String phone = request.getParameter("phone1") + "-" + request.getParameter("phone2") + "-" + request.getParameter("phone3");
+		    String email = request.getParameter("email" ) + "@" + request.getParameter("domain");		
 		try {
-			DaoImpl memberinfoDao = new DaoImpl();
-			memberinfoDao.insert(new Member().setId(request.getParameter("id")).setPw(request.getParameter("pw"))
-					.setName(request.getParameter("name")).setEmail(request.getParameter("email"))
-					.setPhone(request.getParameter("phone")));
-
+			memberinfoDao.insert(new Member()
+					.setId(request.getParameter("id"))
+					.setPw(request.getParameter("pw"))
+					.setName(request.getParameter("name"))
+					.setEmail(email)
+					.setPhone(phone)
+					.setNickname(request.getParameter("nickname")));
 			String alertScript = "<script>alert('회원 가입이 완료되었습니다!');"
 					+ "window.location.href = 'login.jsp';</script>";
 				response.getWriter().println(alertScript);

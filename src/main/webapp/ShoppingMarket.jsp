@@ -448,8 +448,8 @@ dd {
 .cart-side-wrap {
 	display: block;
 	position: fixed;
-	transform: translate(185%, -82vh);
-	width : 25%;
+	transform: translate(105vh, -37vh);
+	width: 30vh;
 	min-height: 1px;
 	box-sizing: border-box;
 	-webkit-box-flex: 0;
@@ -556,153 +556,164 @@ function changequantity(itemId) {
 		crossorigin="anonymous"></script>
 	<br>
 	<br>
-
 	<br>
+
 	<div class="cont12-cart-wrap">
 		<div class="container">
 			<div class="commerce-cart row">
 				<div class="commerce-cart__content-wrap col-a13 col-a11">
 					<div class="commerce-cart__content">
-						<ul class="commerce-cart__content__group-list">
-							<li class="commerce-cart__content__group-item">
-								<article class="commerce-cart__group">
-									<h1 class="commerce-cart__group__header">(주)더조은가구 배송</h1>
-									<ul class="commerce-cart__group__item-list">
-										<li class="commerce-cart__group__item">
-											<article class="cart_delg">
+						<c:choose>
+							<c:when test="${not empty cart}">
+								<ul class="commerce-cart__content__group-list">
+									<li class="commerce-cart__content__group-item">
+										<article class="commerce-cart__group">
+											<h1 class="commerce-cart__group__header">(주)더조은가구 배송</h1>
+											<ul class="commerce-cart__group__item-list">
+												<li class="commerce-cart__group__item">
+													<article class="cart_delg">
 
 
-												<c:forEach items="${cart}" var="itemEntry">
-													<form action="deleteitemServlet" method="post"
-														id="deleteitem">
-														<input type="hidden" value="${itemEntry.key}" name="key">
-													</form>
-													<ul class="cart_delg__product-list">
-														<li class="cart_dgpi"><article class="cart-p">
-																<a
-																	class="product-small-item product-small-item--clickable"
-																	href="#">
-																	<div class="product-small-item_image">
-																		<img alt="상품 이미지" src="${itemEntry.value.getImg()}">
-																	</div>
+														<c:forEach items="${cart}" var="itemEntry">
+															<form action="deleteitemServlet" method="post"
+																id="deleteitem">
+																<input type="hidden" value="${itemEntry.key}" name="key">
+															</form>
+															<ul class="cart_delg__product-list">
+																<li class="cart_dgpi"><article class="cart-p">
+																		<a
+																			class="product-small-item product-small-item--clickable"
+																			href="#">
+																			<div class="product-small-item_image">
+																				<img alt="상품 이미지" src="${itemEntry.value.getImg()}">
+																			</div>
 
-																	<div class="product-small-item_content">
-																		<h1 class="product-small-item__title">${itemEntry.value.getName()}</h1>
-																		<p class="css-deu01">무료배송&nbsp;|&nbsp;업체직접배송</p>
-																	</div>
-																</a>
-																<button class="cart-p_delete" type="button"
-																	aria-label="삭제" onclick="submititem()">
-																	<svg width="12" height="12" viewBox="0 0 12 12"
-																		fill="currentColor"
-																		preserveAspectRatio="xMidYMid meet">
+																			<div class="product-small-item_content">
+																				<h1 class="product-small-item__title">${itemEntry.value.getName()}</h1>
+																				<p class="css-deu01">무료배송&nbsp;|&nbsp;업체직접배송</p>
+																			</div>
+																		</a>
+																		<button class="cart-p_delete" type="button"
+																			aria-label="삭제" onclick="submititem()">
+																			<svg width="12" height="12" viewBox="0 0 12 12"
+																				fill="currentColor"
+																				preserveAspectRatio="xMidYMid meet">
                                                                
                                                                <path
-																			fill-rule="nonzero"
-																			d="M6 4.6L10.3.3l1.4 1.4L7.4 6l4.3 4.3-1.4 1.4L6 7.4l-4.3 4.3-1.4-1.4L4.6 6 .3 1.7 1.7.3 6 4.6z">
+																					fill-rule="nonzero"
+																					d="M6 4.6L10.3.3l1.4 1.4L7.4 6l4.3 4.3-1.4 1.4L6 7.4l-4.3 4.3-1.4-1.4L4.6 6 .3 1.7 1.7.3 6 4.6z">
                                                                
                                                                </path></svg>
-																</button>
-																<ul class="carted-product__option-list">
+																		</button>
+																		<ul class="carted-product__option-list">
 
-																	<!-- __option-list__item" 상품코드박스 크기 늘려주는 용도-->
-																	<li class="cart-p__option-list__item"><article
-																			class="css-deu02">
-																			<button type="button" aria-label="삭제"
-																				class="css-deu04">
-																				<span class="_dismiss_16 css-deu05"> </span>
-																			</button>
+																			<!-- __option-list__item" 상품코드박스 크기 늘려주는 용도-->
+																			<li class="cart-p__option-list__item"><article
+																					class="css-deu02">
+																					<button type="button" aria-label="삭제"
+																						class="css-deu04">
+																						<span class="_dismiss_16 css-deu05"> </span>
+																					</button>
 
-																			<div class="css-deu06">
-																				<div class="css-deu07 ">
-																					<p>
-																						<label>수량</span> <select name="quantity"
-																							id="quantitydefault${itemEntry.key}"
-																							onchange="changequantity(${itemEntry.key})">
-																								<%
-																								for (int i = 1; i <= 10; i++) {
-																								%>
-																								<option value="<%=i%>"><%=i%></option>
-																								<%
-																								}
-																								%>
-																						</select> <script>
+																					<div class="css-deu06">
+																						<div class="css-deu07 ">
+																							<p>
+																								<label>수량</span> <select name="quantity"
+																									id="quantitydefault${itemEntry.key}"
+																									onchange="changequantity(${itemEntry.key})">
+																										<%
+																										for (int i = 1; i <= 10; i++) {
+																										%>
+																										<option value="<%=i%>"><%=i%></option>
+																										<%
+																										}
+																										%>
+																								</select> <script>
 					                                                                var countValue = ${itemEntry.value.getCount()}
 					                                                                var quantitydefault = document.getElementById("quantitydefault${itemEntry.key}");
 					                                                                quantitydefault.value = countValue;
 					                                                                </script>
-																				</div>
-																				<div class="css-deu10 ">
-																					<span id="itemprice${itemEntry.key}">
-																						${itemEntry.value.getPrice()}</span>
-																				</div>
-																			</div>
-																		</article></li>
-																</ul>
-																<div class="cart-p_footer">
-																	<span class="cart-p_footer_left"> </span> <span
-																		class="cart-p_subtotal"> <span
-																		class="cart-p_subtotal_number">총금액 : <span
-																			id="totalpay${itemEntry.key}" onchange="changepay()">
-																				${itemEntry.value.getPrice() * itemEntry.value.getCount()}
-																		</span>
-																	</span>원
-																	</span>
-																</div>
-															</article></li>
-													</ul>
-												</c:forEach>
-												<c:set var="totalCount" value="0" />
-												<c:set var="totalPrice" value="0" />
+																						</div>
+																						<div class="css-deu10 ">
+																							<span id="itemprice${itemEntry.key}">
+																								${itemEntry.value.getPrice()}</span>
+																						</div>
+																					</div>
+																				</article></li>
+																		</ul>
+																		<div class="cart-p_footer">
+																			<span class="cart-p_footer_left"> </span> <span
+																				class="cart-p_subtotal"> <span
+																				class="cart-p_subtotal_number">총금액 : <span
+																					id="totalpay${itemEntry.key}"
+																					onchange="changepay()">
+																						${itemEntry.value.getPrice() * itemEntry.value.getCount()}
+																				</span>
+																			</span>원
+																			</span>
+																		</div>
+																	</article></li>
+															</ul>
+														</c:forEach>
+														<c:set var="totalCount" value="0" />
+														<c:set var="totalPrice" value="0" />
 
-												<c:forEach items="${cart}" var="itemEntry">
-													<c:set var="item" value="${itemEntry.value}" />
-													<c:set var="count" value="${item.getCount()}" />
-													<c:set var="price" value="${item.getPrice()}" />
+														<c:forEach items="${cart}" var="itemEntry">
+															<c:set var="item" value="${itemEntry.value}" />
+															<c:set var="count" value="${item.getCount()}" />
+															<c:set var="price" value="${item.getPrice()}" />
 
-													<c:set var="totalCount" value="${totalCount + count}" />
-													<c:set var="totalPrice"
-														value="${totalPrice + count * price}" />
-												</c:forEach>
-												<div class="cart-side-wrap" >
-													<div class="sticky-container cart-side-container"
-														style="position: sticky; top: 80.75px; transition: top 0.1s ease 0s;">
-														<div class="sticky-child cart-side"
-															style="position: relative;">
-															<dl class="cart_sum cart-side-sum">
-																<div class="cart_sum_row">
-																	<dt>총 상품금액</dt>
-																	<dd>
-																		<span class="number">${totalPrice} </span>원
-																	</dd>
+															<c:set var="totalCount" value="${totalCount + count}" />
+															<c:set var="totalPrice"
+																value="${totalPrice + count * price}" />
+														</c:forEach>
+														<div class="cart-side-wrap">
+															<div class="sticky-container cart-side-container"
+																style="position: sticky; top: 80.75px; transition: top 0.1s ease 0s;">
+																<div class="sticky-child cart-side"
+																	style="position: relative;">
+																	<dl class="cart_sum cart-side-sum">
+																		<div class="cart_sum_row">
+																			<dt>총 상품금액</dt>
+																			<dd>
+																				<span class="number">${totalPrice} </span>원
+																			</dd>
+																		</div>
+																		<div class="cart_sum_row">
+																			<dt>예상 적립 포인트</dt>
+																			<dd>
+																				<span class="number">${Math.round(totalPrice/100)}
+																				</span>P
+																			</dd>
+																		</div>
+																	</dl>
 																</div>
-																<div class="cart_sum_row">
-																	<dt> 예상 적립 포인트</dt>
-																	<dd>
-																		 <span class="number">${Math.round(totalPrice/100)} </span>P
-																	</dd>
+
+																<div class="cart-side_order">
+																	<a href="PurchasePage2.jsp"><button
+																			class="_1eWD8 _3SroY _27do9 cart-side_btn"
+																			type="button">
+																			<span> 총 </span> <span> ${totalCount} 개 </span> <span>구매하기</span>
+																		</button> </a>
 																</div>
-															</dl>
+															</div>
 														</div>
-
-														<div class="cart-side_order">
-															<a href="PurchasePage.jsp"><button
-																	class="_1eWD8 _3SroY _27do9 cart-side_btn"
-																	type="button">
-																	<span> 총 </span> <span> ${totalCount} 개 </span> <span>구매하기</span>
-																</button> </a>
-														</div>
-													</div>
-												</div>
-												<footer class="cart-group_footer">
-													<p class="cart-group_total">배송비 무료</p>
-												</footer>
-											</article>
-										</li>
-									</ul>
-								</article>
-							</li>
-						</ul>
+														<footer class="cart-group_footer">
+															<p class="cart-group_total">배송비 무료</p>
+														</footer>
+													</article>
+												</li>
+											</ul>
+										</article>
+									</li>
+								</ul>
+							</c:when>
+							<c:when test="${empty cart}">
+							<h2> 장바구니가 비어있네요! </h2>
+ <a href = "Item_desk.jsp"><img src= "img/empty_cart.png" width="150px" height="150px">
+ <h5>상품 보러가기</h5></a>
+							</c:when>
+						</c:choose>
 					</div>
 				</div>
 			</div>

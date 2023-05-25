@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@page import = "model.*" %>
-	<%@ page import="java.util.*"%>
-<% 
-Map<Integer,Item> ItemField = (Map<Integer,Item>) session.getAttribute("ItemField");
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="model.*"%>
+<%@ page import="java.util.*"%>
+<%
+String logId = (String) session.getAttribute("log_id");
+Map<Integer, Item> ItemField = (Map<Integer, Item>) session.getAttribute("ItemField");
 %>
 <!DOCTYPE html>
 <html>
-<head>	
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mobel</title>
@@ -24,18 +25,13 @@ Map<Integer,Item> ItemField = (Map<Integer,Item>) session.getAttribute("ItemFiel
 	crossorigin="anonymous"></script>
 
 <style type="text/css">
-
-/* div {
-    display: block;}  */
-
-/* ol{
-    list-style : none;} */
 ul {
 	display: block;
 	margin-block-start: 1em;
 	margin-block-end: 1em;
 	padding-inline-start: 40px;
 }
+
 body {
 	padding-top: 54px;
 }
@@ -77,7 +73,7 @@ svg[Attributes Style] {
 
 /* .production-selling */
 .pro-sel {
-	margin-top : 55px;
+	margin-top: 55px;
 	position: relative;
 	min-height: 1px;
 }
@@ -759,315 +755,342 @@ svg[Attributes Style] {
 }
 </style>
 <script type="text/javascript">
-function opencart() {
-	if (sessionValue !== "null") {
-		document.getElementById("itemfield").action = "AddcartServlet";
-		document.getElementById("itemfield").submit();
-		const cart = window.open("addcart.jsp", "cart",
-				"width = 300px, height = 200px");
-		cart.opnert = window;
-	} else {
-		alert("로그인을 먼저 해주십시오.");
-		location.href = "login.jsp";
+	window.onload = function() {
+		if (session.getAttribute("ItemField") == null) {
+			alert("null");
+			document.getElementById("reform").submit();
+		}
 	}
-}
-
-function gobuy() {
-	if (sessionValue !== "null") {
-		document.getElementById("itemfield").action = "NowBuyServlet";
-		document.getElementById("itemfield").submit();
-	} else {
-		alert("로그인을 먼저 해주십시오.");
-		location.href = "login.jsp";
-	}
-}
-window.onload = function() {
-	if (session.getAttribute("ItemField") == null) {
-		alert("null");
-		  document.getElementById("reform").submit();
-	}
-}
+	
 </script>
 <%@ include file="header.jsp"%>
 </head>
 <body>
-<form id = "reform" action = "PageLoadServlet" method = "post">
-<input type="hidden" name = "itemid"  value = "1001">
-</form>
+	<form id="reform" action="PageLoadServlet" method="post">
+		<input type="hidden" name="itemid" value="1002">|
+		<input type = "hidden" name = "page" vlaue = "1002.jsp">
+	</form>
+
 	<c:set var="key" value="1002" />
 	<c:forEach var="ItemField" items='${ItemField}'>
 		<c:if test="${ItemField.key ==key }">
 
-	<div class="pro-sel">
-		<div class="pro-sel-over container">	
-			<div class="pro-view_con row">
-				<div class="production-selling-overview__cover-image-wrap col-7">
-					<div class="pro-imgcon">
-						<div class="carousel pro-selimg pro-coverimg" role="region"
-							aria-roledescription="carousel">
-							<div class="carousel__list-wrap  pro-selimg_carwrap">
-								<div class="carousel_list" aria-live="polite"
-									style="transform: translateX(0%);">
-									<div class="carlist-entry pro-selimg_entry" role="group"
-										aria-roledescription="slide" aria-label="1 of 6"
-										style="width: 100%;">
-										<img class="pro-selimg_entryimg" tabindex="0" alt="상품의 대표이미지"
-											src="${ItemField.value.getImg()}">
+			<div class="pro-sel">
+				<div class="pro-sel-over container">
+					<div class="pro-view_con row">
+						<div class="production-selling-overview__cover-image-wrap col-7">
+							<div class="pro-imgcon">
+								<div class="carousel pro-selimg pro-coverimg" role="region"
+									aria-roledescription="carousel">
+									<div class="carousel__list-wrap  pro-selimg_carwrap">
+										<div class="carousel_list" aria-live="polite"
+											style="transform: translateX(0%);">
+											<div class="carlist-entry pro-selimg_entry" role="group"
+												aria-roledescription="slide" aria-label="1 of 6"
+												style="width: 100%;">
+												<img class="pro-selimg_entryimg" tabindex="0"
+													alt="상품의 대표이미지" src="${ItemField.value.getImg()}">
 
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="production-selling-overview__content col-lg-5">
-					<div class="production-selling-header">
-						<h1 class="production-selling-header__title">
-							<p class="production-selling-header__title__brand-wrap">
-								<a class="production-selling-header__title__brand" href="">
-									(T) 염화 칼륨</a>
-							</p>
-							<div class="production-selling-header__title__name-wrap">
-								<span class="production-selling-header__title__name">[주문 제작 & 품귀] ${ItemField.value.getName()}</span>
+						<div class="production-selling-overview__content col-lg-5">
+							<div class="production-selling-header">
+								<h1 class="production-selling-header__title">
+									<p class="production-selling-header__title__brand-wrap">
+										<a class="production-selling-header__title__brand" href="">
+											(T) 염화 칼륨 </a>
+									</p>
+									<div class="production-selling-header__title__name-wrap">
+										<span class="production-selling-header__title__name">[주문
+											제작 & 품귀] ${ItemField.value.getName()}</span>
 
-							</div>
-						</h1>
+									</div>
+								</h1>
 
-						<div class="production-selling-header__content">
-							<div class="production-selling-header__price">
+								<div class="production-selling-header__content">
+									<div class="production-selling-header__price">
 
-								<span class="production-selling-header__price__separator"></span>
-								<div class="production-selling-header__price__price-value-wrap">
-									<div class="production-selling-header__price__price">
-										<span class="number">${ItemField.value.getPrice()}</span><span class="won">원</span>
-										<svg class="icon" aria-label="특가" width="30" height="20"
-											viewBox="0 0 30 20" preserveAspectRatio="xMidYMid meet">
+										<span class="production-selling-header__price__separator"></span>
+										<div
+											class="production-selling-header__price__price-value-wrap">
+											<div class="production-selling-header__price__price">
+												<span class="number">${ItemField.value.getPrice()}</span><span
+													class="won">원</span>
+												<svg class="icon" aria-label="특가" width="30" height="20"
+													viewBox="0 0 30 20" preserveAspectRatio="xMidYMid meet">
 <rect width="30" height="20" fill="#F77" rx="4"></rect>
 <path fill="#fff"
-												d=" M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 
+														d=" M12.83 7.93v-.97H7.93v-.555h5.228v-.991H6.655v4.063h6.59v-.992H7.928V7.93h4.901zm-6.295 
 3.747v1.002h5.326v2.037h1.274v-3.04h-6.6zm7.733-.588v-1.024H5.5v1.024h8.768zM23.91 
 9.782V8.725h-1.405V5H21.24v9.705h1.264V9.782h1.405zm-3.954-3.79h-4.53v1.056h3.147c-.174 1.938-1.623 
 3.975-3.736 4.945l.773.958c2.974-1.612 4.259-4.03 4.346-6.96z">
 </path></svg>
+											</div>
+
+										</div>
 									</div>
+								</div>
 
-								</div>
-							</div>
-						</div>
-
-						<div class="production-selling-header__info-wrap">
-							<div class="production-selling-header__promotion">
-								<div class="production-selling-header__promotion__title-wrap">
-									<span>혜택</span>
-								</div>
-								<div class="production-selling-header__promotion__content-wrap">
-									<p class="production-selling-header__promotion__entry">
-										<b>${Math.round(ItemField.value.getPrice()/100)}</b> P 적립
-									</p>
-								</div>
-							</div>
-							<div class="production-selling-header__delivery">
-								<div class="production-selling-header__delivery__title-wrap">
-									<span>배송</span>
-								</div>
-								<div class="production-selling-header__delivery__content-wrap">
-									<span class="production-selling-header__delivery__fee"><span><b>무료 배송
-										</b></span></span> <span
-										class="production-selling-header__delivery__type"><span>주문제작</span>
-										<span>일반택배</span> <span> <svg
-												class="delivery-time-icon" width="24" height="24"
-												fill="none" preserveAspectRatio="xMidYMid meet">
+								<div class="production-selling-header__info-wrap">
+									<div class="production-selling-header__promotion">
+										<div class="production-selling-header__promotion__title-wrap">
+											<span>혜택</span>
+										</div>
+										<div
+											class="production-selling-header__promotion__content-wrap">
+											<p class="production-selling-header__promotion__entry">
+												<b>${Math.round(ItemField.value.getPrice()/100)}</b> P 적립
+											</p>
+										</div>
+									</div>
+									<div class="production-selling-header__delivery">
+										<div class="production-selling-header__delivery__title-wrap">
+											<span>배송</span>
+										</div>
+										<div class="production-selling-header__delivery__content-wrap">
+											<span class="production-selling-header__delivery__fee"><span><b>무료
+														배송 </b></span></span> <span
+												class="production-selling-header__delivery__type"><span>주문제작</span>
+												<span>일반택배</span> <span> <svg
+														class="delivery-time-icon" width="24" height="24"
+														fill="none" preserveAspectRatio="xMidYMid meet">
 <path fill-rule="evenodd" clip-rule="evenodd"
-													d="M13.303 5.04l.394.92L7 8.83V12a.5.5 0 01-1 0V8.17l7.303-3.13z"
-													fill="#00B8F0"></path>
+															d="M13.303 5.04l.394.92L7 8.83V12a.5.5 0 01-1 0V8.17l7.303-3.13z"
+															fill="#00B8F0"></path>
 <path fill-rule="evenodd" clip-rule="evenodd"
-													d="M10.197 4.628a.5.5 0 00-.394 0L4.269 7 10 9.456 15.73 7l-2.427-1.04-3.106-1.332zM3.5 
+															d="M10.197 4.628a.5.5 0 00-.394 0L4.269 7 10 9.456 15.73 7l-2.427-1.04-3.106-1.332zM3.5 
 14.341V7.758l6 2.572v6.912L3.803 14.8a.5.5 0 01-.303-.46zm7 2.9l1.534-.657a5 5 0 014.466-5.56V7.759l-6 
 2.572v6.912zm.09 1.05l1.664-.713A5.002 5.002 0 0022 16a5 5 0 00-4.5-4.975V7.659a1.5 1.5 0 
 00-.91-1.378l-2.893-1.24-3.106-1.332a1.5 1.5 0 00-1.182 0l-6 2.572A1.5 1.5 0 002.5 7.659v6.682c0 
 .6.358 1.142.91 1.378l6 2.572a1.5 1.5 0 001.18 0zM17 20a4 4 0 100-8 4 4 0 000 8zm.5-6.5a.5.5 0 00-1 
 0v2H15a.5.5 0 000 1h2a.5.5 0 00.5-.5v-2.5z"
-													fill="#3F474D">
+															fill="#3F474D">
 </path></svg></span></span>
 
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
 
-						<a class="css-1jw8uh0 e3xbt9p7" href="#">
-							<div class="css-gshsra e3xbt9p6">
-								<svg width="24" height="24" fill="none"
-									preserveAspectRatio="xMidYMid meet">
+								<a class="css-1jw8uh0 e3xbt9p7" href="#">
+									<div class="css-gshsra e3xbt9p6">
+										<svg width="24" height="24" fill="none"
+											preserveAspectRatio="xMidYMid meet">
 <path
-										d="M3.972 8.694c0-.26.212-.472.472-.472h12.278a.472.472 0 010 .945H4.444a.472.472 0 01-.472-.473z"
-										fill="#35C5F0"></path>
+												d="M3.972 8.694c0-.26.212-.472.472-.472h12.278a.472.472 0 010 .945H4.444a.472.472 0 01-.472-.473z"
+												fill="#35C5F0"></path>
 <path fill-rule="evenodd" clip-rule="evenodd"
-										d="M17.51 5.5H6.492a1 1 0 00-.93.632l-.99 2.5A1 1 0 005.498 10h13.004a1 
+												d="M17.51 5.5H6.492a1 1 0 00-.93.632l-.99 2.5A1 1 0 005.498 10h13.004a1 
 1 0 00.927-1.368l-.99-2.5a1 1 0 00-.93-.632zM3.642 8.263a2.002 2.002 0 001.397 2.684V17.5a2.5 2.5 
 0 002.5 2.5H16.474a2.5 2.5 0 002.487-2.5v-6.553a2.002 2.002 0 001.398-2.684l-.99-2.5a2 
 2 0 00-1.86-1.263H6.493a2 2 0 00-1.86 1.263l-.99 2.5zM6.04 17.5V11h11.921v6.5a1.5 1.5 0 
 01-1.487 1.5v-4a2 2 0 00-2-2h-.97a2 2 0 00-2 2v4H7.54a1.5 1.5 0 01-1.5-1.5zm6.464 1.5h2.97v-4a1 
 1 0 00-1-1h-.97a1 1 0 00-1 1v1h.847a.5.5 0 110 1h-.847v2zM8 13h1.5v1.5H8V13zm-1 0a1 1 0 011-1h1.5a1 
 1 0 011 1v1.5a1 1 0 01-1 1H8a1 1 0 01-1-1V13z"
-										fill="#3F474D">
+												fill="#3F474D">
 </path></svg>
-								<div class="css-158icaa e3xbt9p5">
+										<div class="css-158icaa e3xbt9p5">
 
-									<span class="css-16kia55 e3xbt9p4">회사명</span>
-								</div>
-							</div>
-							<div class="css-xq185e e3xbt9p0">
-								<span>TJE Academy</span>
-								<svg width="14" height="14" fill="none"
-									preserveAspectRatio="xMidYMid meet">
-<path
-										d="M4.083 11.375L8.312 7 4.083 2.625l.803-.875L9.916 7l-5.03 5.25-.803-.875z"
-										fill="#828C94">
-</path></svg>
-							</div>
-						</a>
-					</div>
-
-					<div
-						class="production-selling-option-form production-selling-overview__option-form">
-						<section
-							class="selling-option-form-content production-selling-option-form__form">
-							<div class="selling-option-form-content__form">
-								<div class="selling-option-select-input">
-									<div
-										class="input-group select-input selling-option-select-input__option 
-selling-option-select-input__option-1 focused">
-										<div
-											class="input-group select-input selling-option-select-input__option selling-option-select-input__option-extra">
-									<form id="itemfield" action="form" method="post">
-										<input type="hidden" name="itemnum" value="${key}"> 
-											<select class="form-control empty" name = "quantity">
-												<option value="" qudisabled="|disabled">구매 갯수 (선택)</option>
-												<%
-												for (int i = 1; i <= 10; i++) {
-												%>
-												<option value="<%=i%>"><%=i%>개
-												</option>
-												<%
-												}
-												%>
-											</select> <span class="select-input__icon"> <svg class="icon"
-													width="10" height="10" preserveAspectRatio="xMidYMid meet"
-													style="fill: currentcolor;">
-<path fill-rule="evenodd" d="M0 3l5 5 5-5z"></path></svg></span>
-</form>
+											<span class="css-16kia55 e3xbt9p4">회사명</span>
 										</div>
 									</div>
-								</div>
+									<div class="css-xq185e e3xbt9p0">
+										<span>TJE Academy</span>
+										<svg width="14" height="14" fill="none"
+											preserveAspectRatio="xMidYMid meet">
+<path
+												d="M4.083 11.375L8.312 7 4.083 2.625l.803-.875L9.916 7l-5.03 5.25-.803-.875z"
+												fill="#828C94">
+</path></svg>
+									</div>
+								</a>
+							</div>
 
-								<ul class="selling-option-form-content__list"></ul>
-						</section>
-						<div class="production-selling-option-form__footer">
-							<button
-								class="button button--color-blue-inverted button--size-55 button--shape-4"
-								type="button" onclick = "">장바구니</button>
-							<button
-								class="button button--color-blue button--size-55 button--shape-4"
-								type="button">바로구매</button>
-						</div>
-					</div>
+							<div
+								class="production-selling-option-form production-selling-overview__option-form">
+								<section
+									class="selling-option-form-content production-selling-option-form__form">
+									<div class="selling-option-form-content__form">
+										<div class="selling-option-select-input">
+											<div
+												class="input-group select-input selling-option-select-input__option 
+selling-option-select-input__option-1 focused">
+												<div
+													class="input-group select-input selling-option-select-input__option selling-option-select-input__option-extra">
+													<!-- 										구매 갯수 -->
+													<div style="text-align: left;">
+														수량
+								<form id="itemfield" action="AddcartServlet" method="post">
+									<input type="hidden" name="itemnum" value="${key}">
+														<button onclick="decreaseQuantity()">-</button>
+														<input type="text" id="quantity" name="quantity" value="1"
+															readonly size="3px" onchange = "quantity_upload()">
+														<button onclick="increaseQuantity()">+</button>
+														<script type="text/javascript">
+														function decreaseQuantity() {
+															event.preventDefault();
+															var quantityInput = document.getElementById("quantity");
+															var quantity = parseInt(quantityInput.value);
+															if (quantity > 1) {
+																quantityInput.value = quantity - 1;
+															}
+														}
 
-					<div class="production-selling-overview__promotion-banner">
-						<a class="production-selling-promotion-banner" href="#"> <img
-							class="production-selling-promotion-banner__image production-selling-promotion-banner__image--pc"
-							src="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins
+														function increaseQuantity() {
+															event.preventDefault();
+															var quantityInput = document.getElementById("quantity");
+															var quantity = parseInt(quantityInput.value);
+															quantityInput.value = quantity + 1;
+														}
+														function quantity_upload(){
+															var quantityInput = document.getElementById("quantity");
+															var value_quantity = document.getElementById("value_quantity");
+															value_quanity.value = quantityInput.value;
+														}
+														</script>
+								</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<ul class="selling-option-form-content__list"></ul>
+								</section>
+									<div class="production-selling-option-form__footer">
+									
+									
+										<button
+											class="button button--color-blue-inverted button--size-55 button--shape-4"
+											type="button" onclick="opencart()">장바구니</button>
+										<button
+											class="button button--color-blue button--size-55 button--shape-4"
+											type="button" onclick="gobuy()">바로구매</button>
+									</div>
+									<script type="text/javascript">
+
+									var sessionValue = "<%=logId%>";
+										function opencart() {
+											if (sessionValue !== "null") {
+												document.getElementById("itemfield").action = "AddcartServlet";
+												document.getElementById("itemfield").submit();
+												const cart = window.open("addcart.jsp", "cart",
+														"width = 300px, height = 200px");
+												cart.opnert = window;
+											} else {
+												alert("로그인을 먼저 해주십시오.");
+												location.href = "login.jsp";
+											}
+										}
+
+										function gobuy() {
+											if (sessionValue !== "null") {
+												document.getElementById("itemfield").action = "NowBuyServlet";
+												document.getElementById("itemfield").submit();
+											} else {
+												alert("로그인을 먼저 해주십시오.");
+												location.href = "login.jsp";
+											}
+										}
+									</script>
+							</div>
+
+							<div class="production-selling-overview__promotion-banner">
+								<a class="production-selling-promotion-banner" href="#"> <img
+									class="production-selling-promotion-banner__image production-selling-promotion-banner__image--pc"
+									src="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins
 /production_promotions/event/168378117069696708.png?gif=1&amp;w=480&amp;webp=1"
-							srcset="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/production_promotions
+									srcset="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/production_promotions
 /event/168378117069696708.png?gif=1&amp;w=720&amp;webp=1 1.5x,https://image.ohou.se/i
 /bucketplace-v2-development/uploads/admins/production_promotions/event/168378117069696708.png?gif=1&amp;
 w=960&amp;webp=1 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/production_promotions
 /event/168378117069696708.png?gif=1&amp;w=1440&amp;webp=1 3x">
 
-						</a>
+								</a>
+							</div>
+						</div>
+
+						<div id="btfTab" class="tab" data-reordering-sdp-widgets="true">
+							<ul class="tab-titles">
+								<li name="detail" class="active">상품상세</li>
+								<li name="review">상품평 <span
+									class="product-tab-review-count"> (0)</span></li>
+								<li name="qna">상품문의</li>
+								<li name="etc">배송/교환/반품 안내</li>
+							</ul>
+
+							<ul class="tab-contents">
+								<li class="product-detail tab-contents__content">
+									<div class="prod-selling-point" style="display: none;">
+										<div class="prod-selling-point__title">특장점</div>
+										<div class="prod-selling-point__content"></div>
+									</div>
+									<div>
+										<div id="itemBrief"
+											class="product-essential-info  essential-table-collapsed">
+											<div class="product-item__table">
+												<p class="table-title">필수 표기정보</p>
+												<table
+													class="prod-delivery-return-policy-table essential-info-table">
+													<colgroup>
+														<col width="150px">
+														<col width="340px">
+														<col width="150px">
+														<col width="*">
+													</colgroup>
+													<tbody>
+														<tr>
+															<th>품목 또는 명칭</th>
+															<td>상품 상세페이지 참조</td>
+															<th>포장단위별 내용물의 용량(중량),수량,크기</th>
+															<td>상품 상세페이지 참조</td>
+														</tr>
+														<tr>
+															<th>생산자(수입자)</th>
+															<td>상품 상세페이지 참조</td>
+															<th>원산지</th>
+															<td>상품 상세페이지 참조</td>
+														</tr>
+														<tr>
+															<th>제조연월일, 소비기한 또는 품질유지기한</th>
+															<td>상품 상세페이지 참조</td>
+															<th>세부 품목군별 표시사항</th>
+															<td>상품 상세페이지 참조</td>
+														</tr>
+														<tr>
+															<th>수입식품 문구 여부</th>
+															<td>상품 상세페이지 참조</td>
+															<th>상품구성</th>
+															<td>상품 상세페이지 참조</td>
+														</tr>
+														<tr>
+															<th>보관방법,취급방법</th>
+															<td>상품 상세페이지 참조</td>
+															<th>소비자안전을 위한 주의사항</th>
+															<td>상품 상세페이지 참조</td>
+														</tr>
+														<tr>
+															<th>소비자상담관련 전화번호</th>
+															<td colspan="3">상품 상세페이지 참조</td>
+														</tr>
+													</tbody>
+												</table>
+
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
-
-				<div id="btfTab" class="tab" data-reordering-sdp-widgets="true">
-					<ul class="tab-titles">
-						<li name="detail" class="active">상품상세</li>
-						<li name="review">상품평 <span class="product-tab-review-count">
-								(0)</span></li>
-						<li name="qna">상품문의</li>
-						<li name="etc">배송/교환/반품 안내</li>
-					</ul>
-
-					<ul class="tab-contents">
-						<li class="product-detail tab-contents__content">
-							<div class="prod-selling-point" style="display: none;">
-								<div class="prod-selling-point__title">특장점</div>
-								<div class="prod-selling-point__content"></div>
-							</div>
-							<div>
-								<div id="itemBrief"
-									class="product-essential-info  essential-table-collapsed">
-									<div class="product-item__table">
-										<p class="table-title">필수 표기정보</p>
-										<table
-											class="prod-delivery-return-policy-table essential-info-table">
-											<colgroup>
-												<col width="150px">
-												<col width="340px">
-												<col width="150px">
-												<col width="*">
-											</colgroup>
-											<tbody>
-												<tr>
-													<th>품목 또는 명칭</th>
-													<td>상품 상세페이지 참조</td>
-													<th>포장단위별 내용물의 용량(중량),수량,크기</th>
-													<td>상품 상세페이지 참조</td>
-												</tr>
-												<tr>
-													<th>생산자(수입자)</th>
-													<td>상품 상세페이지 참조</td>
-													<th>원산지</th>
-													<td>상품 상세페이지 참조</td>
-												</tr>
-												<tr>
-													<th>제조연월일, 소비기한 또는 품질유지기한</th>
-													<td>상품 상세페이지 참조</td>
-													<th>세부 품목군별 표시사항</th>
-													<td>상품 상세페이지 참조</td>
-												</tr>
-												<tr>
-													<th>수입식품 문구 여부</th>
-													<td>상품 상세페이지 참조</td>
-													<th>상품구성</th>
-													<td>상품 상세페이지 참조</td>
-												</tr>
-												<tr>
-													<th>보관방법,취급방법</th>
-													<td>상품 상세페이지 참조</td>
-													<th>소비자안전을 위한 주의사항</th>
-													<td>상품 상세페이지 참조</td>
-												</tr>
-												<tr>
-													<th>소비자상담관련 전화번호</th>
-													<td colspan="3">상품 상세페이지 참조</td>
-												</tr>
-											</tbody>
-										</table>
-
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
 			</div>
-		</div>
-	</div>
-	</c:if>
+		</c:if>
 	</c:forEach>
 	<%@ include file="reviewform.jsp"%>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
-
-

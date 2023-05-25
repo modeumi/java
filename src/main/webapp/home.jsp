@@ -42,8 +42,7 @@
 body {
 	align-content: center;
 	text-align: center;
-	/* margin-left: 100px; */
-	padding-top: 55px;
+	padding-top: 54px;
 }
 
 body a {
