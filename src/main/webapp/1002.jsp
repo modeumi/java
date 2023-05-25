@@ -588,17 +588,18 @@ svg[Attributes Style] {
 
 .button--color-blue-inverted {
 	background-color: #fff;
-	border-color: #35c5f0;
-	color: #35c5f0;
+	border-color: lightgreen;
+	color: lightgreen;
 }
 
 .button--color-blue {
-	background-color: #35c5f0;
-	border-color: #35c5f0;
+	background-color: lightgreen;
+	border-color: lightgreen;
 	color: #fff;
 }
 
 .button {
+	border: 1px solid lightgreen;
 	font-family: inherit;
 	display: inline-block;
 	box-sizing: border-box;
@@ -1090,7 +1091,7 @@ w=960&amp;webp=1 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/a
 			</div>
 		</c:if>
 	</c:forEach>
-	<%@ include file="reviewform.jsp"%>
+	<%@ include file="new_reviewform.jsp"%>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

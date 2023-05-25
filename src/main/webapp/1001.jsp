@@ -588,17 +588,18 @@ svg[Attributes Style] {
 
 .button--color-blue-inverted {
 	background-color: #fff;
-	border-color: #35c5f0;
-	color: #35c5f0;
+	border-color: lightgreen;
+	color: lightgreen;
 }
 
 .button--color-blue {
-	background-color: #35c5f0;
-	border-color: #35c5f0;
+	background-color: lightgreen;
+	border-color: lightgreen;
 	color: #fff;
 }
 
 .button {
+	border: 1px solid lightgreen;
 	font-family: inherit;
 	display: inline-block;
 	box-sizing: border-box;
@@ -767,8 +768,8 @@ svg[Attributes Style] {
 </head>
 <body>
 	<form id="reform" action="PageLoadServlet" method="post">
-		<input type="hidden" name="itemid" value="1001">|
-		<input type = "hidden" name = "page" vlaue = "1001.jsp">
+		<input type="hidden" name="itemid" value="1001">| <input
+			type="hidden" name="page" vlaue="1001.jsp">
 	</form>
 
 	<c:set var="key" value="1001" />
@@ -924,13 +925,14 @@ selling-option-select-input__option-1 focused">
 													<!-- 										구매 갯수 -->
 													<div style="text-align: left;">
 														수량
-								<form id="itemfield" action="AddcartServlet" method="post">
-									<input type="hidden" name="itemnum" value="${key}">
-														<button onclick="decreaseQuantity()">-</button>
-														<input type="text" id="quantity" name="quantity" value="1"
-															readonly size="3px" onchange = "quantity_upload()">
-														<button onclick="increaseQuantity()">+</button>
-														<script type="text/javascript">
+														<form id="itemfield" action="AddcartServlet" method="post">
+															<input type="hidden" name="itemnum" value="${key}">
+															<button onclick="decreaseQuantity()">-</button>
+															<input type="text" id="quantity" name="quantity"
+																value="1" readonly size="3px"
+																onchange="quantity_upload()">
+															<button onclick="increaseQuantity()">+</button>
+															<script type="text/javascript">
 														function decreaseQuantity() {
 															event.preventDefault();
 															var quantityInput = document.getElementById("quantity");
@@ -952,7 +954,7 @@ selling-option-select-input__option-1 focused">
 															value_quanity.value = quantityInput.value;
 														}
 														</script>
-								</form>
+														</form>
 													</div>
 												</div>
 											</div>
@@ -960,42 +962,51 @@ selling-option-select-input__option-1 focused">
 
 										<ul class="selling-option-form-content__list"></ul>
 								</section>
-									<div class="production-selling-option-form__footer">
-									
-									
-										<button
-											class="button button--color-blue-inverted button--size-55 button--shape-4"
-											type="button" onclick="opencart()">장바구니</button>
-										<button
-											class="button button--color-blue button--size-55 button--shape-4"
-											type="button" onclick="gobuy()">바로구매</button>
-									</div>
-									<script type="text/javascript">
+								<div class="production-selling-option-form__footer">
 
-									var sessionValue = "<%=logId%>";
-										function opencart() {
-											if (sessionValue !== "null") {
-												document.getElementById("itemfield").action = "AddcartServlet";
-												document.getElementById("itemfield").submit();
-												const cart = window.open("addcart.jsp", "cart",
-														"width = 300px, height = 200px");
-												cart.opnert = window;
-											} else {
-												alert("로그인을 먼저 해주십시오.");
-												location.href = "login.jsp";
-											}
-										}
 
-										function gobuy() {
-											if (sessionValue !== "null") {
-												document.getElementById("itemfield").action = "NowBuyServlet";
-												document.getElementById("itemfield").submit();
-											} else {
-												alert("로그인을 먼저 해주십시오.");
-												location.href = "login.jsp";
-											}
+									<button
+										class="button button--color-blue-inverted button--size-55 button--shape-4"
+										type="button" onclick="opencart()">장바구니</button>
+									<button
+										class="button button--color-blue button--size-55 button--shape-4"
+										type="button" onclick="gobuy()">바로구매</button>
+								</div>
+								<script type="text/javascript">
+
+									var sessionValue = "<%=logId%>
+									";
+									function opencart() {
+										if (sessionValue !== "null") {
+											document
+													.getElementById("itemfield").action = "AddcartServlet";
+											document
+													.getElementById("itemfield")
+													.submit();
+											const cart = window
+													.open("addcart.jsp",
+															"cart",
+															"width = 300px, height = 200px");
+											cart.opnert = window;
+										} else {
+											alert("로그인을 먼저 해주십시오.");
+											location.href = "login.jsp";
 										}
-									</script>
+									}
+
+									function gobuy() {
+										if (sessionValue !== "null") {
+											document
+													.getElementById("itemfield").action = "NowBuyServlet";
+											document
+													.getElementById("itemfield")
+													.submit();
+										} else {
+											alert("로그인을 먼저 해주십시오.");
+											location.href = "login.jsp";
+										}
+									}
+								</script>
 							</div>
 
 							<div class="production-selling-overview__promotion-banner">
@@ -1090,7 +1101,7 @@ w=960&amp;webp=1 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/a
 			</div>
 		</c:if>
 	</c:forEach>
-	<%@ include file="reviewform.jsp"%>
+	<%@ include file="new_reviewform.jsp"%>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

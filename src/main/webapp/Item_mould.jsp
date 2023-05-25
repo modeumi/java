@@ -38,17 +38,17 @@ a {
 			<br />
 			<p>
 				
-				<a href="Item_desk.jsp" class="fontst"> 책상 </a>
+				<a href="new_Item_desk.jsp" class="fontst">      책상      </a>
 				<br>
 			<p>
-				<a href="Item_chair.jsp" class="fontst" > 의자 </a>
+				<a href="new_Item_chair.jsp" class="fontst" > 의자 </a>
 				<br>
 			<p>
-				<a href="Item_bed.jsp" class="fontst" > 침대 </a> <br>
+				<a href="new_Item_bed.jsp" class="fontst" > 침대 </a> <br>
 			<p>
-				<a href="Item_closet.jsp" class="fontst" > 옷장 </a> <br>
+				<a href="new_Item_closet.jsp" class="fontst" > 옷장 </a> <br>
 			<p>
-				<a href="Item_shelf.jsp" class="fontst" > 선반 </a> <br>
+				<a href="new_Item_shelf.jsp" class="fontst" > 선반 </a> <br>
 		</div>
 	</header>
 	

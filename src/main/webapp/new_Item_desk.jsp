@@ -13,7 +13,7 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+	src="img/https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 	crossorigin="anonymous"></script>  
 
@@ -253,15 +253,24 @@ p {
     font-weight: 700;}
                 
 </style>
-
+<script type="text/javascript">
+function pageload(itemid) {
+	document.getElementById("itemid").value = itemid;
+	document.getElementById("pageload").submit();
+}
+</script>
+</script>
 
  <%@ include file = "header.jsp" %> 
 </head>
 <body>
- <%@ include file = "Item_mould.jsp" %>
+ <%@ include file = "new_Item_mould.jsp" %>
+ <form action = "PageLoadServlet" id = "pageload" method = "post" >
+<input type = "hidden" name = "itemid"  id = "itemid" value = "" >
+</form>
  		<!-- <div class="allstyle"> -->
 		<!-- <div id="eventbanner"> -->
-			<!-- <img src="img/banner.png" width="100%" height="250px" /> -->
+			<!-- <img src="img/img/banner.png" width="100%" height="250px" /> -->
 		<!-- </div> -->
 		<br>
 		<br>
@@ -270,10 +279,10 @@ p {
 		<div class="row" style= "padding-top: 0px; padding-bottom: 4767px; transform: translateY(0px);">
 		 <div class="col-style">		  
 		    <article class="item_style">
-		     <a class="item_style2" href="#"></a>
+		     <a class="item_style2" href="#"  onclick = "pageload(1001)"></a>
 		     <div class="item-image "> 
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상1.png"> 
+		      <img class="image" src="img/desk/1001.png"> 
 		      <div class="item_image2">		      
 		      </div>		      				 
 		     </div>		     
@@ -293,10 +302,10 @@ p {
 		   		   
 		   <div class="col-style">  <!-- style --> 
 		    <article class="item_style">
-		     <a class="item_style2" href="#"></a>
+		     <a class="item_style2" href="#" onclick = "pageload(1002)"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상2.png">
+		      <img class="image" src="img/desk/1002.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>		     
@@ -316,10 +325,10 @@ p {
 		   
 		   <div class="col-style">  <!-- style --> 
 		    <article class="item_style">
-		     <a class="item_style2" href="#"></a>
+		     <a class="item_style2" href="#" onclick = "pageload(1003)"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상3.png">
+		      <img class="image" src="img/desk/1003.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -343,7 +352,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상4.png">
+		      <img class="image" src="img/desk/1004.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -366,7 +375,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상5.png">
+		      <img class="image" src="img/desk/1005.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -389,7 +398,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상6.png">
+		      <img class="image" src="img/desk/1006.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -412,7 +421,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상7.png">
+		      <img class="image" src="img/desk/1007.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -435,7 +444,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상8.png">
+		      <img class="image" src="img/desk/1008.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -458,7 +467,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상9.png">
+		      <img class="image" src="img/desk/1009.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -481,7 +490,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상10.png">
+		      <img class="image" src="img/desk/1010.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -504,7 +513,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상11.png">
+		      <img class="image" src="img/desk/1011.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -528,7 +537,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상12.png">
+		      <img class="image" src="img/desk/1012.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -552,7 +561,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상13.png">
+		      <img class="image" src="img/desk/1013.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -576,7 +585,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상14.png">
+		      <img class="image" src="img/desk/1014.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -600,7 +609,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상15.png">
+		      <img class="image" src="img/desk/1015.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -624,7 +633,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="책상/완성된책상16.png">
+		      <img class="image" src="img/desk/1016.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>

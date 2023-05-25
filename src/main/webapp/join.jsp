@@ -104,6 +104,7 @@ margin-left: 30%;
 	    inputDomain.value = inputDomain.value + " " + checkboxValues.join(" ");
 	  }
 	function doublecheck(){
+		var idcheck = document.getElementById("idInput").value;
 		window.open ("Idcheck.jsp","","width=500px, height=150px");
 	}
 	

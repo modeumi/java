@@ -40,9 +40,9 @@ h1 {
 			<script type="text/javascript">
 			var form = document.member;
 			var idPattern = /^[a-zA-Z0-9]{5,20}$/; //ID pattern (5-20 letters or numbers)
-			var id = document.getElementById("idcheck").value;
 			
 			function Checkid() {
+			var id = document.getElementById("idcheck").value;
 				if (!idPattern.test(id)) {
 					alert("ID는 5~20자의 영문 대소문자와 숫자로만 입력해주세요.");
 					return;

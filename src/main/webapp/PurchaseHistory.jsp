@@ -22,20 +22,20 @@ body {
 	margin: 10%;
 	margin-top : 3%;
 	margin-bottom : 3%;
-	border: 3px solid #99E000;
+	border: 3px solid lightgreen;
 	border-radius: 20px;
 	width: 80%;
 	height: 10%;
 	text-align: center;
-	background-color: #99E000;
+	background-color: lightgreen;
 }
 
 .itembody {
 	margin-left: 10%;
 	width: 80%;
 	height: 100%;
-	background-color: #99E000;
-	border: 3px solid #99E000;
+	background-color: lightgreen;
+	border: 3px solid lightgreen;
 	border-radius: 20px;
 }
 
@@ -125,7 +125,6 @@ function gowrite(ordernum){
 							${items.value.getItemname()}</a></span>
 					<span>금액 : ${items.value.getPrice()}</span>
 					<span>수량 : ${items.value.getCount()}</span>
-					<span> ${items.value.getReview()}</span>
 				</span>
 				<div class = "review_button">
 				

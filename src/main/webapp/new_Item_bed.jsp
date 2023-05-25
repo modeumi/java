@@ -258,7 +258,7 @@ p {
 </head>
 <body>
  <%@ include file = "header.jsp" %> 
- <%@ include file = "Item_mould.jsp" %>
+ <%@ include file = "new_Item_mould.jsp" %>
  		<!-- <div class="allstyle"> -->
 		<!-- <div id="eventbanner"> -->
 			<!-- <img src="img/banner.png" width="100%" height="250px" /> -->
@@ -273,7 +273,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image "> 
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대1.png"> 
+		      <img class="image" src="img/bed/3001.png"> 
 		      <div class="item_image2">		      
 		      </div>		      				 
 		     </div>		     
@@ -296,7 +296,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대2.png">
+		      <img class="image" src="img/bed/3002.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>		     
@@ -319,7 +319,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대3.png">
+		      <img class="image" src="img/bed/3003.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -343,7 +343,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대4.png">
+		      <img class="image" src="img/bed/3004.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -366,7 +366,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대5.png">
+		      <img class="image" src="img/bed/3005.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -389,7 +389,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대6.png">
+		      <img class="image" src="img/bed/3006.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -412,7 +412,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대7.png">
+		      <img class="image" src="img/bed/3007.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -435,7 +435,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대8.png">
+		      <img class="image" src="img/bed/3008.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -458,7 +458,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대9.png">
+		      <img class="image" src="img/bed/3009.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -481,7 +481,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대10.png">
+		      <img class="image" src="img/bed/3010.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -504,7 +504,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대11.png">
+		      <img class="image" src="img/bed/3011.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -528,7 +528,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대12.png">
+		      <img class="image" src="img/bed/3012.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -552,7 +552,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대13.png">
+		      <img class="image" src="img/bed/3013.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -576,7 +576,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대14.png">
+		      <img class="image" src="img/bed/3014.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -600,7 +600,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대15.png">
+		      <img class="image" src="img/bed/3015.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>
@@ -623,7 +623,7 @@ p {
 		     <a class="item_style2" href="#"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
-		      <img class="image" src="침대/완성된침대16.png">
+		      <img class="image" src="img/bed/3016.png">
 		      <div class="item_image2">		      
 		      </div>		     
 		     </div>

@@ -63,9 +63,7 @@ text-align: left;
 function pageload(itemid) {
 	document.getElementById("itemid").value = itemid;
 	document.getElementById("pageload").submit();
-	
 }
-
 </script>
 <%@ include file = "header.jsp" %>
 </head>

@@ -15,10 +15,6 @@ Map<Integer, Review> myreview = (Map<Integer, Review>) session.getAttribute("myr
 
 
 <style type="text/css">
-body {
-	margin-top: 54px;
-}
-
 div, p, h1, h2 {
 	margin: 0;
 	padding: 0;
@@ -258,9 +254,9 @@ function gowrite(ordernum){
 }
 
 </script>
-<%@ include file="header.jsp"%>
 </head>
-<body>
+<body style="margin-top: 54px	;text-align: left;">
+<%@ include file="header.jsp"%>
 	<div class="allpage">
 		<div class="allpage2">
 			<div id="reviewpage">
@@ -298,7 +294,7 @@ function gowrite(ordernum){
 										<div class="review-style3">
 											<div class="imagefield">
 												<p class="imagefield2">${review.getNickname()}</p>
-												<span class="imagefield3">구매날짜 : ${review.getDate()}</span>
+												<span class="imagefield3">작성 날짜 : ${review.getDate()}</span>
 											</div>
 										</div>
 										<div class="imagestyle">
