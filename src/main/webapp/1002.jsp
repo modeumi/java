@@ -409,10 +409,11 @@ svg[Attributes Style] {
 .css-xq185e {
 	display: flex;
 	-webkit-box-align: center;
+	text-align : center;	
 	align-items: center;
 	flex-basis: auto;
 	flex-shrink: 0;
-	width: 66px;
+	width: 80px;
 	padding: 4px 8px 4px 12px;
 	border-radius: 14px;
 	background-color: rgb(245, 245, 245);
@@ -768,8 +769,8 @@ svg[Attributes Style] {
 </head>
 <body>
 	<form id="reform" action="PageLoadServlet" method="post">
-		<input type="hidden" name="itemid" value="1002">|
-		<input type = "hidden" name = "page" vlaue = "1002.jsp">
+		<input type="hidden" name="itemid" value="1002">
+		<input type = "hidden" name = "page" value = "1002.jsp">
 	</form>
 
 	<c:set var="key" value="1002" />

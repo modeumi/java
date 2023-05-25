@@ -144,15 +144,15 @@ function imgclick(key ,img){
 				  <div class="imagestyle">  
 				   <c:if test="${not empty review.getImg().getImage1()}">
 					<img src="img/upload/${review.getImg().getImage1()}" class="imageslot"
-					 onclick="imgclick(${entry.key},'img/upload${review.getImg().getImage1()}')">
+					 onclick="imgclick(${entry.key},'img/upload/${review.getImg().getImage1()}')">
 				   </c:if>
 					  <c:if test="${not empty review.getImg().getImage2() }">
 						<img src="img/upload/${review.getImg().getImage2()}" class="imageslot"
-						     onclick="imgclick(${entry.key},'img/upload${review.getImg().getImage2()}')">
+						     onclick="imgclick(${entry.key},'img/upload/${review.getImg().getImage2()}')">
 					  </c:if>
 					  <c:if test="${not empty review.getImg().getImage3() }">
 						<img src="img/upload/${review.getImg().getImage3()}" class="imageslot"
-							 onclick="imgclick(${entry.key},'img/upload${review.getImg().getImage3()}')">
+							 onclick="imgclick(${entry.key},'img/upload/${review.getImg().getImage3()}')">
 					  </c:if>
 					  
 					   <div class="reviewinslot">

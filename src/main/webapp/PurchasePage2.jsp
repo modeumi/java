@@ -238,7 +238,7 @@ function submitform() {
 										<div>
 											<div class="css-p7mq5l e1l2pwkp9" style="display: flex; flex-direction: row;">
 												<figure class="css-3tik1d e1ui16bi1">
-													<img src="${itemEntry.value.getImg()}" width = "150px" srcset="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167701613072269056.jpg?w=144&amp;h=144&amp;c=c 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167701613072269056.jpg?w=144&amp;h=144&amp;c=c 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/167701613072269056.jpg?w=256&amp;h=256&amp;c=c 3x" alt="[해외] 네스프레소 호환 100캡슐 10종 무료배송 신규맛 추가 상품 이미지" class="e1ui16bi0 css-ot5r0k">
+													<img src="${itemEntry.value.getImg()}" width = "150px" class="e1ui16bi0 css-ot5r0k">
 												</figure>
 												<div class="css-17fh4sh e1l2pwkp8">
 													<div class="css-1ro907e e1l2pwkp7">${itemEntry.value.getName()}</div>

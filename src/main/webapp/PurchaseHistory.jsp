@@ -22,7 +22,7 @@ body {
 	margin: 10%;
 	margin-top : 3%;
 	margin-bottom : 3%;
-	border: 3px solid lightgreen;
+	border: 5px solid #32CD32;
 	border-radius: 20px;
 	width: 80%;
 	height: 10%;
@@ -35,15 +35,15 @@ body {
 	width: 80%;
 	height: 100%;
 	background-color: lightgreen;
-	border: 3px solid lightgreen;
+	border: 5px solid #32CD32;
 	border-radius: 20px;
 }
 
 .itemhis {
-	margin: 5%;
+	margin: 2.5%;
 	padding: 10px;
 	background-color: white;
-	width: 90%;
+	width: 95%;
 	display: block;
 	text-align: left;
 }
@@ -80,7 +80,9 @@ text-align :left;
 
 function gocart(ordernum){
 	document.getElementById(ordernum).action = "AddcartServlet";
+	alert("장바구니에 등록되었습니다.");
 	document.getElementById(ordernum).submit();
+	
 }
 
 function gowrite(ordernum){
@@ -97,7 +99,6 @@ function gowrite(ordernum){
 	<div id="banner">
 		<h2>구매내역</h2>
 	</div>
-	<p>
 	<div class="itembody">
 		<c:if test="${empty itemhistory }">
 			<div>

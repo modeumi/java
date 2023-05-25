@@ -448,8 +448,8 @@ dd {
 .cart-side-wrap {
 	display: block;
 	position: fixed;
-	transform: translate(105vh, -37vh);
-	width: 30vh;
+	transform: translate(95vh, -100vh);
+	width: 35vh;
 	min-height: 1px;
 	box-sizing: border-box;
 	-webkit-box-flex: 0;

@@ -15,15 +15,14 @@
 <title>möbel</title>
 <style type="text/css">
 body {
-padding-top: 20px;
 width: 400px;
-height: 700px;
+height: 600px;
 background-color: #99E000;
 }
 .reviewfield{
 margin: 10px ;
 width: 380px;
-height :  780px;
+height :  400px;
 display: block;
 }
 .itemfield{
@@ -108,7 +107,7 @@ text-align : center;
   border : 1px solid #EAEAEA;
   }
    textarea {
-        width: 100%;
+        width: 99%;
         height: 150px;
         resize: none;
     }
@@ -120,7 +119,7 @@ var rating = 0;
 function fillStars(starCount) {
   for (var i = 1; i <= 5; i++) {
 	  //rating 은 별점이 들어간 메인 div  
-    var star = children[i - 1];
+    var star = document.getElementById('rating').children[i - 1];
     if (i <= starCount) {
       star.classList.add('filled');
     } else {
@@ -154,8 +153,7 @@ function deleteFile(id) {
 					<br>
 				<div class="itemhis">
 					<div id = "smallwidth"><img src="${items.getImg()}" class="itemimg"></div>
-					<div class="textslot"> <span> 상품명 : <br> <a
-							href="${items.getUrl()}"> ${items.getItemname()}</a></span> <br><span>금액
+					<div class="textslot"> <span> 상품명 : <br> ${items.getItemname()}</span> <br><span>금액
 							: ${items.getPrice()} 원</span><br> <span>수량 :
 							${items.getCount()} 개</span>
 							</div>

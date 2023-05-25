@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.mysql.cj.Session;
+
 import Dao.DaoImpl;
 import model.Image;
 import model.ItemHistory;
@@ -89,8 +91,9 @@ public class AddReviewServlet extends HttpServlet {
 		daoimpl.Insert_Image(ordernum, image);
 		
 		Map<Integer,ItemHistory> item = daoimpl.Select_Purchase(userid);
+		Map<Integer,Review> reviews = daoimpl.My_Select_Review(userid);
 		 session.setAttribute("itemhistory", item);
-		
+		 session.setAttribute("myreview", reviews);
 		PrintWriter out = response.getWriter();
 		out.println("<script> alert('리뷰 등록이 완료되었습니다'); window.close(); reviews.location.reload(); </script>");
 	}

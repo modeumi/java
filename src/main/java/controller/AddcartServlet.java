@@ -74,7 +74,7 @@ public class AddcartServlet extends HttpServlet {
 			cart.put(item.getId(), item);
 			session.setAttribute("cart", cart);
 		}
-		String alertScript = "<script>alert('장바구니에 담았습니다');" +
+		String alertScript = "<script>" +
 				"window.history.back();</script>";
 			        response.getWriter().println(alertScript);
 	}

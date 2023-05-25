@@ -244,6 +244,7 @@ function imgclick(key ,img){
 
 function gocart(ordernum){
 	document.getElementById(ordernum).action = "AddcartServlet";
+	alert("상품이 등록되었습니다.");
 	document.getElementById(ordernum).submit();
 }
 

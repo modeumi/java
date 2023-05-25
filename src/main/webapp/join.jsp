@@ -65,7 +65,8 @@ margin-left: 30%;
 			return;
 		}
 		if (!pwPattern.test(pw)) {
-			alert("비밀번호는 숫자로만 입력해주세요.")
+			alert("비밀번호는 숫자로만 입력해주세요.");
+			document.getElementById("pw").value = "";
 			form.pw.select();
 			return;
 		}
@@ -81,6 +82,7 @@ margin-left: 30%;
 		}
 		if (pw !== pwc) {
 			alert("비밀번호가 일치하지 않습니다.")
+			document.getElementById("pwc").value = "";
 			document.member.pwc.select();
 			return;
 		}

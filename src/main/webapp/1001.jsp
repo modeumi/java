@@ -410,9 +410,10 @@ svg[Attributes Style] {
 	display: flex;
 	-webkit-box-align: center;
 	align-items: center;
+	text-align :center;
 	flex-basis: auto;
 	flex-shrink: 0;
-	width: 66px;
+	width: 80px;
 	padding: 4px 8px 4px 12px;
 	border-radius: 14px;
 	background-color: rgb(245, 245, 245);
@@ -768,8 +769,8 @@ svg[Attributes Style] {
 </head>
 <body>
 	<form id="reform" action="PageLoadServlet" method="post">
-		<input type="hidden" name="itemid" value="1001">| <input
-			type="hidden" name="page" vlaue="1001.jsp">
+		<input type="hidden" name="itemid" value="1001"> <input
+			type="hidden" name="page" value="1001.jsp">
 	</form>
 
 	<c:set var="key" value="1001" />
@@ -974,8 +975,7 @@ selling-option-select-input__option-1 focused">
 								</div>
 								<script type="text/javascript">
 
-									var sessionValue = "<%=logId%>
-									";
+									var sessionValue = "<%=logId%>";
 									function opencart() {
 										if (sessionValue !== "null") {
 											document
