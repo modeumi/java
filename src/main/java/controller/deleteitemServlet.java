@@ -46,7 +46,7 @@ public class deleteitemServlet extends HttpServlet {
 		String stkey = request.getParameter("key");
 		int key =  Integer.parseInt(stkey);
 		cart.remove(key);
-		response.sendRedirect("Cart.jsp");
+		response.sendRedirect("ShoppingMarket.jsp");
 	}
 
 }

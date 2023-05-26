@@ -515,7 +515,7 @@ width : 100%;
 var ans;
 function submititem(){
 	const deletei = window.open("deleteitem.jsp", "delete",
-			"width = 300px, height = 200px");
+			"width = 400px, height = 200px");
 	deletei.onbeforeunload = function() {
 		if (ans == 1){
 		document.getElementById("deleteitem").submit();
@@ -709,7 +709,7 @@ function changequantity(itemId) {
 							</c:when>
 							<c:when test="${empty cart}">
 							<h2> 장바구니가 비어있네요! </h2>
- <a href = "Item_desk.jsp"><img src= "img/empty_cart.png" width="150px" height="150px">
+ <a href = "new_Item_desk.jsp"><img src= "img/empty_cart.png" width="150px" height="150px">
  <h5>상품 보러가기</h5></a>
 							</c:when>
 						</c:choose>

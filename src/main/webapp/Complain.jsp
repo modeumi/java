@@ -8,7 +8,7 @@
 <title>고객센터</title>
 <style>
 body{
-padding-top: 55px;
+padding-top: 54px;
 }
 .complainMune {
    top: 50%;
@@ -27,9 +27,8 @@ section {
 .complainButton {
 margin-top : 5%;
    position: absolute;
-   top: 50%;
    left: 50%;
-   transform: translate(10%, -115%);
+   transform: translate(10%, -2%);
    width: 400px;
    padding: 5px;
    background: #dcdcdc;
@@ -47,9 +46,8 @@ ol {
    display: flex;
    justify-content: space-between;
    position: absolute;
-   top: 50%;
    left: 50%;
-   transform: translate(-48%, 100%);
+   transform: translate(-45%, -140%);
    width: 850px;
    padding: 10px;
    margin-bottom: 100%;
@@ -65,9 +63,9 @@ ol {
 
 ul {
    position: absolute; 
-   top: 70%;
+   top: 87%;
    left: 50%;
-   transform: translateX(-50%);
+   transform: translateX(-45%);
    width: 850px;
    background-color: white;
    padding: 20px;

@@ -10,7 +10,6 @@ public class ItemHistory {
 	public String userid;
 	public int price;
 	public Date date; 
-	public String type;
 	public int point;
 	public String review;
 	public String url;
@@ -75,11 +74,5 @@ public class ItemHistory {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 }

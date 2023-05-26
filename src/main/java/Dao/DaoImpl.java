@@ -329,7 +329,6 @@ public class DaoImpl {
 				items.setCount(rs.getInt("count"));
 				items.setPrice(rs.getInt("price"));
 				items.setDate(rs.getDate("date"));
-				items.setType(rs.getString("type"));
 				items.setReview(rs.getString("review"));
 
 				item.put(ordernum, items);
