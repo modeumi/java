@@ -349,7 +349,7 @@ function pageload(itemid) {
 		   
 		   <div class="col-style">  <!-- style --> 
 		    <article class="item_style">
-		     <a class="item_style2" href="#"></a>
+		     <a class="item_style2" href="#"onclick = "pageload(1004)"></a>
 		     <div class="item-image">
 		      <div class="item_style3"> </div>
 		      <img class="image" src="img/desk/1004.png">
