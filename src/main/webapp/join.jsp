@@ -169,7 +169,7 @@ margin-left: 30%;
 						<option value="직접입력">직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="daum.net">daum.net</option>
-						<option value="gmail.net">gmail.net</option>
+						<option value="gmail.com">gmail.com</option>
 					</select>
 				</p>
 				<br>

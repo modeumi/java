@@ -200,6 +200,7 @@ function submitform() {
 									<option value="019">019</option>
 							</select> <input type="text" name= "phone2" id = "phone2" value="" style="border-radius: 5px;">
 							</label>
+							${sessionScope.log_email.split('@')[1]}
 						</section>
 						<script>
 						var name = "${sessionScope.log_name}"
