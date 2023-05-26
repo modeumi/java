@@ -89,13 +89,12 @@ public class AddReviewServlet extends HttpServlet {
 		
 		daoimpl.Insert_Review(review);
 		daoimpl.Insert_Image(ordernum, image);
-		
 		Map<Integer,ItemHistory> item = daoimpl.Select_Purchase(userid);
 		Map<Integer,Review> reviews = daoimpl.My_Select_Review(userid);
 		 session.setAttribute("itemhistory", item);
 		 session.setAttribute("myreview", reviews);
 		PrintWriter out = response.getWriter();
-		out.println("<script> alert('리뷰 등록이 완료되었습니다'); window.close(); reviews.location.reload(); </script>");
+		out.println("<script> alert('리뷰 등록이 완료되었습니다'); window.close(); window.location.reload(); </script>");
 	}
 
 	private String getFileName(Part part) {

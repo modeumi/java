@@ -188,7 +188,7 @@ article {
 
 .cart_dgpi {
 	border-bottom: 1px solid #ededed;
-	width: 64%;
+	width: 100%;
 } /* 이거 회색, 하얀색섞은거 */
 
 /* .carted-product  */
@@ -446,10 +446,7 @@ dd {
 
 /* .commerce-cart__side-bar-wrap */
 .cart-side-wrap {
-	display: block;
-	position: fixed;
-	transform: translate(95vh, -100vh);
-	width: 35vh;
+	display: inline;
 	min-height: 1px;
 	box-sizing: border-box;
 	-webkit-box-flex: 0;
@@ -509,6 +506,9 @@ dd {
 	text-decoration: none;
 	border-radius: 4px;
 }
+.cart_delg__product-list{
+width : 100%;
+}
 </style>
 <script type="text/javascript">
 //제품 삭제 (V)
@@ -532,7 +532,7 @@ function changequantity(itemId) {
 	var itemPriceElement = document.getElementById("itemprice" + itemId);
 	var itemPrice = parseInt(itemPriceElement.innerHTML);
     var totalPrice = itemPrice * newQuantity;
-    document.getElementById("totalpay"+itemId).innerHTML = totalPrice;
+    document.getElementById("totalpay"+itemId).innerHTML =  totalPrice;
     // 값을 서블렛으로 전송하여 갱신처리 
     document.getElementById("itemIdInput").value = itemId;
     document.getElementById("quantityInput").value = newQuantity;
@@ -644,9 +644,8 @@ function changequantity(itemId) {
 																		<div class="cart-p_footer">
 																			<span class="cart-p_footer_left"> </span> <span
 																				class="cart-p_subtotal"> <span
-																				class="cart-p_subtotal_number">총금액 : <span
-																					id="totalpay${itemEntry.key}"
-																					onchange="changepay()">
+																				class="cart-p_subtotal_number">총금액 :
+																		 <span id="totalpay${itemEntry.key}" onchange="changepay()">
 																						${itemEntry.value.getPrice() * itemEntry.value.getCount()}
 																				</span>
 																			</span>원

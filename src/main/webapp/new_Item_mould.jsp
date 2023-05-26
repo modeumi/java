@@ -21,9 +21,9 @@ a {
 	text-decoration-line: none;}
 
 #category {
-border : 2px solid lightgreen;
-border-radius : 10px;
-padding : 30px;
+	border : 2px solid lightgreen;
+	border-radius : 10px;
+	padding : 30px;
 	text-align: center;
 	margin-top: 2%;
 	margin-left: 2%;
@@ -56,8 +56,7 @@ padding : 30px;
 			<div id="cut_line2"></div>
 			<br />
 			<p>
-				
-				<a href="new_Item_desk.jsp" class="asty">       책상       </a>
+				<a href="new_Item_desk.jsp" class="asty"> 책상 </a>
 				<br>
 			<p>
 				<a href="new_Item_chair.jsp" class="asty" > 의자 </a>

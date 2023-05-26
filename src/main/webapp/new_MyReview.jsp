@@ -88,6 +88,7 @@ header {
 
 /*리뷰 쓰기 버튼 적용 */
 .hright {
+margin-right : 30px;
 	font-size: 15px;
 	line-height: 21px;
 	font-weight: 700;
@@ -221,7 +222,7 @@ header {
 .textfield {
 	text-align: left;
 	line-height: 1.7;
-	display: inline-grid;
+	display: block;
 	margin: 20px 0;
 	font-size: 15px;
 	line-height: 21px;
@@ -319,7 +320,8 @@ function gowrite(ordernum){
 												<img src="img/upload/${review.getImg().getImage1()}"
 													class="mainimage" id="main${entry.key}">
 												<p class="textfield">
-
+													<span> 리뷰 내용 : </span> <br>
+													<p>
 													<span>${review.getText()}</span>
 												</p>
 												<div class="review_button">

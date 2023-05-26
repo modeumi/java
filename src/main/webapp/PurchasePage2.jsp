@@ -240,15 +240,15 @@ function submitform() {
 												<figure class="css-3tik1d e1ui16bi1">
 													<img src="${itemEntry.value.getImg()}" width = "150px" class="e1ui16bi0 css-ot5r0k">
 												</figure>
-												<div class="css-17fh4sh e1l2pwkp8">
-													<div class="css-1ro907e e1l2pwkp7">${itemEntry.value.getName()}</div>
+												<div class="css-17fh4sh e1l2pwkp8" style="text-align: left; margin-left: 9px;">
+													<div class="css-1ro907e e1l2pwkp7">제품명 : ${itemEntry.value.getName()}</div>
 <!-- 													<ul class="css-11uminu e1l2pwkp6"> -->
 <!-- 														<li>옵션1: 콜롬비아 50캡슐 / 옵션2: 콜롬비아 50캡슐</li> -->
 <!-- 													</ul> -->
 													<div class="css-s5xdrg e1l2pwkp5">
-														<span class="css-1yr3pdk e1l2pwkp4">${itemEntry.value.getPrice() }원</span>
+														<span class="css-1yr3pdk e1l2pwkp4">금액 : ${itemEntry.value.getPrice() }원</span>
 														<div class="css-1tcfgij e1l2pwkp3"></div>
-														<span class="css-1kjcy3l e1l2pwkp2">${itemEntry.value.getCount()} 개</span>
+														<span class="css-1kjcy3l e1l2pwkp2"> 수량 : ${itemEntry.value.getCount()} 개</span>
 													</div>
 												</div>
 											</div>

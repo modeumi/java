@@ -821,7 +821,8 @@ svg[Attributes Style] {
 										<div
 											class="production-selling-header__price__price-value-wrap">
 											<div class="production-selling-header__price__price">
-												<span class="number">${ItemField.value.getPrice()}</span><span
+												
+												<span class="number">${String.format("%,d", ItemField.value.getPrice())}</span><span
 													class="won">원</span>
 												<svg class="icon" aria-label="특가" width="30" height="20"
 													viewBox="0 0 30 20" preserveAspectRatio="xMidYMid meet">
@@ -1027,8 +1028,7 @@ w=960&amp;webp=1 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/a
 						<div id="btfTab" class="tab" data-reordering-sdp-widgets="true">
 							<ul class="tab-titles">
 								<li name="detail" class="active">상품상세</li>
-								<li name="review">상품평 <span
-									class="product-tab-review-count"> (0)</span></li>
+								<li name="review">상품평 </li>
 								<li name="qna">상품문의</li>
 								<li name="etc">배송/교환/반품 안내</li>
 							</ul>

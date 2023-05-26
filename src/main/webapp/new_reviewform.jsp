@@ -22,6 +22,7 @@ body,html{
 	font-family: OhouseSans,Noto Sans KR,Apple SD Gothic Neo,맑은 고딕,Malgun Gothic,sans-serif;}
 
 #reviewpage {
+padding: 1%;
 	margin: 10%;
 	background-color: #dbf1f8;}
 
@@ -80,7 +81,7 @@ body,html{
 .textfield {
 	text-align: left;
 	line-height: 1.7;
-	display: inline-grid;
+	display: block;
 	margin: 20px 0;
 	font-size: 15px;
     line-height: 21px;
@@ -156,8 +157,10 @@ function imgclick(key ,img){
 					  </c:if>
 					  
 					   <div class="reviewinslot">
+					   <c:if test="${not empty review.getImg().getImage1()}">
 						<img src="img/upload/${review.getImg().getImage1()}" class="mainimage"
 							id="${entry.key}">
+						</c:if>
 						 <div class="textfield">
 							<%-- <span>구매날짜 : ${review.getDate()}</span> <span>${review.getNickname()}</span> --%>
 							<span>${review.getText()}</span>
