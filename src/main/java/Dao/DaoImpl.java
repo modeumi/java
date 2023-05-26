@@ -528,8 +528,7 @@ public class DaoImpl {
 				history.setItemname(rs.getString(6));
 				history.setCount(rs.getInt(7));
 				history.setPrice(rs.getInt(8));
-				history.setType(rs.getString(9));
-				history.setReview(rs.getString(11));
+				history.setReview(rs.getString(10));
 				return history;
 			}
 		} catch (Exception e) {
